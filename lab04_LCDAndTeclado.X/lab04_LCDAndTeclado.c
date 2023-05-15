@@ -53,43 +53,37 @@ void main(void){
   }    
 }
 
-void __interrupt() ISR(void){
-  unsigned char aux_PORTB=PORTB;
+void aux_search_key(void){
+  // Thanks to https://www.tutorialspoint.com/cprogramming/c_array_of_pointers.htm
+  unsigned char *numbers_key[]={1,2,3,4,
+				5,6,7,8,
+				9,10,11,12,
+				13,14,15,16};
+  unsigned char *output_LATB_values[]={0b11111110,
+				       0b11111101,
+				       0b11111011,
+				       0b11110111};
+  for(unsigned char i=0; i<4; i++){
+    LATB=output_LATB_values[i];
+    __delay_ms(10); 		//stabilize LATB 
+    
+    if(RB4==0) {Tecla=numbers_key[i*4];break;} 
+    if(RB5==0) {Tecla=numbers_key[i*4+1];break;}
+    if(RB6==0) {Tecla=numbers_key[i*4+2];break;}
+    if(RB7==0) {Tecla=numbers_key[i*4+3];break;}
+  }
 
+  return;
+
+}
+
+void __interrupt() ISR(void){
+  unsigned char aux_PORTB=PORTB; 
   if(RBIF==1){
     // Falling edge discrimination
     if((aux_PORTB & 0b11110000)!=0b11110000){
       Tecla=0;
-      LATB=0b11111110;
-       __delay_ms(10);
-      if(RB4==0) Tecla=1;
-      else if(RB5==0) Tecla=2;
-      else if(RB6==0) Tecla=3;
-      else if(RB7==0) Tecla=4;
-      else{
-	LATB=0b11111101;
-	 __delay_ms(10);
-	if(RB4==0) Tecla=5;
-	else if(RB5==0) Tecla=6;
-	else if(RB6==0) Tecla=7;
-	else if(RB7==0) Tecla=8;
-	else{
-	  LATB=0b11111011;
-	   __delay_ms(10);
-	  if(RB4==0) Tecla=9;
-	  else if(RB5==0) Tecla=10;
-	  else if(RB6==0) Tecla=11;
-	  else if(RB7==0) Tecla=12;
-	  else{
-	    LATB=0b11110111;
-	     __delay_ms(10);
-	    if(RB4==0) Tecla=13;
-	    else if(RB5==0) Tecla=14;
-	    else if(RB6==0) Tecla=15;
-	    else if(RB7==0) Tecla=16;
-	  }
-	}
-      }
+      aux_search_key();
       LATB=0b11110000;
     }
     __delay_ms(100);
