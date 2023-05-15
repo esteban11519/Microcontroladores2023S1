@@ -1,0 +1,100 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Sun May 14 23:10:51 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000142
+                   .org_1       code   0x000700    program   0x00000e
+                   .org_2       code   0x000800    program   0x00000e
+.config_300000_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300000    program   0x000001
+.config_300001_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300001    program   0x000001
+.config_300002_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300002    program   0x000001
+.config_300003_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300003    program   0x000001
+.config_300005_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300005    program   0x000001
+.config_300006_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300006    program   0x000001
+.config_300008_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300008    program   0x000001
+.config_300009_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x300009    program   0x000001
+.config_30000A_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x30000a    program   0x000001
+.config_30000B_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x30000b    program   0x000001
+.config_30000C_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x30000c    program   0x000001
+.config_30000D_/MEDIA/ESTEBAN/ESTEBAN/UN/MICROC    romdata   0x30000d    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000141      
+                            0x000700    0x00070d      
+                            0x000800    0x00080d      
+                            0x300000    0x300003      
+                            0x300005    0x300006      
+                            0x300008    0x30000d      
+            362 out of 33048 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+         aux_delay_200_ms   0x0000fe    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            aux_delay_2_s   0x0000d6    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            aux_delay_5_s   0x0000ae    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+aux_delay_switch_debounce   0x000126    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+              aux_restart   0x000022    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+             button_delay   0x000086    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+     button_delay_is_cero   0x000090    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+      button_delay_is_one   0x00009a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+       check_reset_button   0x000014    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+check_value_is_negative_or_zero   0x00003c    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+     check_value_is_seven   0x000058    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+         color_code_table   0x000800    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+          decrement_value   0x00003a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+             delay_200_ms   0x0000f2    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                delay_2_s   0x0000ca    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                delay_5_s   0x0000a2    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+    delay_switch_debounce   0x00011a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+           increase_value   0x000056    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                     init   0x000000    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+   interrupter_inc_or_dec   0x00002c    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                  restart   0x000010    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+seven_segments_code_table   0x000700    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+               show_value   0x000068    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+        value_is_negative   0x00004e    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+           value_is_seven   0x000060    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            value_is_zero   0x000046    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     init   0x000000    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                  restart   0x000010    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+       check_reset_button   0x000014    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+              aux_restart   0x000022    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+   interrupter_inc_or_dec   0x00002c    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+          decrement_value   0x00003a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+check_value_is_negative_or_zero   0x00003c    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            value_is_zero   0x000046    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+        value_is_negative   0x00004e    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+           increase_value   0x000056    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+     check_value_is_seven   0x000058    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+           value_is_seven   0x000060    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+               show_value   0x000068    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+             button_delay   0x000086    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+     button_delay_is_cero   0x000090    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+      button_delay_is_one   0x00009a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                delay_5_s   0x0000a2    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            aux_delay_5_s   0x0000ae    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+                delay_2_s   0x0000ca    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+            aux_delay_2_s   0x0000d6    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+             delay_200_ms   0x0000f2    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+         aux_delay_200_ms   0x0000fe    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+    delay_switch_debounce   0x00011a    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+aux_delay_switch_debounce   0x000126    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+seven_segments_code_table   0x000700    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+         color_code_table   0x000800    program     static /media/esteban/Esteban/UN/Microcontroladores/MPLAB_X_IDE/lab03_manejoInterfaceDeUsuario.X/lab03_manejoInterfaceDeUsuario.asm
+
+

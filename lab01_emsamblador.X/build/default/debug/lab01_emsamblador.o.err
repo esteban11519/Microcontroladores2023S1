@@ -1,0 +1,4 @@
+Warning[205] /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm 2 : Found directive in column 1. (include)
+Warning[202] /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm 20 : Argument out of range.  Least significant bits used.
+Warning[202] /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm 23 : Argument out of range.  Least significant bits used.
+Warning[205] /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm 214 : Found directive in column 1. (end)

@@ -1,0 +1,48 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Apr 13 15:09:28 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000018
+.config_300000_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300000    program   0x000001
+.config_300001_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300001    program   0x000001
+.config_300002_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300002    program   0x000001
+.config_300003_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300003    program   0x000001
+.config_300005_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300005    program   0x000001
+.config_300006_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300006    program   0x000001
+.config_300008_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300008    program   0x000001
+.config_300009_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x300009    program   0x000001
+.config_30000A_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x30000a    program   0x000001
+.config_30000B_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x30000b    program   0x000001
+.config_30000C_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x30000c    program   0x000001
+.config_30000D_/MNT/F6B61030B60FF043/UN/MICROCO    romdata   0x30000d    program   0x000001
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000017      
+                            0x300000    0x300003      
+                            0x300005    0x300006      
+                            0x300008    0x30000d      
+            36 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     Loop   0x000004    program     static /mnt/F6B61030B60FF043/UN/Microcontroladores/MPLAB_X_IDE/lab02_uso_inicial.X/lab02_uso_inicial.asm
+                     Main   0x000000    program     static /mnt/F6B61030B60FF043/UN/Microcontroladores/MPLAB_X_IDE/lab02_uso_inicial.X/lab02_uso_inicial.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     Main   0x000000    program     static /mnt/F6B61030B60FF043/UN/Microcontroladores/MPLAB_X_IDE/lab02_uso_inicial.X/lab02_uso_inicial.asm
+                     Loop   0x000004    program     static /mnt/F6B61030B60FF043/UN/Microcontroladores/MPLAB_X_IDE/lab02_uso_inicial.X/lab02_uso_inicial.asm
+
+

@@ -1,0 +1,31 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Mar 16 14:50:56 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x0000bc
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x0000bb      
+            188 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   Inicio   0x000000    program     static /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   Inicio   0x000000    program     static /home/esteban/Desktop/Microcontroladores/MPLAB_X_IDE/lab01_emsamblador.X/lab01_emsamblador.asm
+
+

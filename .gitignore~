@@ -1,0 +1,25 @@
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	Fibonacci.X/
+	ensayo_conceptos.X/
+	interrupcion_led_pulsador.X/
+	lab01_emsamblador.X/
+	lab02_k50.X/
+	lab02_uso_inicial.X/
+	lab03_manejoInterfaceDeUsuario.X/
+	lab_aprendiendo.X/
+	learn_cla01.X/
+	learnc_class01_x.X/
+	led.X/
+	led_pulsador.X/
+	retardos.X/
+	semaforo.X/
+	tabla_ram.X/
+	tabla_rom.X/
+
+nothing added to commit but untracked files present (use "git add" to track)
