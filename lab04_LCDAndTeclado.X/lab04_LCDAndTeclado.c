@@ -15,8 +15,29 @@ unsigned char Tecla=0;
 // Interruption Service Rutine
 void __interrupt() ISR(void);
 
+// Functions
+
+void show_reset_source(void);
+void key2symbol(unsigned char *, unsigned char *);
+unsigned char is_sym_val_dig(unsigned char *, unsigned char *);
+unsigned char is_sym_val_ope(unsigned char *, unsigned char *);
+unsigned char is_sym_val_res(unsigned char *, unsigned char *);
+
 void main(void){
-  
+  // Variables
+  // Thanks to : https://www.tutorialesprogramacionya.com/cya/detalleconcepto.php?punto=13&codigo=13&inicio=0
+  // https://www.tutorialesprogramacionya.com/cya/detalleconcepto.php?punto=13&codigo=13&inicio=0
+  unsigned char auxKey = 0 ;
+  unsigned char symbol = '\0';  
+  unsigned char dig_1 = '\0';
+  unsigned char sym_ope = '\0';
+  unsigned char dig_2 = '\0';
+  unsigned char sym_res = '\0';
+
+  char valid_sym_dig[]={1,2,3,4,5,6,7,8,9,0,'F'};
+  char valid_sym_ope[]="+-*/"; // + , - , * , /
+  char valid_sym_res = '=';			   // =
+    
   /* LCD configuration */
   TRISD=0;			/*PortD as output */
   LATD=0;			/* PortD inir in 0 logic */
@@ -24,7 +45,6 @@ void main(void){
   ConfiguraLCD(4);
   InicializaLCD();
 
-  
   /* Keyboard configuration */
   TRISB=0b11110000;	     /*  RB7:RB4 as input and RB3:RB0 as output */
   LATB=0b00000000;	     /* RB3:RB0 in 0 logic */
@@ -37,21 +57,98 @@ void main(void){
   /* General configuration */
   __delay_ms(1000);		/* LCD stabilize time (1000 ms) and pull-up resistences (100 ms)*/
 
-
   /* Welcome message */
   MensajeLCD_Var("Hola Mundo");
   DireccionaLCD(0xC0); 
   MensajeLCD_Var("Dios es bueno");
 
-  __delay_ms(1000);
+  __delay_ms(3000);
   BorraLCD();
+
+  // Init code
+  
+  show_reset_source();
   
   while(1){
-    EscribeLCD_n8(Tecla,2);
+    auxKey=Tecla;
+
+    key2symbol(&auxKey,&symbol);
+    
+    if(is_sym_val_ope(valid_sym_ope,&symbol))
+      EscribeLCD_c(symbol);  
+    else if(is_sym_val_dig(valid_sym_dig,&symbol))
+      EscribeLCD_n8(symbol,2);
+    else if(is_sym_val_res(&valid_sym_res,&symbol))
+      EscribeLCD_c(symbol);
+    else MensajeLCD_Var("Todas las operaciones que se han realizado van a ser borradas.");
+    
     SLEEP();
     BorraLCD();
   }    
 }
+// Thanks to: https://www.tutorialspoint.com/cprogramming/c_function_call_by_reference.htm
+unsigned char is_sym_val_dig(unsigned char *arr, unsigned char *sym){
+  unsigned char counter=0;
+  while(arr[counter]!='F'){
+    if(arr[counter]==*sym) return 1;
+    counter++;
+  }
+  return 0;
+}
+unsigned char is_sym_val_ope(unsigned char *arr, unsigned char *sym){
+  unsigned char counter=0;
+  while(arr[counter]!='\0'){
+    if(arr[counter]==*sym) return 1;
+    counter++;
+  }
+  return 0;
+}
+unsigned char is_sym_val_res(unsigned char *sym_res, unsigned char *sym){
+  if(*sym_res==*sym) return 1;
+  return 0;
+}
+
+ 
+void key2symbol(unsigned char *key, unsigned char *symbol){
+  switch(*key){
+  case 1: *symbol=1;
+    break;
+  case 2: *symbol=2;
+    break;
+  case 3: *symbol=3;
+    break;
+  case 4: *symbol='+';
+    break;
+  case 5: *symbol=4;
+    break;
+  case 6: *symbol=5;
+    break;
+  case 7: *symbol=6;
+    break;
+  case 8: *symbol='-';
+    break;
+  case 9: *symbol=7;
+    break;
+  case 10: *symbol=8;
+    break;
+  case 11: *symbol=9;
+    break;
+  case 12: *symbol='=';
+    break;
+  case 13: *symbol='*';
+    break;
+  case 14: *symbol=0;
+    break;
+  case 15: *symbol='/';
+    break;
+  case 16: *symbol='D';
+    break;
+  default: *symbol='\0';
+    break;
+  }
+  return;
+}
+
 
 void aux_search_key(void){
   // Thanks to https://www.tutorialspoint.com/cprogramming/c_array_of_pointers.htm
@@ -89,5 +186,18 @@ void __interrupt() ISR(void){
     __delay_ms(100);
     RBIF=0;
   }
+  return;
+}
+
+void show_reset_source(void){
+  if(POR==0){
+    MensajeLCD_Var("Reset source: POR");
+    POR==1;
+  }
+  else{
+    MensajeLCD_Var("Reset source: MCLR");
+  }
+  __delay_ms(3000);
+  BorraLCD();
   return;
 }
