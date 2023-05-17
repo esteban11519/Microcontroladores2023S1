@@ -32,7 +32,8 @@ void print_bad_dig(void);
 void print_bad_ope(void);
 void print_bad_res(void);
 void calculate_and_show_result(unsigned char *, unsigned char *, unsigned char *, char *);
-
+void commute_color(unsigned char *);
+				
 void main(void){
   // Init global variables
   Key=0;
@@ -55,6 +56,9 @@ void main(void){
   char valid_sym_ope[]="+-*/"; 
   char valid_sym_res = '=';		      
 
+  unsigned char color = 0;
+
+  unsigned char sleep_counter_mode=0;
   // 'Aux' variables
   unsigned char rewrite=0;
   char aux_view_lcd[12];
@@ -65,13 +69,28 @@ void main(void){
 
   // Init code  
        //show_reset_source();	   
+
+  
+  
   
   while(1){
+    // Only by Reset get out
+    while(sleep_counter_mode>=10){
+      SLEEP();
+    }
     SLEEP();
-
+    
     // update values
     auxKey=Key;
     Key=0;
+
+    // Inactivity by 10 seconds
+    if(auxKey==0){
+      sleep_counter_mode++;
+    }
+    else{
+      sleep_counter_mode=0;
+    }
 
     // key to symbol
     key2symbol(&auxKey,&symbol);
@@ -156,6 +175,12 @@ void main(void){
 	
       }
       rewrite=0;
+    }
+
+    if(symbol!='F'){
+      commute_color(&color);
+      color++;
+      if(color==7) color=0;
     }
     
   }    
@@ -440,5 +465,9 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
     break;
   }  
   }
+  return;
+}
+
+void commute_color(unsigned char *){
   return;
 }
