@@ -3,7 +3,7 @@
 */
 #include<xc.h>
 #include<stdio.h>
-#include<math.h>
+//#include<math.h>
 #define _XTAL_FREQ 1000000 // Fosc = 1MHz; define before of LibLCDXC8.h
 #include "LibLCDXC8.h"
 #pragma config FOSC=INTOSC_EC 	/*Internal oscillator 1 MHz */
@@ -12,10 +12,12 @@
 #pragma config LVP=OFF		/* RB5 as digital i/o */
 
 // Global variables
-unsigned char Tecla=0;
+unsigned char Key;
+unsigned int Preload;
 
 // Interruption Service Rutine
-void __interrupt() ISR(void);
+void __interrupt(low_priority) ISR_low(void);
+void __interrupt(high_priority) ISR_high(void);
 
 // Functions
 void init_configuration(void);
@@ -32,6 +34,10 @@ void print_bad_res(void);
 void calculate_and_show_result(unsigned char *, unsigned char *, unsigned char *, char *);
 
 void main(void){
+  // Init global variables
+  Key=0;
+  Preload=3036;
+  
   // init configuration
   init_configuration();
   
@@ -64,9 +70,13 @@ void main(void){
     SLEEP();
 
     // update values
-    auxKey=Tecla;
+    auxKey=Key;
+    Key=0;
+
+    // key to symbol
     key2symbol(&auxKey,&symbol);
 
+    // User operations
     if (symbol=='D'){
       MensajeLCD_Var("Cleaning...");
       dig_1 = 'F';
@@ -76,7 +86,7 @@ void main(void){
       __delay_ms(1000);
       BorraLCD();
     }
-    else if(dig_1=='F' && auxKey!=0){
+    else if((dig_1=='F') && (symbol!='F')){
       if(is_sym_val_dig(valid_sym_dig,&symbol)){
 	dig_1=symbol;
 	sprintf(aux_view_lcd,"%u",dig_1);
@@ -87,7 +97,7 @@ void main(void){
 	rewrite=1;
       }
     }
-    else if(sym_ope=='F' && auxKey!=0){
+    else if((sym_ope=='F') && (symbol!='F')){
       if(is_sym_val_ope(valid_sym_ope,&symbol)){
 	sym_ope = symbol;
 	sprintf(aux_view_lcd,"%c",sym_ope);
@@ -98,7 +108,7 @@ void main(void){
 	rewrite=1;
       }
     }
-    else if(dig_2=='F' && auxKey!=0){
+    else if((dig_2=='F') && (symbol!='F')){
       if(is_sym_val_dig(valid_sym_dig,&symbol)){
 	dig_2=symbol;
 	sprintf(aux_view_lcd,"%u",dig_2);
@@ -110,7 +120,7 @@ void main(void){
       }
 
     }
-    else if(sym_res=='F' && auxKey!=0){
+    else if((sym_res=='F') && (symbol!='F')){
       if(is_sym_val_res(&valid_sym_res,&symbol)){
 	sym_res=symbol;
 	sprintf(aux_view_lcd,"%c",sym_res);
@@ -147,7 +157,6 @@ void main(void){
       }
       rewrite=0;
     }
-   
     
   }    
 }
@@ -229,19 +238,20 @@ void aux_search_key(void){
     LATB=output_LATB_values[i];
     __delay_ms(10); 		//stabilize LATB 
     
-				    if(RB4==0) {Tecla=numbers_key[i*4];break;} 
-    if(RB5==0) {Tecla=numbers_key[i*4+1];break;}
-    if(RB6==0) {Tecla=numbers_key[i*4+2];break;}
-    if(RB7==0) {Tecla=numbers_key[i*4+3];break;}
+    if(RB4==0){Key=numbers_key[i*4];break;} 
+    if(RB5==0) {Key=numbers_key[i*4+1];break;}
+    if(RB6==0) {Key=numbers_key[i*4+2];break;}
+    if(RB7==0) {Key=numbers_key[i*4+3];break;}
   }
 
   return;
 
 }
 
-void __interrupt() ISR(void){
-  Tecla=0; // When occur other interruption
+void __interrupt(low_priority) ISR_low(void){
+  
   if(RBIF==1){
+    Key=0;
     unsigned char aux_PORTB=PORTB;
     // Falling edge discrimination
     if((aux_PORTB & 0b11110000)!=0b11110000){
@@ -250,6 +260,15 @@ void __interrupt() ISR(void){
     }
     __delay_ms(100);
     RBIF=0;
+  }
+  return;
+}
+
+void __interrupt(high_priority) ISR_high(void){
+  if(TMR0IF==1){
+    TMR0=Preload;
+    TMR0IF=0;
+    RD0=~RD0;
   }
   return;
 }
@@ -270,7 +289,7 @@ void show_reset_source(void){
 void init_configuration(void){
   /* LCD configuration */
   TRISD=0;			/*PortD as output */
-  LATD=0;			/* PortD inir in 0 logic */
+  LATD=0;			/* PortD init in 0 logic */
   
   ConfiguraLCD(4);
   InicializaLCD();
@@ -281,8 +300,36 @@ void init_configuration(void){
   RBPU=0;			/*  PORTB Pull-up Enable bit, 0 is enable pullup resistence */
 
   RBIF=0; 			// RB Port Change Interrupt Flag bit, 0:  None of the RB7:RB4 pins have changed state
+  RBIP=0;			// Low priority
   RBIE=1;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
+  
+  
+  // TM0 configuration
+
+  // T0CON register
+  // bit 7 - TMR0ON: 0-1, stop Timer()-enables Timer()
+  // bit 6 - T08BIT: 0, 16 bits
+  // bit 5 - T0CS: 0, Fbus
+  // bit 4 - T0SE: 0, Increment on low-to-high transition on T0CKI pin ?
+  // bit 3 - PSA: 0, Assigned prescaler
+  // bit 2:0 - T0PS2:T0PS0: 001,1:4 Prescale value
+
+  T0CON=0b00000001;
+
+  TMR0=Preload; 			//preload
+  // INTCON
+  // TMR0IF: 0, TMR0 register did not overflow
+  // TMR0IE: 1, Enables the TMR0 overflow interrupt
+
+  TMR0IF=0;			
+  TMR0IE=1;
+  TMR0IP=1;			// 1, High priority
+  
+  IPEN=1;			// Enable priority levels on interrupts
+  PEIE=1;			// Enable interruption bit
   GIE=1;  			// Global Interrupt Enable bit, 1: = Enables all unmasked interrupts
+  // Enable timer
+  TMR0ON=1; 
   
   /* General configuration */
   __delay_ms(1000);		/* LCD stabilize time (1000 ms) and pull-up resistences (100 ms)*/
@@ -370,7 +417,7 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
     else{
       res_div = (float)(*dig_1)/(*dig_2);
       // Check if division is exactly
-      aux_res_div = fabs(res_div-floor(res_div));
+      aux_res_div = res_div-(int)res_div;
 
       if(1E-6>aux_res_div){
 	sprintf(aux_view_lcd, "%.0f",res_div);	
