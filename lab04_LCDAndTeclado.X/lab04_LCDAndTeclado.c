@@ -29,6 +29,7 @@ void print_array_char(char *);
 void print_bad_dig(void);
 void print_bad_ope(void);
 void print_bad_res(void);
+void calculate_and_show_result(unsigned char *, unsigned char *, unsigned char *, char *);
 
 void main(void){
   // init configuration
@@ -67,7 +68,7 @@ void main(void){
     key2symbol(&auxKey,&symbol);
 
     if (symbol=='D'){
-      MensajeLCD_Var("Todas las operaciones que se han realizado van a ser borradas.");
+      MensajeLCD_Var("Cleaning...");
       dig_1 = 'F';
       sym_ope = 'F';
       dig_2 = 'F';
@@ -114,6 +115,8 @@ void main(void){
 	sym_res=symbol;
 	sprintf(aux_view_lcd,"%c",sym_res);
 	print_array_char(aux_view_lcd);
+	calculate_and_show_result(&dig_1,&dig_2,&sym_ope,aux_view_lcd);
+	
       }
       else{
 	print_bad_res();
@@ -140,30 +143,11 @@ void main(void){
       if(sym_res!='F'){
 	sprintf(aux_view_lcd,"%c",sym_res);
 	print_array_char(aux_view_lcd);
+	
       }
       rewrite=0;
     }
    
-    
-    
-    
-    //char result[50]="1234567890123456";
-    //float num = 23.34;
-    // unsigned long int num=123456789;
-    // sprintf(result, "%ul",num);
-    //print_array_char(result);
-    
-    // auxKey=Tecla;
-    // key2symbol(&auxKey,&symbol);
-    
-    // if(is_sym_val_ope(valid_sym_ope,&symbol))
-    //   EscribeLCD_c(symbol);  
-    // else if(is_sym_val_dig(valid_sym_dig,&symbol))
-    //   EscribeLCD_n8(symbol,2);
-    // else if(is_sym_val_res(&valid_sym_res,&symbol))
-    //   EscribeLCD_c(symbol);
-    // else MensajeLCD_Var("Todas las operaciones que se han realizado van a ser borradas.");
-    
     
   }    
 }
@@ -347,5 +331,58 @@ void print_bad_res(void){
   MensajeLCD_Var("Insert '=' symbol");
   __delay_ms(1000);
   BorraLCD();
+  return;
+}
+
+void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsigned char *sym_ope, char *aux_view_lcd){
+
+  switch(*sym_ope){
+  case '+':{
+    unsigned char res_sum=*dig_1+*dig_2;
+    sprintf(aux_view_lcd, "%u",res_sum);
+    print_array_char(aux_view_lcd);
+    break;
+  }
+    
+  case '-':{
+    int res_res=*dig_1-*dig_2;
+    sprintf(aux_view_lcd, "%i",res_res);
+    print_array_char(aux_view_lcd);
+    break;
+  }
+  case '*':{
+    unsigned char res_mul=(*dig_1)*(*dig_2);
+    sprintf(aux_view_lcd, "%u",res_mul);
+    print_array_char(aux_view_lcd);
+    break; 
+  }
+  case '/':{
+    float res_div;
+
+    if(*dig_1==0 && *dig_2==0){
+      sprintf(aux_view_lcd, "%s","Ind");
+      print_array_char(aux_view_lcd);
+    }
+    else if(*dig_2==0){
+      sprintf(aux_view_lcd, "%s","Inf");
+      print_array_char(aux_view_lcd);
+    }
+    else{
+      res_div = (float)(*dig_1)/(*dig_2);
+      sprintf(aux_view_lcd, "%.3f",res_div);
+      print_array_char(aux_view_lcd);
+    }
+
+    break;
+  
+  }
+  default: {
+    BorraLCD();
+    MensajeLCD_Var("Error operation");
+    BorraLCD();
+
+    break;
+  }  
+  }
   return;
 }
