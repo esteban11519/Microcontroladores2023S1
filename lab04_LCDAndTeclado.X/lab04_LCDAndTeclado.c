@@ -358,7 +358,7 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
   }
   case '/':{
     float res_div;
-
+    float aux_res_div;
     if(*dig_1==0 && *dig_2==0){
       sprintf(aux_view_lcd, "%s","Ind");
       print_array_char(aux_view_lcd);
@@ -369,7 +369,16 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
     }
     else{
       res_div = (float)(*dig_1)/(*dig_2);
-      sprintf(aux_view_lcd, "%.3f",res_div);
+      // Check if division is exactly
+      aux_res_div = fabs(res_div-floor(res_div));
+
+      if(1E-6>aux_res_div){
+	sprintf(aux_view_lcd, "%.0f",res_div);	
+      }
+      else{
+	sprintf(aux_view_lcd, "%.3f",res_div);
+      }
+      
       print_array_char(aux_view_lcd);
     }
 
