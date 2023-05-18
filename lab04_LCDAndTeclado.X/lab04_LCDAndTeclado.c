@@ -6,18 +6,33 @@
 //#include<math.h>
 #define _XTAL_FREQ 1000000 // Fosc = 1MHz; define before of LibLCDXC8.h
 #include "LibLCDXC8.h"
+
+#ifndef LEDFRE
+#define LEDFRE RC2 	
+#endif
+
+#ifndef RGB_R
+#define RGB_R RE0
+#endif
+
+#ifndef RGB_G
+#define RGB_G RE2
+#endif
+
+#ifndef RGB_B
+#define RGB_B RE1
+#endif
+
+
 #pragma config FOSC=INTOSC_EC 	/*Internal oscillator 1 MHz */
 #pragma config WDT=OFF		/* Watchdog off  */
-#pragma config PBADEN=OFF	/* RB0 to RB4 as digital i/o */
 #pragma config LVP=OFF		/* RB5 as digital i/o */
 
 // Global variables
 unsigned char Key;
 unsigned int Preload;
+unsigned char Sleep_counter_mode;
 
-// Interruption Service Rutine
-void __interrupt(low_priority) ISR_low(void);
-void __interrupt(high_priority) ISR_high(void);
 
 // Functions
 void init_configuration(void);
@@ -33,11 +48,18 @@ void print_bad_ope(void);
 void print_bad_res(void);
 void calculate_and_show_result(unsigned char *, unsigned char *, unsigned char *, char *);
 void commute_color(unsigned char *);
-				
+void clear_symbols(unsigned char *, unsigned char *,unsigned char *, unsigned char *);
+
+// Interruption Service Rutine
+void __interrupt(low_priority) ISR_low(void);
+void __interrupt(high_priority) ISR_high(void);
+
+  
 void main(void){
   // Init global variables
   Key=0;
   Preload=3036;
+  Sleep_counter_mode=0;
   
   // init configuration
   init_configuration();
@@ -53,12 +75,12 @@ void main(void){
   unsigned char sym_res = 'F';
 
   char valid_sym_dig[]={1,2,3,4,5,6,7,8,9,0,'F'};
-  char valid_sym_ope[]="+-*/"; 
+  char valid_sym_ope[]="+-X/"; 
   char valid_sym_res = '=';		      
 
   unsigned char color = 0;
 
-  unsigned char sleep_counter_mode=0;
+  
   // 'Aux' variables
   unsigned char rewrite=0;
   char aux_view_lcd[12];
@@ -75,7 +97,7 @@ void main(void){
   
   while(1){
     // Only by Reset get out
-    while(sleep_counter_mode>=10){
+    while(Sleep_counter_mode>=10){
       SLEEP();
     }
     SLEEP();
@@ -85,27 +107,30 @@ void main(void){
     Key=0;
 
     // Inactivity by 10 seconds
-    if(auxKey==0){
-      sleep_counter_mode++;
-    }
-    else{
-      sleep_counter_mode=0;
+    if(auxKey!=0){
+      Sleep_counter_mode=0;
     }
 
     // key to symbol
     key2symbol(&auxKey,&symbol);
 
+    // colors
+    if(symbol!='F'){
+      commute_color(&color);
+      color++;
+      if(color==8) color=0;
+    }
+    
     // User operations
     if (symbol=='D'){
+      BorraLCD();
       MensajeLCD_Var("Cleaning...");
-      dig_1 = 'F';
-      sym_ope = 'F';
-      dig_2 = 'F';
-      sym_res = 'F';
+      clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
       __delay_ms(1000);
       BorraLCD();
     }
     else if((dig_1=='F') && (symbol!='F')){
+      BorraLCD();
       if(is_sym_val_dig(valid_sym_dig,&symbol)){
 	dig_1=symbol;
 	sprintf(aux_view_lcd,"%u",dig_1);
@@ -145,7 +170,7 @@ void main(void){
 	sprintf(aux_view_lcd,"%c",sym_res);
 	print_array_char(aux_view_lcd);
 	calculate_and_show_result(&dig_1,&dig_2,&sym_ope,aux_view_lcd);
-	
+	clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
       }
       else{
 	print_bad_res();
@@ -177,11 +202,7 @@ void main(void){
       rewrite=0;
     }
 
-    if(symbol!='F'){
-      commute_color(&color);
-      color++;
-      if(color==7) color=0;
-    }
+    
     
   }    
 }
@@ -234,7 +255,7 @@ void key2symbol(unsigned char *key, unsigned char *symbol){
     break;
   case 12: *symbol='=';
     break;
-  case 13: *symbol='*';
+  case 13: *symbol='X';
     break;
   case 14: *symbol=0;
     break;
@@ -293,12 +314,16 @@ void __interrupt(high_priority) ISR_high(void){
   if(TMR0IF==1){
     TMR0=Preload;
     TMR0IF=0;
-    RD0=~RD0;
+    LEDFRE=~LEDFRE;
+
+    // Increasing sleep counter
+    Sleep_counter_mode++;
   }
   return;
 }
 
 void show_reset_source(void){
+  BorraLCD();
   if(POR==0){
     MensajeLCD_Var("Reset source: POR");
     POR==1;
@@ -312,6 +337,18 @@ void show_reset_source(void){
 }
 
 void init_configuration(void){
+
+  // RB0:RB4 and RE0:RE2 as i/o digital
+  ADCON1=10;
+
+  // RGB in RE0:RE2
+  TRISE=0b11111000;
+  LATE=1;
+  
+  // Led in RC2
+  TRISC=0b11111011;
+  LATC=0;
+  
   /* LCD configuration */
   TRISD=0;			/*PortD as output */
   LATD=0;			/* PortD init in 0 logic */
@@ -363,6 +400,7 @@ void init_configuration(void){
 
 void welcome_operations(void){
   /* Welcome message */
+  BorraLCD();
   MensajeLCD_Var("Hola Mundo");
   DireccionaLCD(0xC0); 
   MensajeLCD_Var("Dios es bueno");
@@ -422,7 +460,7 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
     print_array_char(aux_view_lcd);
     break;
   }
-  case '*':{
+  case 'X':{
     unsigned char res_mul=(*dig_1)*(*dig_2);
     sprintf(aux_view_lcd, "%u",res_mul);
     print_array_char(aux_view_lcd);
@@ -460,6 +498,7 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
   default: {
     BorraLCD();
     MensajeLCD_Var("Error operation");
+    __delay_ms(1000);
     BorraLCD();
 
     break;
@@ -468,6 +507,84 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
   return;
 }
 
-void commute_color(unsigned char *){
+
+
+void commute_color(unsigned char *color){
+
+  switch(*color){
+  case 0:{
+    // Black
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=1;
+    break;
+  }
+  case 1: {
+    // Magenta
+    
+    RGB_R=0;
+    RGB_G=1;
+    RGB_B=0;
+    break;
+  }
+  case 2: {
+    // blue 
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=0;
+    break;
+  }
+  case 3: {
+    // cyan
+    RGB_R=1;
+    RGB_G=0;
+    RGB_B=0;
+    break;
+  }
+  case 4: {
+    // green
+    RGB_R=1;
+    RGB_G=0;
+    RGB_B=1;
+    break;
+  }
+  case 5: {
+    // Yellow
+    RGB_R=0;
+    RGB_G=0;
+    RGB_B=1;
+    break;
+  }
+  case 6: {
+    // red
+    RGB_R=0;
+    RGB_G=1;
+    RGB_B=1;
+    break;
+  }
+  case 7: {
+    // white
+    RGB_R=0;
+    RGB_G=0;
+    RGB_B=0;
+    break;
+  }
+  default:{
+    // Black
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=1;
+    break;
+  }
+  }
+  
+  return;
+}
+
+void clear_symbols(unsigned char *dig_1, unsigned char *sym_ope, unsigned char *dig_2, unsigned char *sym_res){
+  *dig_1 = 'F';
+  *sym_ope = 'F';
+  *dig_2 = 'F';
+  *sym_res = 'F';
   return;
 }
