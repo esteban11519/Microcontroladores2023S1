@@ -32,6 +32,7 @@
 unsigned char Key;
 unsigned int Preload;
 unsigned char Sleep_counter_mode;
+unsigned char Mode;
 
 
 // Functions
@@ -50,6 +51,10 @@ void calculate_and_show_result(unsigned char *, unsigned char *, unsigned char *
 void commute_color(unsigned char *);
 void clear_symbols(unsigned char *, unsigned char *,unsigned char *, unsigned char *);
 
+// Bonus functions
+unsigned long long int my_pow(unsigned char, unsigned char);
+unsigned long long int my_factorial(unsigned char );
+
 // Interruption Service Rutine
 void __interrupt(low_priority) ISR_low(void);
 void __interrupt(high_priority) ISR_high(void);
@@ -60,7 +65,7 @@ void main(void){
   Key=0;
   Preload=3036;
   Sleep_counter_mode=0;
-  
+  Mode=0;
   // init configuration
   init_configuration();
   
@@ -75,7 +80,7 @@ void main(void){
   unsigned char sym_res = 'F';
 
   char valid_sym_dig[]={1,2,3,4,5,6,7,8,9,0,'F'};
-  char valid_sym_ope[]="+-X/"; 
+  char valid_sym_ope[]="+-X/^!"; 
   char valid_sym_res = '=';		      
 
   unsigned char color = 0;
@@ -129,7 +134,7 @@ void main(void){
       __delay_ms(1000);
       BorraLCD();
     }
-    else if((dig_1=='F') && (symbol!='F')){
+    else if(dig_1=='F' && symbol!='F'){
       BorraLCD();
       if(is_sym_val_dig(valid_sym_dig,&symbol)){
 	dig_1=symbol;
@@ -141,7 +146,7 @@ void main(void){
 	rewrite=1;
       }
     }
-    else if((sym_ope=='F') && (symbol!='F')){
+    else if(sym_ope=='F' && symbol!='F'){
       if(is_sym_val_ope(valid_sym_ope,&symbol)){
 	sym_ope = symbol;
 	sprintf(aux_view_lcd,"%c",sym_ope);
@@ -152,7 +157,7 @@ void main(void){
 	rewrite=1;
       }
     }
-    else if((dig_2=='F') && (symbol!='F')){
+    else if(dig_2=='F' && symbol!='F' && sym_ope!='!'){
       if(is_sym_val_dig(valid_sym_dig,&symbol)){
 	dig_2=symbol;
 	sprintf(aux_view_lcd,"%u",dig_2);
@@ -164,7 +169,7 @@ void main(void){
       }
 
     }
-    else if((sym_res=='F') && (symbol!='F')){
+    else if(sym_res=='F' && symbol!='F'){
       if(is_sym_val_res(&valid_sym_res,&symbol)){
 	sym_res=symbol;
 	sprintf(aux_view_lcd,"%c",sym_res);
@@ -190,7 +195,7 @@ void main(void){
 	sprintf(aux_view_lcd,"%c",sym_ope);
 	print_array_char(aux_view_lcd);
       }
-      if(dig_2!='F'){
+      if(dig_2!='F' && sym_ope!='!'){
 	sprintf(aux_view_lcd,"%u",dig_2);
 	print_array_char(aux_view_lcd);
       }
@@ -237,16 +242,23 @@ void key2symbol(unsigned char *key, unsigned char *symbol){
     break;
   case 3: *symbol=3;
     break;
-  case 4: *symbol='+';
+  case 4:{
+    if (Mode!=0) *symbol='^';
+    else *symbol='+';
     break;
+  }
+    
   case 5: *symbol=4;
     break;
   case 6: *symbol=5;
     break;
   case 7: *symbol=6;
     break;
-  case 8: *symbol='-';
+  case 8: {
+    if(Mode!=0) *symbol='!';
+    else  *symbol='-';
     break;
+  }
   case 9: *symbol=7;
     break;
   case 10: *symbol=8;
@@ -287,7 +299,24 @@ void aux_search_key(void){
     if(RB4==0){Key=numbers_key[i*4];break;} 
     if(RB5==0) {Key=numbers_key[i*4+1];break;}
     if(RB6==0) {Key=numbers_key[i*4+2];break;}
-    if(RB7==0) {Key=numbers_key[i*4+3];break;}
+    if(RB7==0) {
+      Key=numbers_key[i*4+3];
+      unsigned char contador = 0;
+      while(RB7==0 && i==3){
+	__delay_ms(10);
+	contador++;
+	if (contador==120){
+	  Mode=~Mode;
+	  BorraLCD();
+	  MensajeLCD_Var("Changing mode...");
+	  __delay_ms(1000);
+	  BorraLCD();
+	  break;
+	}
+      }
+      break;
+    
+    }
   }
 
   return;
@@ -450,6 +479,8 @@ void print_bad_res(void){
 
 void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsigned char *sym_ope, char *aux_view_lcd){
 
+  unsigned long long int aux_uns_long_long_int=0;
+  
   switch(*sym_ope){
   case '+':{
     unsigned char res_sum=*dig_1+*dig_2;
@@ -497,8 +528,34 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
     }
 
     break;
-  
   }
+  case '!': {
+
+    aux_uns_long_long_int = my_factorial(*dig_1);
+    sprintf(aux_view_lcd, "%llu",aux_uns_long_long_int);
+    print_array_char(aux_view_lcd);
+	
+      
+    break;
+  }
+  case '^':{
+    if(*dig_1==0 && *dig_2 == 0){
+      sprintf(aux_view_lcd, "%s","Ind");
+      print_array_char(aux_view_lcd);
+    }
+    else if(*dig_1==0){
+      sprintf(aux_view_lcd, "%c",'0');
+      print_array_char(aux_view_lcd);
+    }
+    else{
+      aux_uns_long_long_int  = my_pow(*dig_1, *dig_2);
+      sprintf(aux_view_lcd, "%llu",aux_uns_long_long_int);
+      print_array_char(aux_view_lcd);
+    }
+    
+    break;
+  }
+    
   default: {
     BorraLCD();
     MensajeLCD_Var("Error operation");
@@ -591,4 +648,20 @@ void clear_symbols(unsigned char *dig_1, unsigned char *sym_ope, unsigned char *
   *dig_2 = 'F';
   *sym_res = 'F';
   return;
+}
+
+unsigned long long int my_pow(unsigned char x, unsigned char n){
+  unsigned long long int aux=x;
+  for(unsigned char i=1;i<n;i++){
+    aux=x*aux;
+  }
+  return aux;
+}
+
+unsigned long long int my_factorial(unsigned char x){
+  unsigned long long int aux=1;
+  for(unsigned char i=2;i<=x;i++){
+    aux=aux*i;
+  }
+  return aux;
 }
