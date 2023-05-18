@@ -89,10 +89,10 @@ void main(void){
   // welcome
   welcome_operations();
 
-  // Init code  
-       //show_reset_source();	   
+  // Reset source
+  show_reset_source();	   
 
-  
+  // Init code  
   
   
   while(1){
@@ -100,7 +100,7 @@ void main(void){
     while(Sleep_counter_mode>=10){
       SLEEP();
     }
-    SLEEP();
+    //SLEEP();
     
     // update values
     auxKey=Key;
@@ -326,7 +326,7 @@ void show_reset_source(void){
   BorraLCD();
   if(POR==0){
     MensajeLCD_Var("Reset source: POR");
-    POR==1;
+    POR=1;
   }
   else{
     MensajeLCD_Var("Reset source: MCLR");
@@ -337,7 +337,11 @@ void show_reset_source(void){
 }
 
 void init_configuration(void){
-
+  // Sleep
+  IDLEN=1;
+//  SCS1=1;
+//  SCS0=1;
+  
   // RB0:RB4 and RE0:RE2 as i/o digital
   ADCON1=10;
 
