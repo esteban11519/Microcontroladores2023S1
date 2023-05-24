@@ -1,3 +1,4 @@
+lab01_emsamblador.X/nbproject/Makefile-genesis.properties
 Fibonacci.X
 ensayo_conceptos.X
 interrupcion_led_pulsador.X
@@ -15,4 +16,7 @@ tabla_rom.X
 /lab04_LCDAndTeclado.X/build/default/
 /lab04_LCDAndTeclado.X/dist/default/
 useful.org
-p18f4550.inc
+lab01_emsamblador.X/nbproject/Makefile-genesis.properties
+lab02_uso_inicial.X/nbproject/Makefile-genesis.properties
+lab03_manejoInterfaceDeUsuario.X/nbproject/Makefile-genesis.properties
+lab04_LCDAndTeclado.X/nbproject/Makefile-genesis.properties

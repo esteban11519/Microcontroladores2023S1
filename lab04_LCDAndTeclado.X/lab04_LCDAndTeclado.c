@@ -24,6 +24,7 @@
 #endif
 
 
+
 #pragma config FOSC=INTOSC_EC 	/*Internal oscillator 1 MHz */
 #pragma config WDT=OFF		/* Watchdog off  */
 #pragma config LVP=OFF		/* RB5 as digital i/o */
@@ -32,7 +33,10 @@
 unsigned char Key;
 unsigned int Preload;
 unsigned char Sleep_counter_mode;
+unsigned char Limit_sleep_counter_mode;
 unsigned char Mode;
+unsigned char Mode_changed; 
+const unsigned long Min_time=100; // ms
 
 
 // Functions
@@ -65,7 +69,10 @@ void main(void){
   Key=0;
   Preload=3036;
   Sleep_counter_mode=0;
+  Limit_sleep_counter_mode = 10;  
   Mode=0;
+  Mode_changed=0;
+
   // init configuration
   init_configuration();
   
@@ -98,118 +105,133 @@ void main(void){
   show_reset_source();	   
 
   // Init code  
-  
-  
-  while(1){
-    // Only by Reset get out
-    while(Sleep_counter_mode>=10){
-      SLEEP();
-    }
-    //SLEEP();
+       while(1){
+	 // Only by Reset get out
+	 if(Sleep_counter_mode>=Limit_sleep_counter_mode){
+	   SLEEP();
+	 }
+	 //SLEEP();
     
-    // update values
-    auxKey=Key;
-    Key=0;
+	 // update values
+	 auxKey=Key;
+	 Key=0;
 
-    // Inactivity by 10 seconds
-    if(auxKey!=0){
-      Sleep_counter_mode=0;
-    }
+	 // Inactivity by 10 seconds
+	 if(auxKey!=0){
+	   Sleep_counter_mode=0;
+	 }
 
-    // key to symbol
-    key2symbol(&auxKey,&symbol);
+	 // key to symbol
+	 key2symbol(&auxKey,&symbol);
 
-    // colors
-    if(symbol!='F'){
-      commute_color(&color);
-      color++;
-      if(color==8) color=0;
-    }
+	 // colors
+	 if(symbol!='F'){
+	   commute_color(&color);
+	   color++;
+	   if(color==8) color=0;
+	 }
+
+	 // Mode changed indication
+	 if (Mode_changed){
+	   if(Mode==0){
+	     BorraLCD();
+	     MensajeLCD_Var("Operations: +,-,X,/");
+	     __delay_ms(Min_time*7);
+	     BorraLCD();
+	   }else{
+	     BorraLCD();
+	     MensajeLCD_Var("Operations: ^,!,X,/");
+	     __delay_ms(Min_time*7);
+	     BorraLCD();
+	   }
+	   
+	   Mode_changed=0;
+	 }
     
-    // User operations
-    if (symbol=='D'){
-      BorraLCD();
-      MensajeLCD_Var("Cleaning...");
-      clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
-      __delay_ms(1000);
-      BorraLCD();
-    }
-    else if(dig_1=='F' && symbol!='F'){
-      BorraLCD();
-      if(is_sym_val_dig(valid_sym_dig,&symbol)){
-	dig_1=symbol;
-	sprintf(aux_view_lcd,"%u",dig_1);
-	print_array_char(aux_view_lcd);
-      }
-      else{
-	print_bad_dig();
-	rewrite=1;
-      }
-    }
-    else if(sym_ope=='F' && symbol!='F'){
-      if(is_sym_val_ope(valid_sym_ope,&symbol)){
-	sym_ope = symbol;
-	sprintf(aux_view_lcd,"%c",sym_ope);
-	print_array_char(aux_view_lcd);
-      }
-      else{
-	print_bad_ope();
-	rewrite=1;
-      }
-    }
-    else if(dig_2=='F' && symbol!='F' && sym_ope!='!'){
-      if(is_sym_val_dig(valid_sym_dig,&symbol)){
-	dig_2=symbol;
-	sprintf(aux_view_lcd,"%u",dig_2);
-	print_array_char(aux_view_lcd);
-      }
-      else{
-	print_bad_dig();
-	rewrite=1;
-      }
+	 // User operations
+	 if (symbol=='D'){
+	   BorraLCD();
+	   MensajeLCD_Var("Cleaning...");
+	   clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
+	   __delay_ms(Min_time*5);
+	   BorraLCD();
+	 }
+	 else if(dig_1=='F' && symbol!='F'){
+	   BorraLCD();
+	   if(is_sym_val_dig(valid_sym_dig,&symbol)){
+	     dig_1=symbol;
+	     sprintf(aux_view_lcd,"%u",dig_1);
+	     print_array_char(aux_view_lcd);
+	   }
+	   else{
+	     print_bad_dig();
+	     rewrite=1;
+	   }
+	 }
+	 else if(sym_ope=='F' && symbol!='F'){
+	   if(is_sym_val_ope(valid_sym_ope,&symbol)){
+	     sym_ope = symbol;
+	     sprintf(aux_view_lcd,"%c",sym_ope);
+	     print_array_char(aux_view_lcd);
+	   }
+	   else{
+	     print_bad_ope();
+	     rewrite=1;
+	   }
+	 }
+	 else if(dig_2=='F' && symbol!='F' && sym_ope!='!'){
+	   if(is_sym_val_dig(valid_sym_dig,&symbol)){
+	     dig_2=symbol;
+	     sprintf(aux_view_lcd,"%u",dig_2);
+	     print_array_char(aux_view_lcd);
+	   }
+	   else{
+	     print_bad_dig();
+	     rewrite=1;
+	   }
 
-    }
-    else if(sym_res=='F' && symbol!='F'){
-      if(is_sym_val_res(&valid_sym_res,&symbol)){
-	sym_res=symbol;
-	sprintf(aux_view_lcd,"%c",sym_res);
-	print_array_char(aux_view_lcd);
-	calculate_and_show_result(&dig_1,&dig_2,&sym_ope,aux_view_lcd);
-	clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
-      }
-      else{
-	print_bad_res();
-	rewrite=1;
-      }
+	 }
+	 else if(sym_res=='F' && symbol!='F'){
+	   if(is_sym_val_res(&valid_sym_res,&symbol)){
+	     sym_res=symbol;
+	     sprintf(aux_view_lcd,"%c",sym_res);
+	     print_array_char(aux_view_lcd);
+	     calculate_and_show_result(&dig_1,&dig_2,&sym_ope,aux_view_lcd);
+	     clear_symbols(&dig_1,&sym_ope,&dig_2,&sym_res);
+	   }
+	   else{
+	     print_bad_res();
+	     rewrite=1;
+	   }
       
-    }
+	 }
 
-    // Print again after of bad input
-    if(rewrite){
-      if(dig_1!='F'){
-	sprintf(aux_view_lcd,"%u",dig_1);
-	print_array_char(aux_view_lcd);
+	 // Print again after of bad input
+	 if(rewrite){
+	   if(dig_1!='F'){
+	     sprintf(aux_view_lcd,"%u",dig_1);
+	     print_array_char(aux_view_lcd);
      
-      }
-      if(sym_ope!='F'){
-	sprintf(aux_view_lcd,"%c",sym_ope);
-	print_array_char(aux_view_lcd);
-      }
-      if(dig_2!='F' && sym_ope!='!'){
-	sprintf(aux_view_lcd,"%u",dig_2);
-	print_array_char(aux_view_lcd);
-      }
-      if(sym_res!='F'){
-	sprintf(aux_view_lcd,"%c",sym_res);
-	print_array_char(aux_view_lcd);
+	   }
+	   if(sym_ope!='F'){
+	     sprintf(aux_view_lcd,"%c",sym_ope);
+	     print_array_char(aux_view_lcd);
+	   }
+	   if(dig_2!='F' && sym_ope!='!'){
+	     sprintf(aux_view_lcd,"%u",dig_2);
+	     print_array_char(aux_view_lcd);
+	   }
+	   if(sym_res!='F'){
+	     sprintf(aux_view_lcd,"%c",sym_res);
+	     print_array_char(aux_view_lcd);
 	
-      }
-      rewrite=0;
-    }
+	   }
+	   rewrite=0;
+	 }
 
     
     
-  }    
+       }    
 }
 // Thanks to: https://www.tutorialspoint.com/cprogramming/c_function_call_by_reference.htm
 unsigned char is_sym_val_dig(unsigned char *arr, unsigned char *sym){
@@ -285,13 +307,13 @@ void key2symbol(unsigned char *key, unsigned char *symbol){
 void aux_search_key(void){
   // Thanks to https://www.tutorialspoint.com/cprogramming/c_array_of_pointers.htm
   unsigned char numbers_key[]={1,2,3,4,
-				5,6,7,8,
-				9,10,11,12,
-				13,14,15,16};
+			       5,6,7,8,
+			       9,10,11,12,
+			       13,14,15,16};
   unsigned char output_LATB_values[]={0b11111110,
-				       0b11111101,
-				       0b11111011,
-				       0b11110111};
+				      0b11111101,
+				      0b11111011,
+				      0b11110111};
   for(unsigned char i=0; i<4; i++){
     LATB=output_LATB_values[i];
     __delay_ms(10); 		//stabilize LATB 
@@ -305,12 +327,9 @@ void aux_search_key(void){
       while(RB7==0 && i==3){
 	__delay_ms(10);
 	contador++;
-	if (contador==120){
+	if (contador>=120){
 	  Mode=~Mode;
-	  BorraLCD();
-	  MensajeLCD_Var("Changing mode...");
-	  __delay_ms(1000);
-	  BorraLCD();
+	  Mode_changed=1;
 	  break;
 	}
       }
@@ -346,7 +365,8 @@ void __interrupt(high_priority) ISR_high(void){
     LEDFRE=~LEDFRE;
 
     // Increasing sleep counter
-    Sleep_counter_mode++;
+    if(Sleep_counter_mode<Limit_sleep_counter_mode)
+      Sleep_counter_mode++;
   }
   return;
 }
@@ -360,16 +380,16 @@ void show_reset_source(void){
   else{
     MensajeLCD_Var("Reset source: MCLR");
   }
-  __delay_ms(3000);
+  __delay_ms(Min_time*15);
   BorraLCD();
   return;
 }
 
 void init_configuration(void){
   // Sleep
-  IDLEN=1;
-//  SCS1=1;
-//  SCS0=1;
+  // IDLEN=1; enable get out of interruption from sleep
+  //  SCS1=1;
+  //  SCS0=1;
   
   // RB0:RB4 and RE0:RE2 as i/o digital
   ADCON1=10;
@@ -438,7 +458,7 @@ void welcome_operations(void){
   DireccionaLCD(0xC0); 
   MensajeLCD_Var("Dios es bueno");
 
-  __delay_ms(1000);
+  __delay_ms(Min_time*10);
   BorraLCD();
   return;
 }
@@ -456,7 +476,7 @@ void print_array_char(char *arr){
 void print_bad_dig(void){
   BorraLCD();
   MensajeLCD_Var("Insert a digit");
-  __delay_ms(1000);
+  __delay_ms(Min_time*7);
   BorraLCD();
   return;
 }
@@ -464,7 +484,7 @@ void print_bad_dig(void){
 void print_bad_ope(void){
   BorraLCD();
   MensajeLCD_Var("Insert an operation");
-  __delay_ms(1000);
+  __delay_ms(Min_time*7);
   BorraLCD();
   return;
 }
@@ -472,7 +492,7 @@ void print_bad_ope(void){
 void print_bad_res(void){
   BorraLCD();
   MensajeLCD_Var("Insert '=' symbol");
-  __delay_ms(1000);
+  __delay_ms(Min_time*7);
   BorraLCD();
   return;
 }
@@ -559,7 +579,7 @@ void calculate_and_show_result(unsigned char *dig_1, unsigned char *dig_2, unsig
   default: {
     BorraLCD();
     MensajeLCD_Var("Error operation");
-    __delay_ms(1000);
+    __delay_ms(Min_time*7);
     BorraLCD();
 
     break;
@@ -590,10 +610,10 @@ void commute_color(unsigned char *color){
   }
   case 2: {
     // blue 
-    RGB_R=1;
-    RGB_G=1;
-    RGB_B=0;
-    break;
+	RGB_R=1;
+      RGB_G=1;
+      RGB_B=0;
+      break;
   }
   case 3: {
     // cyan
@@ -651,8 +671,8 @@ void clear_symbols(unsigned char *dig_1, unsigned char *sym_ope, unsigned char *
 }
 
 unsigned long long int my_pow(unsigned char x, unsigned char n){
-  unsigned long long int aux=x;
-  for(unsigned char i=1;i<n;i++){
+  unsigned long long int aux=1;
+  for(unsigned char i=0;i<n;i++){
     aux=x*aux;
   }
   return aux;
