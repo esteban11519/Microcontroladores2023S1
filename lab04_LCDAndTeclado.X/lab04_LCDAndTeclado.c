@@ -99,8 +99,16 @@ void main(void){
   
     
   // welcome
-  welcome_operations();
+void welcome_operations(void){
+  /* Welcome message */
+  BorraLCD();
+  MensajeLCD_Var("Bienvenido a calculadora");
+  DireccionaLCD(0xC0); 
+  MensajeLCD_Var("Dios es bueno");
 
+  __delay_ms(1000);
+  BorraLCD();
+  return;
   // Reset source
   show_reset_source();	   
 
