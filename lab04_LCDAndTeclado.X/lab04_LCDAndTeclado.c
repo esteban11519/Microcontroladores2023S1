@@ -99,16 +99,7 @@ void main(void){
   
     
   // welcome
-void welcome_operations(void){
-  /* Welcome message */
-  BorraLCD();
-  MensajeLCD_Var("Bienvenido a calculadora");
-  DireccionaLCD(0xC0); 
-  MensajeLCD_Var("Dios es bueno");
-
-  __delay_ms(1000);
-  BorraLCD();
-  return;
+  welcome_operations();
   // Reset source
   show_reset_source();	   
 
@@ -678,6 +669,17 @@ void clear_symbols(unsigned char *dig_1, unsigned char *sym_ope, unsigned char *
   return;
 }
 
+void welcome_operations(void){
+  /* Welcome message */
+  BorraLCD();
+  MensajeLCD_Var("Bienvenido a calculadora");
+  DireccionaLCD(0xC0); 
+  MensajeLCD_Var("Dios es bueno");
+
+  __delay_ms(1000);
+  BorraLCD();
+  return;
+}
 unsigned long long int my_pow(unsigned char x, unsigned char n){
   unsigned long long int aux=1;
   for(unsigned char i=0;i<n;i++){
