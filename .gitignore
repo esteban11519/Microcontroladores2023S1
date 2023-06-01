@@ -20,3 +20,5 @@ lab01_emsamblador.X/nbproject/Makefile-genesis.properties
 lab02_uso_inicial.X/nbproject/Makefile-genesis.properties
 lab03_manejoInterfaceDeUsuario.X/nbproject/Makefile-genesis.properties
 lab04_LCDAndTeclado.X/nbproject/Makefile-genesis.properties
+CCP_PWM.X
+CPP_COMPARE.X
