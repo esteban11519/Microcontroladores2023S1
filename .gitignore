@@ -20,5 +20,13 @@ lab01_emsamblador.X/nbproject/Makefile-genesis.properties
 lab02_uso_inicial.X/nbproject/Makefile-genesis.properties
 lab03_manejoInterfaceDeUsuario.X/nbproject/Makefile-genesis.properties
 lab04_LCDAndTeclado.X/nbproject/Makefile-genesis.properties
-CCP_PWM.X
-CPP_COMPARE.X
+<<<<<<< HEAD
+=======
+/CCP_PWM.X/nbproject/private/
+/CCP_PWM.X/build/default/
+/CCP_PWM.X/dist/default/
+/CPP_COMPARE.X/nbproject/private/
+/CPP_COMPARE.X/build/default/
+/CPP_COMPARE.X/dist/default/
+>>>>>>> fcd8a5c7b86fb044fb3a9ac9f925e8ef53c69719
+lab*/nbproject/*.properties
