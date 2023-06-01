@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>PruebaADC</name>
+            <name>lab05_ADC</name>
             <creation-uuid>fdbcf95e-6b09-4272-a5d7-fc8026cff495</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

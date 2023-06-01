@@ -1,0 +1,86 @@
+[p GLOBOPT AUTOSTATIC LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"29 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+[v _main main `(v  1 e 1 0 ]
+"46
+[v _LeerHT11 LeerHT11 `(v  1 e 1 0 ]
+"63
+[v _LeerByte LeerByte `(uc  1 e 1 0 ]
+"70
+[v _LeerBit LeerBit `(uc  1 e 1 0 ]
+"88
+[v _Transmitir Transmitir `(v  1 e 1 0 ]
+"59 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+[v _EnviaDato EnviaDato `(v  1 e 1 0 ]
+"105
+[v _HabilitaLCD HabilitaLCD `(v  1 e 1 0 ]
+"112
+[v _BorraLCD BorraLCD `(v  1 e 1 0 ]
+"119
+[v _CursorAInicio CursorAInicio `(v  1 e 1 0 ]
+"136
+[v _EscribeLCD_c EscribeLCD_c `(v  1 e 1 0 ]
+"252
+[v _DireccionaLCD DireccionaLCD `(v  1 e 1 0 ]
+"288
+[v _RetardoLCD RetardoLCD `(v  1 e 1 0 ]
+"62 /opt/microchip/xc8/v2.41/pic/sources/c90/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 /opt/microchip/xc8/v2.41/pic/sources/c90/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"54 /opt/microchip/xc8/v2.41/pic/sources/c90/common/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 /opt/microchip/xc8/v2.41/pic/sources/c90/common/ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"19 /opt/microchip/xc8/v2.41/pic/sources/c90/common/ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"4 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lbdiv.c
+[v ___lbdiv __lbdiv `(uc  1 e 1 0 ]
+"4 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+"7 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"7 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"10 /opt/microchip/xc8/v2.41/pic/sources/c90/common/sprcadd.c
+[v ___fladd __fladd `(d  1 e 3 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 3 0 ]
+"11 /opt/microchip/xc8/v2.41/pic/sources/c90/common/sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 3 0 ]
+"8 /opt/microchip/xc8/v2.41/pic/sources/c90/common/sprcmul.c
+[v ___flmul __flmul `(d  1 e 3 0 ]
+"15 /opt/microchip/xc8/v2.41/pic/sources/c90/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 /opt/microchip/xc8/v2.41/pic/sources/c90/common/Umul64.c
+[v ___omul __omul `(ul  1 e 4 0 ]
+"3263 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
+[v _LATD LATD `VEuc  1 e 1 @3980 ]
+"4001
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"4936
+[v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
+"5146
+[v _TXSTA TXSTA `VEuc  1 e 1 @4012 ]
+"5402
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"5426
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"6062
+[v _BAUDCON BAUDCON `VEuc  1 e 1 @4024 ]
+"7986
+[v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+"9976
+[v _LATC0 LATC0 `VEb  1 e 0 @31832 ]
+"10399
+[v _RC0 RC0 `VEb  1 e 0 @31760 ]
+"10930
+[v _TRISC0 TRISC0 `VEb  1 e 0 @31904 ]
+"29 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+[v _main main `(v  1 e 1 0 ]
+{
+"43
+} 0

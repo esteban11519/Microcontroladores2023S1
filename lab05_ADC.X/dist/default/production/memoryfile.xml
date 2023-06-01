@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\PruebaADC.X.production.hex">
+  <executable name="dist/default/production/lab05_ADC.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>32768</length>
-      <used>1659</used>
-      <free>31109</free>
+      <used>85</used>
+      <free>32683</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>2048</length>
-      <used>31</used>
-      <free>2017</free>
+      <used>7</used>
+      <free>2041</free>
     </memory>
   </executable>
 </project>
