@@ -5973,19 +5973,27 @@ void DesplazaCursorI(void){
 }
 void RetardoLCD(unsigned char a){
 switch(a){
-case 1: _delay((unsigned long)((15)*(8000000/4000.0)));
+case 1:{
+_delay((unsigned long)((15)*(8000000/4000.0)));
 
 break;
-case 2: _delay((unsigned long)((1)*(8000000/4000.0)));
+}
+case 2:{
+_delay((unsigned long)((1)*(8000000/4000.0)));
 _delay((unsigned long)((640)*(8000000/4000000.0)));
 
 break;
-case 3: _delay((unsigned long)((100)*(8000000/4000000.0)));
+}
+case 3:{
+_delay((unsigned long)((100)*(8000000/4000000.0)));
 
 break;
-case 4: _delay((unsigned long)((40)*(8000000/4000000.0)));
+}
+case 4:{
+_delay((unsigned long)((40)*(8000000/4000000.0)));
 
 break;
+}
 default:
 break;
 }
@@ -6129,7 +6137,7 @@ ADON=1;
 GO=1;
 while(GO==1);
 BorraLCD();
-
+MensajeLCD_Var("Pot");
 if(ADRES > 511)
 RB0 = 1;
 else
@@ -6200,7 +6208,6 @@ void choose_scale_temperature_and_fill_buffers(void){
 int temp_converted = 0;
 
 sprintf(Buffer_RS232, "T: %i C\n",Temp);
-sprintf(Buffer_LCD, "%s","Hola");
 
 if(RA1==0 && RA2==0){
 
@@ -6209,17 +6216,17 @@ sprintf(Buffer_LCD, "T: %i C\nH: %i %c",Temp,Hum,37);
 else if(RA1==0 && RA2==1){
 
 temp_converted = Temp + 273.15;
-sprintf(Buffer_LCD, "T: %i K\nH: %i %c", temp_converted,Hum,37);
+sprintf(Buffer_LCD, "T: %i C\nH: %i %c", temp_converted,Hum,37);
 }
 else if(RA1==1 && RA2==0){
 
 temp_converted = Temp*1.8 + 491.67;
-sprintf(Buffer_LCD, "T: %i Ra\nH: %i %c", temp_converted,Hum,37);
+sprintf(Buffer_LCD, "T: %i C\nH: %i %c", temp_converted,Hum,37);
 }
 else if(RA1==1 && RA2==1){
 
 temp_converted = Temp*9.0/5.0 + 32.0;
-sprintf(Buffer_LCD, "T: %i F\nH: %i %c", temp_converted,Hum,37);
+sprintf(Buffer_LCD, "T: %i C\nH: %i %c", temp_converted,Hum,37);
 }
 
 return;
@@ -6228,7 +6235,7 @@ return;
 void send_temperature_RS232(void){
 unsigned char counter=0;
 
-while(Buffer_RS232[counter]!='\0'){
+while(Buffer_RS232[counter]!='\0' && counter<255){
 Transmitir(Buffer_RS232[counter]);
 counter++;
 }
@@ -6242,7 +6249,7 @@ BorraLCD();
 while (Buffer_LCD[counter]!='\0') {
 if(Buffer_LCD[counter]=='\n'){
 DireccionaLCD(0xC0);
-counter++;
+continue;
 }
 EscribeLCD_c(Buffer_LCD[counter]);
 counter++;
