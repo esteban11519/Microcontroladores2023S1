@@ -5994,9 +5994,12 @@ break;
 
 # 11 "/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c"
 #pragma config FOSC=INTOSC_EC
-#pragma config WDT=OFF
 
-# 51
+
+#pragma config WDT = OFF
+#pragma config WDTPS = 512
+
+# 54
 unsigned char Temp,Hum,Che;
 unsigned char Buffer_RS232[12];
 unsigned char Buffer_LCD[32];
@@ -6028,10 +6031,18 @@ void interrupt ISR(void);
 void main(void) {
 init_configuration();
 welcome_operations();
+
+
+
+SWDTEN = 1;
+
 while(1){
 
 if(Enable_sample){
 
+measure_temperature_c();
+
+asm(" clrwdt");
 
 check_potentiometer_voltaje();
 save_temperature_c_EEPROM();
@@ -6040,6 +6051,7 @@ send_temperature_RS232();
 show_temperature_c_RGB();
 show_temperature_LCD();
 Enable_sample = 0;
+
 
 }
 
@@ -6087,7 +6099,7 @@ ADCON0=0b00000001;
 
 ADCON2=0b11001000;
 
-# 151
+# 163
 T0CON=0b00000100;
 TMR0=PreloadTMR0;
 
@@ -6111,11 +6123,20 @@ return;
 
 void welcome_operations(void){
 
+
+if(TO==0){
+TO=1;
+MensajeLCD_Var("Failed DHT11");
+asm(" sleep");
+}
+
 BorraLCD();
 MensajeLCD_Var("Bienvenido a Sensor");
 MensajeLCD_Var("Dios es bueno");
 _delay((unsigned long)((1000)*(8000000/4000.0)));
 BorraLCD();
+
+
 return;
 }
 

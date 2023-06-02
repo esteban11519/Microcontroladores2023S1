@@ -44,7 +44,7 @@ void main(void) {
     Transmitir(' ');
     Transmitir('%');
     Transmitir('\n');
-    __delay_ms(500);
+    __delay_ms(1000);
   }  
 }
 void LeerHT11(void){

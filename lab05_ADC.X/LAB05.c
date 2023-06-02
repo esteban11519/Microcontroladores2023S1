@@ -9,7 +9,10 @@
 #define _XTAL_FREQ 8000000
 #include "LibLCDXC8.h"
 #pragma config FOSC=INTOSC_EC
-#pragma config WDT=OFF
+
+// https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
+#pragma config WDT = OFF
+#pragma config WDTPS = 512 // T = 1/(31kHz/(128*WDTPS)) (2,11 s), [2^0, 2^13] discrete
 
 // DHT11 pines
 #define DATA_DIR TRISC1
@@ -79,11 +82,19 @@ void interrupt ISR(void);
 void main(void) {
   init_configuration();
   welcome_operations();
+
+  // Activate watchdog
+  //https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
+  SWDTEN = 1;
+  
   while(1){
     
     if(Enable_sample){
     
-      //measure_temperature_c();
+      measure_temperature_c();
+      // From: https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
+      CLRWDT(); // Clear Watchdog Timer
+
       check_potentiometer_voltaje();
       save_temperature_c_EEPROM();
       choose_scale_temperature_and_fill_buffers();
@@ -91,6 +102,7 @@ void main(void) {
       show_temperature_c_RGB();
       show_temperature_LCD();
       Enable_sample = 0;
+      
  
     }
     
@@ -171,11 +183,20 @@ void init_configuration(void){
 
 void welcome_operations(void){
   /* Welcome message */
+
+  if(TO==0){
+    TO=1;
+    MensajeLCD_Var("Failed DHT11");
+    SLEEP();
+  }
+  
   BorraLCD();
   MensajeLCD_Var("Bienvenido a Sensor");
   MensajeLCD_Var("Dios es bueno");
   __delay_ms(1000);
   BorraLCD();
+
+   
   return;
 }
 
