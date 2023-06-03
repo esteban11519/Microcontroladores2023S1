@@ -13,9 +13,9 @@
 #pragma config WDTPS = 512 // T = 1/(31kHz/(128*WDTPS)) (2,11 s), [2^0, 2^13] discrete
 
 // DHT11 pines
-#define DATA_DIR TRISC1
-#define DATA_IN RC1
-#define DATA_OUT LATC1
+#define DATA_DIR TRISC0
+#define DATA_IN RC0
+#define DATA_OUT LATC0
 
 // RGB pines
 #ifndef RGB_R
@@ -30,10 +30,10 @@
 
 // Interrutor pines
 #ifndef INT_1
-#define INT_1 RA1
+#define INT_1 RA2
 #endif
 #ifndef INT_2
-#define INT_2 RA2
+#define INT_2 RA3
 #endif
  
 // LED with frequency 1 [Hz]
@@ -98,7 +98,7 @@ void main(void) {
 
       Temp++;
       if(Temp > 50) Temp = 18;
-      //Hum+=10;
+      Hum+=10;
       
       //LeerHT11();
       CLRWDT(); // Clear Watchdog Timer
@@ -136,15 +136,16 @@ void init_configuration(void){
   BAUDCON=0b00000000;
   SPBRG=12;
 
-  // AN12 to AN1 as digital i/o
-  ADCON1=14;
+  // AN12 to AN2 as digital i/o
+  ADCON1=13;
 
   // RGB in RE0:RE2
   TRISE=0b11111000;
   LATE=1;
   
   // Interruptors Pines
-  TRISA = 0xff;
+  TRISA2=1;
+  TRISA3=1;
   
   // LED with frequency 1 [Hz]
   TRISC2=0;
@@ -156,7 +157,7 @@ void init_configuration(void){
 
   // Potentiometer
   //ADCON0 — — CHS3 CHS2 CHS1 CHS0 GO/DONE ADON
-  ADCON0=0b00000001;
+  ADCON0=0b00000101;
   // ADCON2: ADFM — ACQT2 ACQT1 ACQT0 ADCS2 ADCS1 ADCS0 
   ADCON2=0b11001001;
   
@@ -219,9 +220,6 @@ void check_potentiometer_voltaje(void){
     LEDPOT = 1;
   else
     LEDPOT = 0;
-
-  // BorraLCD();
-  // EscribeLCD_n16(ADRES,4);
   ADON=0;
   return;
 }
@@ -372,6 +370,7 @@ void LeerHT11(void){
   DATA_DIR=0;
   __delay_ms(18);
   DATA_DIR=1;
+  __delay_ms(1);
   while(DATA_IN==1);
   __delay_us(40);
   if(DATA_IN==0) contr++;
@@ -383,6 +382,7 @@ void LeerHT11(void){
   Temp=LeerByte();
   LeerByte();
   Che=LeerByte();
+  return;
 }
 
 unsigned char LeerByte(void){
