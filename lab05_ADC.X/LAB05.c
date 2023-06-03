@@ -9,8 +9,6 @@
 #define _XTAL_FREQ 8000000
 #include "LibLCDXC8.h"
 #pragma config FOSC=INTOSC_EC
-
-// https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
 #pragma config WDT = OFF
 #pragma config WDTPS = 512 // T = 1/(31kHz/(128*WDTPS)) (2,11 s), [2^0, 2^13] discrete
 
@@ -52,9 +50,6 @@
 // Global variables
 
 unsigned char Temp,Hum,Che;
-unsigned char Buffer_RS232[12]; // Information ASCII to send by RS232
-unsigned char Buffer_LCD[32]; // Information ASCII to send to LCD
-unsigned int PreloadTMR0 = 3036;
 unsigned char Enable_sample = 0;
 
 // Functions
@@ -67,13 +62,15 @@ void Transmitir (unsigned char);
 
 void init_configuration(void);	// [x] Init configuration
 void welcome_operations(void);  // [x]
-void measure_temperature_c(void); // [x] Temperature in celsius
-void check_potentiometer_voltaje(void); // [x]
-void save_temperature_c_EEPROM(void); // []
-void show_temperature_c_RGB(void); // [x]
-void choose_scale_temperature_and_fill_buffers(void); // [x]
+
 void send_temperature_RS232(void); // [x]
-void show_temperature_LCD(void); // [x]
+void save_temperature_c_EEPROM(void); // []
+void choose_scale_temperature_and_fill_buffers(unsigned char *, unsigned char *); // [x]
+void show_temperature_c_RGB(void); // [x]
+void show_temperature_LCD(unsigned char *, unsigned char *, unsigned char, unsigned char); // [x]
+void check_potentiometer_voltaje(void); // [x]
+
+
 
 // Interruptions
 void interrupt ISR(void);
@@ -82,28 +79,41 @@ void interrupt ISR(void);
 void main(void) {
   init_configuration();
   welcome_operations();
-
+  
   // Activate watchdog
-  //https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
   SWDTEN = 1;
+
+  // Variables
+  // Information ASCII to send to LCD
+  unsigned char buffer_LCD_row_1[17];
+  unsigned char buffer_LCD_row_2[17];
+  
+  
+  unsigned char Temp_n1=255; // Previous Temp
+  unsigned char Hum_n1=255; // Previous Hum
   
   while(1){
     
     if(Enable_sample){
-    
-      measure_temperature_c();
-      // From: https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
-      CLRWDT(); // Clear Watchdog Timer
 
-      check_potentiometer_voltaje();
-      save_temperature_c_EEPROM();
-      choose_scale_temperature_and_fill_buffers();
-      send_temperature_RS232();
-      show_temperature_c_RGB();
-      show_temperature_LCD();
-      Enable_sample = 0;
+      Temp++;
+      if(Temp > 50) Temp = 18;
+      //Hum+=10;
       
- 
+      //LeerHT11();
+      CLRWDT(); // Clear Watchdog Timer
+      
+      send_temperature_RS232();
+      save_temperature_c_EEPROM();
+      choose_scale_temperature_and_fill_buffers(buffer_LCD_row_1,buffer_LCD_row_2);
+      show_temperature_c_RGB();
+      show_temperature_LCD(buffer_LCD_row_1, buffer_LCD_row_2, Temp_n1, Hum_n1);
+      check_potentiometer_voltaje();
+      Enable_sample = 0;
+
+      // Update Temp_n1 and Hum_n1
+      Temp_n1=Temp;
+      Hum_n1=Hum;
     }
     
   }
@@ -127,7 +137,7 @@ void init_configuration(void){
   SPBRG=12;
 
   // AN12 to AN1 as digital i/o
-  ADCON1 = 14 ;
+  ADCON1=14;
 
   // RGB in RE0:RE2
   TRISE=0b11111000;
@@ -148,8 +158,8 @@ void init_configuration(void){
   //ADCON0 — — CHS3 CHS2 CHS1 CHS0 GO/DONE ADON
   ADCON0=0b00000001;
   // ADCON2: ADFM — ACQT2 ACQT1 ACQT0 ADCS2 ADCS1 ADCS0 
-  ADCON2=0b11001000;
-    
+  ADCON2=0b11001001;
+  
   // TM0 configuration
   // T0CON register
   // bit 7 - TMR0ON: 0-1, stop Timer()-enables Timer()
@@ -161,7 +171,7 @@ void init_configuration(void){
   // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
   // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
   T0CON=0b00000100;
-  TMR0=PreloadTMR0; 			//preload
+  TMR0=3036; 			//preload
   // INTCON
   // TMR0IF: 0, TMR0 register did not overflow
   // TMR0IE: 1, Enables the TMR0 overflow interrupt
@@ -191,8 +201,8 @@ void welcome_operations(void){
   }
   
   BorraLCD();
-  MensajeLCD_Var("Bienvenido a Sensor");
-  MensajeLCD_Var("Dios es bueno");
+  MensajeLCD_Var("Sensors");
+  MensajeLCD_Var("\nGod is good");
   __delay_ms(1000);
   BorraLCD();
 
@@ -200,22 +210,18 @@ void welcome_operations(void){
   return;
 }
 
-void measure_temperature_c(void){
-  LeerHT11();
-  return;
-}
 
 void check_potentiometer_voltaje(void){
   ADON=1;
-  GO=1;   //bsf ADCON0,1
+  GO=1;
   while(GO==1);
-  BorraLCD();
-  
   if(ADRES > 511)
     LEDPOT = 1;
   else
     LEDPOT = 0;
-  
+
+  // BorraLCD();
+  // EscribeLCD_n16(ADRES,4);
   ADON=0;
   return;
 }
@@ -277,30 +283,34 @@ void show_temperature_c_RGB(void){
 }
 
 
-void choose_scale_temperature_and_fill_buffers(void){
+void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2){
   int temp_converted = 0;
-
-  sprintf(Buffer_RS232, "T: %i C\n",Temp);
-  sprintf(Buffer_LCD, "%s","Hola");
   
   if(INT_1==0 && INT_2==0){
     // Celsius to celsius
-    sprintf(Buffer_LCD, "T: %i C\nH: %i %c",Temp,Hum,37);
+   
+    sprintf(buffer_LCD_row_1, "T: %i C",Temp);
+    sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
   }
   else if(INT_1==0 && INT_2==1){
     // Celsius to Kelvin
     temp_converted = Temp + 273.15;
-    sprintf(Buffer_LCD, "T: %i K\nH: %i %c", temp_converted,Hum,37);
+    sprintf(buffer_LCD_row_1, "T: %i K",temp_converted);
+    sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
   }
   else if(INT_1==1 && INT_2==0){
     // Celsius to Rankine
     temp_converted = Temp*1.8 + 491.67;
-    sprintf(Buffer_LCD, "T: %i Ra\nH: %i %c", temp_converted,Hum,37);
+     sprintf(buffer_LCD_row_1, "T: %i Ra",temp_converted);
+    sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
+    
   }
   else if(INT_1==1 && INT_2==1){
     // Celsius to Fahrenheit
     temp_converted = Temp*9.0/5.0 + 32.0;
-    sprintf(Buffer_LCD, "T: %i F\nH: %i %c", temp_converted,Hum,37);
+
+     sprintf(buffer_LCD_row_1, "T: %i F",temp_converted);
+    sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
   }
 
   return;
@@ -308,26 +318,52 @@ void choose_scale_temperature_and_fill_buffers(void){
 
 void send_temperature_RS232(void){
   unsigned char counter=0;
+  unsigned char buffer_RS232[12];
+  sprintf(buffer_RS232, "T: %i C\n",Temp);
 
-  while(Buffer_RS232[counter]!='\0'){
-    Transmitir(Buffer_RS232[counter]);
+  while(buffer_RS232[counter]!='\0'){
+    Transmitir(buffer_RS232[counter]);
     counter++;
   }
   __delay_ms(200);
   return;
 }
 
-void show_temperature_LCD(void){
+void show_temperature_LCD(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2, unsigned char Temp_n1, unsigned char Hum_n1){
   unsigned char counter=0;
-  BorraLCD();
-  while (Buffer_LCD[counter]!='\0') {
-    if(Buffer_LCD[counter]=='\n'){
-      DireccionaLCD(0xC0);
+
+  if(Temp_n1!=Temp){
+    DireccionaLCD(0x80);
+    // Write first row
+    while (buffer_LCD_row_1[counter]!='\0') {
+      EscribeLCD_c(buffer_LCD_row_1[counter]);
       counter++;
     }
-    EscribeLCD_c(Buffer_LCD[counter]);
-    counter++;
+    // clear first row
+    while (counter<16) {
+      EscribeLCD_c(' ');
+      counter++;
+    }
   }
+  
+  counter=0;
+
+  if(Hum_n1!=Hum){
+    DireccionaLCD(0xC0);
+
+    // Write second row
+    while (buffer_LCD_row_2[counter]!='\0') {
+      EscribeLCD_c(buffer_LCD_row_2[counter]);
+      counter++;
+    }
+    
+    // clear second row
+    while (counter<16) {
+      EscribeLCD_c(' ');
+      counter++;
+    } 
+  }
+
   return;
 }
 
@@ -385,7 +421,7 @@ void Transmitir(unsigned char BufferT){
 
 void interrupt ISR(void){
   if(TMR0IF==1){
-    TMR0=PreloadTMR0;
+    TMR0=3036;
     TMR0IF=0;
     LEDT=~LEDT;
     Enable_sample=1;
@@ -393,3 +429,9 @@ void interrupt ISR(void){
   return;
 }
 
+/*
+
+  Bibliography
+  WDT configuration : // https://www.electronicwings.com/pic/pic18f4550-watchdog-timer
+  
+ */

@@ -5928,6 +5928,11 @@ void MensajeLCD_Var(char* a){
 unsigned char counter=0;
 while(a[counter]!='\0' && counter<=255){
 
+if(a[counter]=='\n'){
+DireccionaLCD(0xC0);
+counter++;
+}
+
 if((counter+1)%32==0){
 BorraLCD();
 }
@@ -5950,7 +5955,7 @@ RetardoLCD(4);
 }
 void FijaCursorLCD(unsigned char fila,unsigned char columna){
 
-# 268
+# 273
 }
 void DesplazaPantallaD(void){
 
@@ -5994,16 +5999,11 @@ break;
 
 # 11 "/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c"
 #pragma config FOSC=INTOSC_EC
-
-
 #pragma config WDT = OFF
 #pragma config WDTPS = 512
 
-# 54
+# 52
 unsigned char Temp,Hum,Che;
-unsigned char Buffer_RS232[12];
-unsigned char Buffer_LCD[32];
-unsigned int PreloadTMR0 = 3036;
 unsigned char Enable_sample = 0;
 
 
@@ -6016,13 +6016,15 @@ void Transmitir (unsigned char);
 
 void init_configuration(void);
 void welcome_operations(void);
-void measure_temperature_c(void);
-void check_potentiometer_voltaje(void);
-void save_temperature_c_EEPROM(void);
-void show_temperature_c_RGB(void);
-void choose_scale_temperature_and_fill_buffers(void);
+
 void send_temperature_RS232(void);
-void show_temperature_LCD(void);
+void save_temperature_c_EEPROM(void);
+void choose_scale_temperature_and_fill_buffers(unsigned char *, unsigned char *);
+void show_temperature_c_RGB(void);
+void show_temperature_LCD(unsigned char *, unsigned char *, unsigned char, unsigned char);
+void check_potentiometer_voltaje(void);
+
+
 
 
 void interrupt ISR(void);
@@ -6033,26 +6035,39 @@ init_configuration();
 welcome_operations();
 
 
-
 SWDTEN = 1;
+
+
+
+unsigned char buffer_LCD_row_1[17];
+unsigned char buffer_LCD_row_2[17];
+
+
+unsigned char Temp_n1=255;
+unsigned char Hum_n1=255;
 
 while(1){
 
 if(Enable_sample){
 
-measure_temperature_c();
+Temp++;
+if(Temp > 50) Temp = 18;
+
+
 
 asm(" clrwdt");
 
-check_potentiometer_voltaje();
-save_temperature_c_EEPROM();
-choose_scale_temperature_and_fill_buffers();
 send_temperature_RS232();
+save_temperature_c_EEPROM();
+choose_scale_temperature_and_fill_buffers(buffer_LCD_row_1,buffer_LCD_row_2);
 show_temperature_c_RGB();
-show_temperature_LCD();
+show_temperature_LCD(buffer_LCD_row_1, buffer_LCD_row_2, Temp_n1, Hum_n1);
+check_potentiometer_voltaje();
 Enable_sample = 0;
 
 
+Temp_n1=Temp;
+Hum_n1=Hum;
 }
 
 }
@@ -6076,7 +6091,7 @@ BAUDCON=0b00000000;
 SPBRG=12;
 
 
-ADCON1 = 14 ;
+ADCON1=14;
 
 
 TRISE=0b11111000;
@@ -6097,11 +6112,11 @@ LATB0=0;
 
 ADCON0=0b00000001;
 
-ADCON2=0b11001000;
+ADCON2=0b11001001;
 
-# 163
+# 173
 T0CON=0b00000100;
-TMR0=PreloadTMR0;
+TMR0=3036;
 
 
 
@@ -6131,8 +6146,8 @@ asm(" sleep");
 }
 
 BorraLCD();
-MensajeLCD_Var("Bienvenido a Sensor");
-MensajeLCD_Var("Dios es bueno");
+MensajeLCD_Var("Sensors");
+MensajeLCD_Var("\nGod is good");
 _delay((unsigned long)((1000)*(8000000/4000.0)));
 BorraLCD();
 
@@ -6140,21 +6155,17 @@ BorraLCD();
 return;
 }
 
-void measure_temperature_c(void){
-LeerHT11();
-return;
-}
 
 void check_potentiometer_voltaje(void){
 ADON=1;
 GO=1;
 while(GO==1);
-BorraLCD();
-
 if(ADRES > 511)
 RB0 = 1;
 else
 RB0 = 0;
+
+
 
 ADON=0;
 return;
@@ -6217,30 +6228,34 @@ return;
 }
 
 
-void choose_scale_temperature_and_fill_buffers(void){
+void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2){
 int temp_converted = 0;
-
-sprintf(Buffer_RS232, "T: %i C\n",Temp);
-sprintf(Buffer_LCD, "%s","Hola");
 
 if(RA1==0 && RA2==0){
 
-sprintf(Buffer_LCD, "T: %i C\nH: %i %c",Temp,Hum,37);
+
+sprintf(buffer_LCD_row_1, "T: %i C",Temp);
+sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 }
 else if(RA1==0 && RA2==1){
 
 temp_converted = Temp + 273.15;
-sprintf(Buffer_LCD, "T: %i K\nH: %i %c", temp_converted,Hum,37);
+sprintf(buffer_LCD_row_1, "T: %i K",temp_converted);
+sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 }
 else if(RA1==1 && RA2==0){
 
 temp_converted = Temp*1.8 + 491.67;
-sprintf(Buffer_LCD, "T: %i Ra\nH: %i %c", temp_converted,Hum,37);
+sprintf(buffer_LCD_row_1, "T: %i Ra",temp_converted);
+sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
+
 }
 else if(RA1==1 && RA2==1){
 
 temp_converted = Temp*9.0/5.0 + 32.0;
-sprintf(Buffer_LCD, "T: %i F\nH: %i %c", temp_converted,Hum,37);
+
+sprintf(buffer_LCD_row_1, "T: %i F",temp_converted);
+sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 }
 
 return;
@@ -6248,26 +6263,52 @@ return;
 
 void send_temperature_RS232(void){
 unsigned char counter=0;
+unsigned char buffer_RS232[12];
+sprintf(buffer_RS232, "T: %i C\n",Temp);
 
-while(Buffer_RS232[counter]!='\0'){
-Transmitir(Buffer_RS232[counter]);
+while(buffer_RS232[counter]!='\0'){
+Transmitir(buffer_RS232[counter]);
 counter++;
 }
 _delay((unsigned long)((200)*(8000000/4000.0)));
 return;
 }
 
-void show_temperature_LCD(void){
+void show_temperature_LCD(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2, unsigned char Temp_n1, unsigned char Hum_n1){
 unsigned char counter=0;
-BorraLCD();
-while (Buffer_LCD[counter]!='\0') {
-if(Buffer_LCD[counter]=='\n'){
+
+if(Temp_n1!=Temp){
+DireccionaLCD(0x80);
+
+while (buffer_LCD_row_1[counter]!='\0') {
+EscribeLCD_c(buffer_LCD_row_1[counter]);
+counter++;
+}
+
+while (counter<16) {
+EscribeLCD_c(' ');
+counter++;
+}
+}
+
+counter=0;
+
+if(Hum_n1!=Hum){
 DireccionaLCD(0xC0);
+
+
+while (buffer_LCD_row_2[counter]!='\0') {
+EscribeLCD_c(buffer_LCD_row_2[counter]);
 counter++;
 }
-EscribeLCD_c(Buffer_LCD[counter]);
+
+
+while (counter<16) {
+EscribeLCD_c(' ');
 counter++;
 }
+}
+
 return;
 }
 
@@ -6325,7 +6366,7 @@ return;
 
 void interrupt ISR(void){
 if(TMR0IF==1){
-TMR0=PreloadTMR0;
+TMR0=3036;
 TMR0IF=0;
 RC2=~RC2;
 Enable_sample=1;
