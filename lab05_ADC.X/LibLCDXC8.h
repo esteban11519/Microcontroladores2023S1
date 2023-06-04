@@ -242,6 +242,8 @@ void MensajeLCD_Var(char* a){
       counter++;
     }
     
+    EscribeLCD_c(a[counter]);
+
     if((counter+1)%32==0){
       BorraLCD();
     }
@@ -249,8 +251,8 @@ void MensajeLCD_Var(char* a){
       DireccionaLCD(0xC0);
     }
     
-    EscribeLCD_c(a[counter]);
     counter++;
+    
   }
   return;
 }

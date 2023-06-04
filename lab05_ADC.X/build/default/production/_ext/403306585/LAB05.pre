@@ -5933,6 +5933,8 @@ DireccionaLCD(0xC0);
 counter++;
 }
 
+EscribeLCD_c(a[counter]);
+
 if((counter+1)%32==0){
 BorraLCD();
 }
@@ -5940,8 +5942,8 @@ else if((counter+1)%16==0){
 DireccionaLCD(0xC0);
 }
 
-EscribeLCD_c(a[counter]);
 counter++;
+
 }
 return;
 }
@@ -5955,7 +5957,7 @@ RetardoLCD(4);
 }
 void FijaCursorLCD(unsigned char fila,unsigned char columna){
 
-# 273
+# 275
 }
 void DesplazaPantallaD(void){
 
@@ -6159,9 +6161,9 @@ _delay((unsigned long)((1000)*(8000000/4000.0)));
 
 
 BorraLCD();
-MensajeLCD_Var("Last Tempetature");
+MensajeLCD_Var("Last Temperature");
 MensajeLCD_Var("\nT: ");
-EscribeLCD_n8(EEPROM_Read(0x0),2);
+EscribeLCD_n8(EEPROM_Read(0),2);
 MensajeLCD_Var(" C");
 _delay((unsigned long)((1000)*(8000000/4000.0)));
 
@@ -6232,7 +6234,7 @@ return;
 }
 
 void save_temperature_c_EEPROM(void){
-EEPROM_Write(0x0, Temp);
+EEPROM_Write(0, Temp);
 return;
 }
 void show_temperature_c_RGB(void){
@@ -6406,7 +6408,11 @@ void EEPROM_Write (unsigned char address, unsigned char data){
 EEADR=address;
 EEDATA=data;
 
+EEPGD=0;
+CFGS=0;
 WREN=1;
+
+GIE=0;
 
 EECON2=0x55;
 EECON2=0xAA;
@@ -6414,6 +6420,7 @@ EECON2=0xAA;
 WR=1;
 while(WR==1);
 
+GIE=1;
 WREN=0;
 return;
 
@@ -6421,7 +6428,10 @@ return;
 
 unsigned char EEPROM_Read (unsigned char address){
 EEADR=address;
+WREN=0;
+EEPGD=0;
 RD=1;
+
 return EEDATA;
 }
 

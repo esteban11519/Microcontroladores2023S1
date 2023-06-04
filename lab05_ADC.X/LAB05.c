@@ -214,9 +214,9 @@ void welcome_operations(void){
 
   // Show last temperature storaged in EEPROM
   BorraLCD();
-  MensajeLCD_Var("Last Tempetature");
+  MensajeLCD_Var("Last Temperature");
   MensajeLCD_Var("\nT: ");
-  EscribeLCD_n8(EEPROM_Read(0x0),2);
+  EscribeLCD_n8(EEPROM_Read(0),2);
   MensajeLCD_Var(" C");
   __delay_ms(1000);
  
@@ -287,7 +287,7 @@ void check_potentiometer_voltaje(void){
 }
 
 void save_temperature_c_EEPROM(void){
-  EEPROM_Write(0x0, Temp);
+  EEPROM_Write(0, Temp);
   return;
 }
 void show_temperature_c_RGB(void){
@@ -461,14 +461,19 @@ void EEPROM_Write (unsigned char address, unsigned char data){
   EEADR=address;
   EEDATA=data;
  
+  EEPGD=0;
+  CFGS=0;
   WREN=1;
 
+  GIE=0;
+  
   EECON2=0x55;
   EECON2=0xAA;
 
   WR=1;
   while(WR==1);
 
+  GIE=1;
   WREN=0;
   return;
 
@@ -476,7 +481,10 @@ void EEPROM_Write (unsigned char address, unsigned char data){
 
 unsigned char EEPROM_Read (unsigned char address){
   EEADR=address;
+  WREN=0;
+  EEPGD=0;
   RD=1;
+  
   return EEDATA;
 }
 

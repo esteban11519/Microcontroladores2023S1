@@ -11,53 +11,48 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/xcXINnLDf/driver_tmp_15.obj
-idloc IDLOC 5 200000 200000 8 1 1
-init CODE 0 E E 4 1 2
-reset_vec CODE 0 0 0 4 1 2
-config CONFIG 4 300000 300000 E 1 1
 $dist/default/production/lab05_ADC.X.production.obj
 cinit CODE 0 1780 1780 2C 1 2
 idloc IDLOC 5 200000 200000 8 1 1
-intcode_body CODE 0 1820 1820 24 1 2
+intcode_body CODE 0 1846 1846 24 1 2
 text0 CODE 0 14C8 14C8 66 1 2
 text1 CODE 0 1364 1364 7C 1 2
 text2 CODE 0 12E0 12E0 84 1 2
 text3 CODE 0 E68 E68 E6 1 2
 text4 CODE 0 17AC 17AC 2A 1 2
 text5 CODE 0 1714 1714 3A 1 2
-text6 CODE 0 1908 1908 C 1 2
+text6 CODE 0 1902 1902 10 1 2
 text7 CODE 0 145C 145C 6C 1 2
 text8 CODE 0 1250 1250 90 1 2
-text9 CODE 0 18BA 18BA 16 1 2
-text10 CODE 0 18D0 18D0 16 1 2
+text9 CODE 0 18C2 18C2 16 1 2
+text10 CODE 0 18D8 18D8 16 1 2
 text11 CODE 0 163C 163C 50 1 2
-text12 CODE 0 1914 1914 C 1 2
-text13 CODE 0 1920 1920 C 1 2
-text14 CODE 0 1866 1866 1E 1 2
-text15 CODE 0 17D6 17D6 26 1 2
-text16 CODE 0 1844 1844 22 1 2
+text12 CODE 0 1920 1920 C 1 2
+text13 CODE 0 192C 192C C 1 2
+text14 CODE 0 17D6 17D6 26 1 2
+text15 CODE 0 17FC 17FC 26 1 2
+text16 CODE 0 186A 186A 22 1 2
 text17 CODE 0 1594 1594 56 1 2
 text18 CODE 0 174E 174E 32 1 2
 text19 CODE 0 13E0 13E0 7C 1 2
 text20 CODE 0 11B4 11B4 9C 1 2
-text21 CODE 0 18E6 18E6 14 1 2
+text21 CODE 0 18EE 18EE 14 1 2
 text22 CODE 0 168C 168C 46 1 2
 text23 CODE 0 152E 152E 66 1 2
-text24 CODE 0 18FA 18FA E 1 2
-text25 CODE 0 18A2 18A2 18 1 2
+text24 CODE 0 1912 1912 E 1 2
+text25 CODE 0 18AA 18AA 18 1 2
 text26 CODE 0 878 878 208 1 2
 text27 CODE 0 C28 C28 14C 1 2
 text28 CODE 0 16D2 16D2 42 1 2
 text29 CODE 0 15EA 15EA 52 1 2
-text30 CODE 0 17FC 17FC 24 1 2
+text30 CODE 0 1822 1822 24 1 2
 text31 CODE 0 1034 1034 D2 1 2
 text32 CODE 0 D74 D74 F4 1 2
 text33 CODE 0 F4E F4E E6 1 2
 text34 CODE 0 A80 A80 1A8 1 2
 text35 CODE 0 1106 1106 AE 1 2
-text36 CODE 0 1884 1884 1E 1 2
-idataCOMRAM CODE 0 192C 192C 1 1 1
+text36 CODE 0 188C 188C 1E 1 2
+idataCOMRAM CODE 0 1938 1938 1 1 1
 cstackCOMRAM COMRAM 1 1 1 4A 1 1
 cstackBANK0 BANK0 1 60 60 25 1 1
 temp COMRAM 1 4D 4D 1 1 1
@@ -66,6 +61,11 @@ intcode CODE 0 8 8 6 1 2
 smallconst SMALLCONST 0 800 800 78 1 2
 dataCOMRAM COMRAM 1 4C 4C 1 1 1
 bssCOMRAM COMRAM 1 4B 4B 1 1 1
+config CONFIG 4 300000 300000 E 1 1
+$/tmp/xcXOOgngg/driver_tmp_15.obj
+idloc IDLOC 5 200000 200000 8 1 1
+init CODE 0 E E 4 1 2
+reset_vec CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 E 1 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -85,17 +85,17 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 CONST 4-7 1
 CONST 12-7FF 1
-CONST 192D-7FFF 1
-SMALLCONST 192D-7FFF 1
+CONST 1939-7FFF 1
+SMALLCONST 1939-7FFF 1
 CODE 4-7 1
 CODE 12-7FF 1
-CODE 192D-7FFF 1
+CODE 1939-7FFF 1
 BIGRAM 4E-5F 1
 BIGRAM 89-7FF 1
 BIGSFR F60-FFF 1
 COMRAM 4E-5F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 192D-7FFF 1
+MEDIUMCONST 1939-7FFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -111,24 +111,24 @@ MEDIUMCONST 192D-7FFF 1
 %LINETAB
 $dist/default/production/lab05_ADC.X.production.obj
 8 intcode CODE >450:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-8 intcode CODE >8020:/tmp/xcXINnLDf/driver_tmp_1.as
-1820 intcode_body CODE >450:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1822 intcode_body CODE >451:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1826 intcode_body CODE >452:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-182E intcode_body CODE >453:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1830 intcode_body CODE >454:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-183A intcode_body CODE >455:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1840 intcode_body CODE >458:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1884 text36 CODE >277:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1884 text36 CODE >278:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1886 text36 CODE >279:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1888 text36 CODE >280:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-188C text36 CODE >281:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1898 text36 CODE >282:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-189C text36 CODE >283:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-189C text36 CODE >284:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-189E text36 CODE >285:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-18A0 text36 CODE >287:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+8 intcode CODE >8052:/tmp/xcXOOgngg/driver_tmp_1.as
+1846 intcode_body CODE >450:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1848 intcode_body CODE >451:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+184C intcode_body CODE >452:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1854 intcode_body CODE >453:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1856 intcode_body CODE >454:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1860 intcode_body CODE >455:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1866 intcode_body CODE >458:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+188C text36 CODE >277:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+188C text36 CODE >278:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+188E text36 CODE >279:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1890 text36 CODE >280:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1894 text36 CODE >281:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+18A0 text36 CODE >282:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+18A4 text36 CODE >283:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+18A4 text36 CODE >284:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+18A6 text36 CODE >285:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+18A8 text36 CODE >287:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1106 text35 CODE >62:/opt/microchip/xc8/v2.41/pic/sources/c90/common/float.c
 1106 text35 CODE >64:/opt/microchip/xc8/v2.41/pic/sources/c90/common/float.c
 1116 text35 CODE >65:/opt/microchip/xc8/v2.41/pic/sources/c90/common/float.c
@@ -266,9 +266,9 @@ E66 text32 CODE >157:/opt/microchip/xc8/v2.41/pic/sources/c90/common/ftmul.c
 10E4 text31 CODE >71:/opt/microchip/xc8/v2.41/pic/sources/c90/common/fttol.c
 10F4 text31 CODE >72:/opt/microchip/xc8/v2.41/pic/sources/c90/common/fttol.c
 1104 text31 CODE >73:/opt/microchip/xc8/v2.41/pic/sources/c90/common/fttol.c
-17FC text30 CODE >27:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
-17FE text30 CODE >29:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
-181E text30 CODE >30:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
+1822 text30 CODE >27:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
+1824 text30 CODE >29:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
+1844 text30 CODE >30:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbtoft.c
 15EA text29 CODE >7:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lwdiv.c
 15EA text29 CODE >13:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lwdiv.c
 15F2 text29 CODE >14:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lwdiv.c
@@ -355,31 +355,31 @@ D72 text27 CODE >1567:/opt/microchip/xc8/v2.41/pic/sources/c90/common/doprnt.c
 A4A text26 CODE >382:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 A5E text26 CODE >383:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 A78 text26 CODE >385:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-18A2 text25 CODE >55:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18A4 text25 CODE >56:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18B4 text25 CODE >57:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18B8 text25 CODE >58:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18FA text24 CODE >105:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18FA text24 CODE >107:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18FC text24 CODE >108:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1904 text24 CODE >110:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1906 text24 CODE >111:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-152E text23 CODE >293:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1530 text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1532 text23 CODE >295:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1542 text23 CODE >297:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1544 text23 CODE >298:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1552 text23 CODE >299:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1562 text23 CODE >301:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1564 text23 CODE >302:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-156C text23 CODE >304:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-156E text23 CODE >305:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1576 text23 CODE >307:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1578 text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-157C text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1582 text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1588 text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-158E text23 CODE >294:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18AA text25 CODE >55:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18AC text25 CODE >56:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18BC text25 CODE >57:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18C0 text25 CODE >58:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1912 text24 CODE >105:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1912 text24 CODE >107:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1914 text24 CODE >108:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+191C text24 CODE >110:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+191E text24 CODE >111:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+152E text23 CODE >295:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1530 text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1532 text23 CODE >297:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1542 text23 CODE >299:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1544 text23 CODE >300:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1552 text23 CODE >301:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1562 text23 CODE >303:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1564 text23 CODE >304:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+156C text23 CODE >306:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+156E text23 CODE >307:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1576 text23 CODE >309:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1578 text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+157C text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1582 text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1588 text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+158E text23 CODE >296:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 168C text22 CODE >59:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 168E text22 CODE >60:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 1696 text22 CODE >61:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
@@ -389,12 +389,12 @@ A78 text26 CODE >385:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLA
 16C2 text22 CODE >67:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 16CC text22 CODE >68:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 16D0 text22 CODE >70:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18E6 text21 CODE >112:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18E6 text21 CODE >114:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18E8 text21 CODE >115:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18EE text21 CODE >116:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18F2 text21 CODE >117:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18F8 text21 CODE >118:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18EE text21 CODE >112:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18EE text21 CODE >114:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18F0 text21 CODE >115:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18F6 text21 CODE >116:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18FA text21 CODE >117:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1900 text21 CODE >118:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 11B4 text20 CODE >71:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 11B4 text20 CODE >73:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 11B6 text20 CODE >74:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
@@ -468,41 +468,45 @@ A78 text26 CODE >385:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLA
 15DE text17 CODE >244:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 15E6 text17 CODE >254:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 15E8 text17 CODE >255:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1844 text16 CODE >257:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1844 text16 CODE >259:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1846 text16 CODE >260:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1848 text16 CODE >261:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1856 text16 CODE >262:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1858 text16 CODE >263:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1860 text16 CODE >264:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1862 text16 CODE >265:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1864 text16 CODE >267:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17D6 text15 CODE >226:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17D6 text15 CODE >227:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17DA text15 CODE >228:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17DE text15 CODE >231:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17E6 text15 CODE >232:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17EA text15 CODE >233:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17F2 text15 CODE >234:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17F6 text15 CODE >235:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-17FA text15 CODE >238:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1866 text14 CODE >460:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1868 text14 CODE >461:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-186C text14 CODE >462:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1870 text14 CODE >464:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1872 text14 CODE >466:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1876 text14 CODE >467:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-187A text14 CODE >469:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-187C text14 CODE >470:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1880 text14 CODE >472:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1882 text14 CODE >475:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1920 text13 CODE >289:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1920 text13 CODE >290:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-192A text13 CODE >292:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1914 text12 CODE >444:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1916 text12 CODE >445:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-191A text12 CODE >446:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-191E text12 CODE >448:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+186A text16 CODE >257:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+186A text16 CODE >259:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+186C text16 CODE >260:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+186E text16 CODE >261:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+187C text16 CODE >262:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+187E text16 CODE >263:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1886 text16 CODE >264:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1888 text16 CODE >265:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+188A text16 CODE >267:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17FC text15 CODE >226:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17FC text15 CODE >227:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1800 text15 CODE >228:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1804 text15 CODE >231:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+180C text15 CODE >232:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1810 text15 CODE >233:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1818 text15 CODE >234:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+181C text15 CODE >235:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1820 text15 CODE >238:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17D6 text14 CODE >460:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17D8 text14 CODE >461:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17DC text14 CODE >462:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17E0 text14 CODE >464:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17E2 text14 CODE >465:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17E4 text14 CODE >466:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17E6 text14 CODE >468:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17E8 text14 CODE >470:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17EC text14 CODE >471:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17F0 text14 CODE >473:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17F2 text14 CODE >474:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17F6 text14 CODE >476:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17F8 text14 CODE >477:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+17FA text14 CODE >480:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+192C text13 CODE >289:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+192C text13 CODE >290:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1936 text13 CODE >292:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1920 text12 CODE >444:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1922 text12 CODE >445:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1926 text12 CODE >446:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+192A text12 CODE >448:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 163C text11 CODE >391:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 163C text11 CODE >392:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1640 text11 CODE >394:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
@@ -512,18 +516,18 @@ A78 text26 CODE >385:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLA
 1664 text11 CODE >396:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1672 text11 CODE >400:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 168A text11 CODE >402:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-18D0 text10 CODE >257:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18D2 text10 CODE >260:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18D4 text10 CODE >261:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18D8 text10 CODE >259:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 18DA text10 CODE >262:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18DE text10 CODE >263:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18E4 text10 CODE >264:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18BA text9 CODE >136:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18BC text9 CODE >140:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18BE text9 CODE >141:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18C4 text9 CODE >142:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18C8 text9 CODE >143:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-18CE text9 CODE >144:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18DC text10 CODE >263:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18E2 text10 CODE >264:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18E6 text10 CODE >265:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18EC text10 CODE >266:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18C2 text9 CODE >136:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18C4 text9 CODE >140:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18C6 text9 CODE >141:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18CC text9 CODE >142:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18D0 text9 CODE >143:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+18D6 text9 CODE >144:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 1250 text8 CODE >404:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1250 text8 CODE >405:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1254 text8 CODE >407:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
@@ -586,11 +590,13 @@ A78 text26 CODE >385:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLA
 14C2 text7 CODE >340:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 14C4 text7 CODE >341:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 14C6 text7 CODE >345:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1908 text6 CODE >477:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-190A text6 CODE >478:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-190E text6 CODE >479:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1910 text6 CODE >480:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1912 text6 CODE >481:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1902 text6 CODE >482:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1904 text6 CODE >483:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1908 text6 CODE >484:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+190A text6 CODE >485:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+190C text6 CODE >486:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+190E text6 CODE >488:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+1910 text6 CODE >489:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1714 text5 CODE >4:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbdiv.c
 1716 text5 CODE >9:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbdiv.c
 171A text5 CODE >10:/opt/microchip/xc8/v2.41/pic/sources/c90/common/lbdiv.c
@@ -658,12 +664,12 @@ F48 text3 CODE >152:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB
 12FE text2 CODE >241:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 1304 text2 CODE >242:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 1306 text2 CODE >245:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1316 text2 CODE >246:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-131A text2 CODE >247:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-131C text2 CODE >248:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-132C text2 CODE >249:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1332 text2 CODE >252:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
-1348 text2 CODE >253:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+131C text2 CODE >247:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+132C text2 CODE >248:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1330 text2 CODE >249:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1332 text2 CODE >250:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1342 text2 CODE >251:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
+1348 text2 CODE >254:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 134A text2 CODE >238:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 1364 text1 CODE >200:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1364 text1 CODE >204:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
@@ -701,30 +707,30 @@ F48 text3 CODE >152:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB
 1520 text0 CODE >121:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1524 text0 CODE >122:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 1528 text0 CODE >123:/home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
-1780 cinit CODE >776:/tmp/xcXINnLDf/driver_tmp_1.as
-1780 cinit CODE >778:/tmp/xcXINnLDf/driver_tmp_1.as
-1780 cinit CODE >781:/tmp/xcXINnLDf/driver_tmp_1.as
-1780 cinit CODE >818:/tmp/xcXINnLDf/driver_tmp_1.as
-1782 cinit CODE >819:/tmp/xcXINnLDf/driver_tmp_1.as
-1784 cinit CODE >820:/tmp/xcXINnLDf/driver_tmp_1.as
-1786 cinit CODE >821:/tmp/xcXINnLDf/driver_tmp_1.as
-1788 cinit CODE >822:/tmp/xcXINnLDf/driver_tmp_1.as
-178A cinit CODE >823:/tmp/xcXINnLDf/driver_tmp_1.as
-178C cinit CODE >824:/tmp/xcXINnLDf/driver_tmp_1.as
-178E cinit CODE >825:/tmp/xcXINnLDf/driver_tmp_1.as
-1792 cinit CODE >829:/tmp/xcXINnLDf/driver_tmp_1.as
-1794 cinit CODE >830:/tmp/xcXINnLDf/driver_tmp_1.as
-1796 cinit CODE >831:/tmp/xcXINnLDf/driver_tmp_1.as
-1798 cinit CODE >832:/tmp/xcXINnLDf/driver_tmp_1.as
-179A cinit CODE >833:/tmp/xcXINnLDf/driver_tmp_1.as
-179C cinit CODE >836:/tmp/xcXINnLDf/driver_tmp_1.as
-179E cinit CODE >842:/tmp/xcXINnLDf/driver_tmp_1.as
-179E cinit CODE >844:/tmp/xcXINnLDf/driver_tmp_1.as
-17A0 cinit CODE >845:/tmp/xcXINnLDf/driver_tmp_1.as
-17A2 cinit CODE >847:/tmp/xcXINnLDf/driver_tmp_1.as
-17A4 cinit CODE >848:/tmp/xcXINnLDf/driver_tmp_1.as
-17A6 cinit CODE >849:/tmp/xcXINnLDf/driver_tmp_1.as
-17A8 cinit CODE >850:/tmp/xcXINnLDf/driver_tmp_1.as
+1780 cinit CODE >780:/tmp/xcXOOgngg/driver_tmp_1.as
+1780 cinit CODE >782:/tmp/xcXOOgngg/driver_tmp_1.as
+1780 cinit CODE >785:/tmp/xcXOOgngg/driver_tmp_1.as
+1780 cinit CODE >822:/tmp/xcXOOgngg/driver_tmp_1.as
+1782 cinit CODE >823:/tmp/xcXOOgngg/driver_tmp_1.as
+1784 cinit CODE >824:/tmp/xcXOOgngg/driver_tmp_1.as
+1786 cinit CODE >825:/tmp/xcXOOgngg/driver_tmp_1.as
+1788 cinit CODE >826:/tmp/xcXOOgngg/driver_tmp_1.as
+178A cinit CODE >827:/tmp/xcXOOgngg/driver_tmp_1.as
+178C cinit CODE >828:/tmp/xcXOOgngg/driver_tmp_1.as
+178E cinit CODE >829:/tmp/xcXOOgngg/driver_tmp_1.as
+1792 cinit CODE >833:/tmp/xcXOOgngg/driver_tmp_1.as
+1794 cinit CODE >834:/tmp/xcXOOgngg/driver_tmp_1.as
+1796 cinit CODE >835:/tmp/xcXOOgngg/driver_tmp_1.as
+1798 cinit CODE >836:/tmp/xcXOOgngg/driver_tmp_1.as
+179A cinit CODE >837:/tmp/xcXOOgngg/driver_tmp_1.as
+179C cinit CODE >840:/tmp/xcXOOgngg/driver_tmp_1.as
+179E cinit CODE >846:/tmp/xcXOOgngg/driver_tmp_1.as
+179E cinit CODE >848:/tmp/xcXOOgngg/driver_tmp_1.as
+17A0 cinit CODE >849:/tmp/xcXOOgngg/driver_tmp_1.as
+17A2 cinit CODE >851:/tmp/xcXOOgngg/driver_tmp_1.as
+17A4 cinit CODE >852:/tmp/xcXOOgngg/driver_tmp_1.as
+17A6 cinit CODE >853:/tmp/xcXOOgngg/driver_tmp_1.as
+17A8 cinit CODE >854:/tmp/xcXOOgngg/driver_tmp_1.as
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -742,14 +748,14 @@ EEPROM_Read@address 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.
 ___lwmod@counter C 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production/lab05_ADC.X.production.obj
 EnviaDato@a 4 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__Hspace_0 192D 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
+__Hspace_0 1939 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Hspace_1 89 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Hspace_4 60000E 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 EEPROM_Write@data 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftdiv@exp 29 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production/lab05_ADC.X.production.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcXINnLDf/driver_tmp_15.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/xcXOOgngg/driver_tmp_15.obj
 __end_of_EnviaDato 16D2 0 CODE 0 text22 dist/default/production/lab05_ADC.X.production.obj
 __end_of_show_temperature_LCD 12E0 0 CODE 0 text8 dist/default/production/lab05_ADC.X.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production/lab05_ADC.X.production.obj
@@ -760,20 +766,21 @@ _WR 7D31 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __L__absolute__ 0 0 ABS 0 __absolute__ dist/default/production/lab05_ADC.X.production.obj
 __Lsmallconst 800 0 SMALLCONST 0 smallconst dist/default/production/lab05_ADC.X.production.obj
 _ADON 7E10 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
+_CFGS 7D36 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _LATD F8C 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _LATE F8D 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _TMR0 FD6 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _TRMT 7D61 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _Temp 88 0 BANK0 1 bssBANK0 dist/default/production/lab05_ADC.X.production.obj
 _WREN 7D32 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/xcXINnLDf/driver_tmp_15.obj
+___sp 0 0 STACK 2 stack /tmp/xcXOOgngg/driver_tmp_15.obj
 _main 14C8 0 CODE 0 text0 dist/default/production/lab05_ADC.X.production.obj
 __end_of_welcome_operations 13E0 0 CODE 0 text1 dist/default/production/lab05_ADC.X.production.obj
 btemp 4D 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
 MensajeLCD_Var@a 6 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftadd@f1 2B 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftadd@f2 2E 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-start E 0 CODE 0 init /tmp/xcXINnLDf/driver_tmp_15.obj
+start E 0 CODE 0 init /tmp/xcXOOgngg/driver_tmp_15.obj
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/lab05_ADC.X.production.obj
 EEPROM_Write@address 2 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __end_of_RetardoLCD 1594 0 CODE 0 text23 dist/default/production/lab05_ADC.X.production.obj
@@ -786,22 +793,22 @@ choose_scale_temperature_and_fill_buffers@buffer_LCD_row_1 46 0 COMRAM 1 cstackC
 choose_scale_temperature_and_fill_buffers@buffer_LCD_row_2 47 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 _EscribeLCD_n8 E68 0 CODE 0 text3 dist/default/production/lab05_ADC.X.production.obj
 __Hpowerup E 0 CODE 0 powerup dist/default/production/lab05_ADC.X.production.obj
-_EEPROM_Read 1908 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
+_EEPROM_Read 1902 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
 show_temperature_LCD@Hum_n1 9 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 _send_temperature_RS232 163C 0 CODE 0 text11 dist/default/production/lab05_ADC.X.production.obj
 ttemp5 4E 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
 ttemp6 51 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
 ttemp7 55 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
-_save_temperature_c_EEPROM 1920 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
+_save_temperature_c_EEPROM 192C 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
 __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/lab05_ADC.X.production.obj
 Transmitir@BufferT 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__accesstop 60 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
-intlevel0 0 0 CODE 0 text /tmp/xcXINnLDf/driver_tmp_15.obj
-intlevel1 0 0 CODE 0 text /tmp/xcXINnLDf/driver_tmp_15.obj
-intlevel2 0 0 CODE 0 text /tmp/xcXINnLDf/driver_tmp_15.obj
-intlevel3 0 0 CODE 0 text /tmp/xcXINnLDf/driver_tmp_15.obj
+__accesstop 60 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
+intlevel0 0 0 CODE 0 text /tmp/xcXOOgngg/driver_tmp_15.obj
+intlevel1 0 0 CODE 0 text /tmp/xcXOOgngg/driver_tmp_15.obj
+intlevel2 0 0 CODE 0 text /tmp/xcXOOgngg/driver_tmp_15.obj
+intlevel3 0 0 CODE 0 text /tmp/xcXOOgngg/driver_tmp_15.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production/lab05_ADC.X.production.obj
-_DHT11_Start 1844 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
+_DHT11_Start 186A 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
 _welcome_operations 1364 0 CODE 0 text1 dist/default/production/lab05_ADC.X.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/lab05_ADC.X.production.obj
 wtemp8 4E 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
@@ -809,15 +816,15 @@ _Scale_Temperature 85 0 BANK0 1 bssBANK0 dist/default/production/lab05_ADC.X.pro
 __Hifardata 0 0 CODE 0 ifardata dist/default/production/lab05_ADC.X.production.obj
 main@Scale_Temperature_n1 84 0 BANK0 1 cstackBANK0 dist/default/production/lab05_ADC.X.production.obj
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production/lab05_ADC.X.production.obj
-__pidataCOMRAM 192C 0 CODE 0 idataCOMRAM dist/default/production/lab05_ADC.X.production.obj
+__pidataCOMRAM 1938 0 CODE 0 idataCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftmul@f1 D 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftmul@f2 10 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 _ADCON0 FC2 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _ADCON1 FC1 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _ADCON2 FC0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
-___inthi_sp 0 0 STACK 2 stack /tmp/xcXINnLDf/driver_tmp_15.obj
-___intlo_sp 0 0 STACK 2 stack /tmp/xcXINnLDf/driver_tmp_15.obj
-_DireccionaLCD 18D0 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
+___inthi_sp 0 0 STACK 2 stack /tmp/xcXOOgngg/driver_tmp_15.obj
+___intlo_sp 0 0 STACK 2 stack /tmp/xcXOOgngg/driver_tmp_15.obj
+_DireccionaLCD 18D8 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
 _EECON2 FA7 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
@@ -842,13 +849,13 @@ DireccionaLCD@a 5 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.pr
 _dpowers 801 0 SMALLCONST 0 smallconst dist/default/production/lab05_ADC.X.production.obj
 main@buffer_LCD_row_1 60 0 BANK0 1 cstackBANK0 dist/default/production/lab05_ADC.X.production.obj
 main@buffer_LCD_row_2 71 0 BANK0 1 cstackBANK0 dist/default/production/lab05_ADC.X.production.obj
-_Transmitir 1914 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
+_Transmitir 1920 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
 ___lwdiv@quotient 5 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __LidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __end_of_show_temperature_c_RGB 14C8 0 CODE 0 text7 dist/default/production/lab05_ADC.X.production.obj
 ___lwmod@dividend 8 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lintcodelo E 0 CODE 0 intcodelo dist/default/production/lab05_ADC.X.production.obj
-_check_potentiometer_voltaje 1884 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
+_check_potentiometer_voltaje 188C 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
 start_initialization 1780 0 CODE 0 cinit dist/default/production/lab05_ADC.X.production.obj
 _OSCCON FD3 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production/lab05_ADC.X.production.obj
@@ -857,7 +864,7 @@ __pcstackBANK0 60 0 BANK0 1 cstackBANK0 dist/default/production/lab05_ADC.X.prod
 _SWDTEN 7E88 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 ___fttol@exp1 45 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___fttol@lval 41 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-_measure_temperature_c_humidity_per 17D6 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
+_measure_temperature_c_humidity_per 17FC 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
 ___lbtoft@c C 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 _TMR0IE 7F95 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _TMR0IF 7F92 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
@@ -868,7 +875,7 @@ _TRISC2 7CA2 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __end_of_EscribeLCD_n8 F4E 0 CODE 0 text3 dist/default/production/lab05_ADC.X.production.obj
 ___ftpack 1106 0 CODE 0 text35 dist/default/production/lab05_ADC.X.production.obj
 send_temperature_RS232@counter 28 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-isa$xinst 0 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
+isa$xinst 0 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
 show_temperature_LCD@Temp_n1 8 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftpack@arg 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftpack@exp 4 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
@@ -902,13 +909,13 @@ __Htext7 0 0 ABS 0 text7 dist/default/production/lab05_ADC.X.production.obj
 __Htext8 0 0 ABS 0 text8 dist/default/production/lab05_ADC.X.production.obj
 __Htext9 0 0 ABS 0 text9 dist/default/production/lab05_ADC.X.production.obj
 ___lwdiv@counter 7 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__end_of_Transmitir 1920 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
+__end_of_Transmitir 192C 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production/lab05_ADC.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production/lab05_ADC.X.production.obj
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production/lab05_ADC.X.production.obj
-__smallconst 800 0 SMALLCONST 0 smallconst /tmp/xcXINnLDf/driver_tmp_15.obj
+__smallconst 800 0 SMALLCONST 0 smallconst /tmp/xcXOOgngg/driver_tmp_15.obj
 __end_of_send_temperature_RS232 168C 0 CODE 0 text11 dist/default/production/lab05_ADC.X.production.obj
-___lbtoft 17FC 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
+___lbtoft 1822 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
 __end_of_sprintf D74 0 CODE 0 text27 dist/default/production/lab05_ADC.X.production.obj
 __end_of_choose_scale_temperature_and_fill_buffers A80 0 CODE 0 text26 dist/default/production/lab05_ADC.X.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production/lab05_ADC.X.production.obj
@@ -943,7 +950,7 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production/lab05_ADC.X.production.obj
 __Ltext7 0 0 ABS 0 text7 dist/default/production/lab05_ADC.X.production.obj
 __Ltext8 0 0 ABS 0 text8 dist/default/production/lab05_ADC.X.production.obj
 __Ltext9 0 0 ABS 0 text9 dist/default/production/lab05_ADC.X.production.obj
-__end_of___lbtoft 1820 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
+__end_of___lbtoft 1846 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production/lab05_ADC.X.production.obj
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
 _show_temperature_LCD 1250 0 CODE 0 text8 dist/default/production/lab05_ADC.X.production.obj
@@ -970,7 +977,7 @@ __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production/lab05_ADC.X.product
 int$flags 4D 0 COMRAM 1 temp dist/default/production/lab05_ADC.X.production.obj
 _init_configuration 13E0 0 CODE 0 text19 dist/default/production/lab05_ADC.X.production.obj
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__end_of_DireccionaLCD 18E6 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
+__end_of_DireccionaLCD 18EE 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
 __Hintret 0 0 ABS 0 intret dist/default/production/lab05_ADC.X.production.obj
 __Hirdata 0 0 CODE 0 irdata dist/default/production/lab05_ADC.X.production.obj
 _Che 4B 0 COMRAM 1 bssCOMRAM dist/default/production/lab05_ADC.X.production.obj
@@ -980,25 +987,25 @@ _Hum 87 0 BANK0 1 bssBANK0 dist/default/production/lab05_ADC.X.production.obj
 _RA2 7C02 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _RA3 7C03 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _RC1 7C11 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
-__S0 192D 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
+__S0 1939 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __S1 89 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __S4 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __S5 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
-__end_of_EEPROM_Read 1914 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
-_HabilitaLCD 18FA 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
+__end_of_EEPROM_Read 1912 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
+_HabilitaLCD 1912 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
 EscribeLCD_n8@centena A 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __HidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production/lab05_ADC.X.production.obj
-_BorraLCD 18E6 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
+_BorraLCD 18EE 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production/lab05_ADC.X.production.obj
 sprintf@val 17 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 _Enable_sample 86 0 BANK0 1 bssBANK0 dist/default/production/lab05_ADC.X.production.obj
-__end_of_DHT11_Start 1866 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
-__end_of_ISR 1844 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
-_EEPROM_Write 1866 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
-int_func 1820 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
+__end_of_DHT11_Start 188C 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
+__end_of_ISR 186A 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
+_EEPROM_Write 17D6 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
+int_func 1846 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
 __Lintentry 0 0 ABS 0 intentry dist/default/production/lab05_ADC.X.production.obj
-__end_of_BorraLCD 18FA 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
+__end_of_BorraLCD 1902 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
 __Hramtop 800 0 RAM 0 ramtop dist/default/production/lab05_ADC.X.production.obj
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production/lab05_ADC.X.production.obj
 __activetblptr 2 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
@@ -1031,36 +1038,36 @@ __Htext33 0 0 ABS 0 text33 dist/default/production/lab05_ADC.X.production.obj
 __Htext34 0 0 ABS 0 text34 dist/default/production/lab05_ADC.X.production.obj
 __Htext35 0 0 ABS 0 text35 dist/default/production/lab05_ADC.X.production.obj
 __Htext36 0 0 ABS 0 text36 dist/default/production/lab05_ADC.X.production.obj
-__end_of_measure_temperature_c_humidity_per 17FC 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
+__end_of_measure_temperature_c_humidity_per 1822 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
 sprintf@flag 14 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 sprintf@prec 15 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__ptext10 18D0 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
+__ptext10 18D8 0 CODE 0 text10 dist/default/production/lab05_ADC.X.production.obj
 __ptext11 163C 0 CODE 0 text11 dist/default/production/lab05_ADC.X.production.obj
-__ptext12 1914 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
-__ptext13 1920 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
-__ptext14 1866 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
-__ptext15 17D6 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
-__ptext16 1844 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
+__ptext12 1920 0 CODE 0 text12 dist/default/production/lab05_ADC.X.production.obj
+__ptext13 192C 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
+__ptext14 17D6 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
+__ptext15 17FC 0 CODE 0 text15 dist/default/production/lab05_ADC.X.production.obj
+__ptext16 186A 0 CODE 0 text16 dist/default/production/lab05_ADC.X.production.obj
 __ptext17 1594 0 CODE 0 text17 dist/default/production/lab05_ADC.X.production.obj
 __ptext18 174E 0 CODE 0 text18 dist/default/production/lab05_ADC.X.production.obj
 __ptext19 13E0 0 CODE 0 text19 dist/default/production/lab05_ADC.X.production.obj
 __ptext20 11B4 0 CODE 0 text20 dist/default/production/lab05_ADC.X.production.obj
-__ptext21 18E6 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
+__ptext21 18EE 0 CODE 0 text21 dist/default/production/lab05_ADC.X.production.obj
 __ptext22 168C 0 CODE 0 text22 dist/default/production/lab05_ADC.X.production.obj
 __ptext23 152E 0 CODE 0 text23 dist/default/production/lab05_ADC.X.production.obj
-__ptext24 18FA 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
-__ptext25 18A2 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
+__ptext24 1912 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
+__ptext25 18AA 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
 __ptext26 878 0 CODE 0 text26 dist/default/production/lab05_ADC.X.production.obj
 __ptext27 C28 0 CODE 0 text27 dist/default/production/lab05_ADC.X.production.obj
 __ptext28 16D2 0 CODE 0 text28 dist/default/production/lab05_ADC.X.production.obj
 __ptext29 15EA 0 CODE 0 text29 dist/default/production/lab05_ADC.X.production.obj
-__ptext30 17FC 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
+__ptext30 1822 0 CODE 0 text30 dist/default/production/lab05_ADC.X.production.obj
 __ptext31 1034 0 CODE 0 text31 dist/default/production/lab05_ADC.X.production.obj
 __ptext32 D74 0 CODE 0 text32 dist/default/production/lab05_ADC.X.production.obj
 __ptext33 F4E 0 CODE 0 text33 dist/default/production/lab05_ADC.X.production.obj
 __ptext34 A80 0 CODE 0 text34 dist/default/production/lab05_ADC.X.production.obj
 __ptext35 1106 0 CODE 0 text35 dist/default/production/lab05_ADC.X.production.obj
-__ptext36 1884 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
+__ptext36 188C 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
 ___ftadd A80 0 CODE 0 text34 dist/default/production/lab05_ADC.X.production.obj
 ___ftdiv F4E 0 CODE 0 text33 dist/default/production/lab05_ADC.X.production.obj
 ___ftmul D74 0 CODE 0 text32 dist/default/production/lab05_ADC.X.production.obj
@@ -1068,7 +1075,7 @@ ___fttol 1034 0 CODE 0 text31 dist/default/production/lab05_ADC.X.production.obj
 _BAUDCON FB8 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 ___lbdiv 1714 0 CODE 0 text5 dist/default/production/lab05_ADC.X.production.obj
 ___lbmod 17AC 0 CODE 0 text4 dist/default/production/lab05_ADC.X.production.obj
-__pintcode_body 1820 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
+__pintcode_body 1846 0 CODE 0 intcode_body dist/default/production/lab05_ADC.X.production.obj
 ___lwdiv 15EA 0 CODE 0 text29 dist/default/production/lab05_ADC.X.production.obj
 ___lwmod 16D2 0 CODE 0 text28 dist/default/production/lab05_ADC.X.production.obj
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production/lab05_ADC.X.production.obj
@@ -1077,14 +1084,14 @@ __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production/lab05_ADC.X.production.obj
 __Lcomram 0 0 ABS 0 comram dist/default/production/lab05_ADC.X.production.obj
 __Lconfig 0 0 CONFIG 4 config dist/default/production/lab05_ADC.X.production.obj
 ?___ftpack 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-_ConfiguraLCD 18A2 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
+_ConfiguraLCD 18AA 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
 ___lbdiv@divisor 5 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production/lab05_ADC.X.production.obj
 ___lwdiv@divisor 3 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production/lab05_ADC.X.production.obj
-isa$std 1 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
-stackhi 0 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
-stacklo 0 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
+isa$std 1 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
+stackhi 0 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
+stacklo 0 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
 ?___lbtoft 9 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lintcode 8 0 CODE 0 intcode dist/default/production/lab05_ADC.X.production.obj
 __Lintret 0 0 ABS 0 intret dist/default/production/lab05_ADC.X.production.obj
@@ -1095,7 +1102,7 @@ __Lspace_1 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Lspace_2 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Lspace_4 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 main@Temp_n1 82 0 BANK0 1 cstackBANK0 dist/default/production/lab05_ADC.X.production.obj
-__end_of_EEPROM_Write 1884 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
+__end_of_EEPROM_Write 17FC 0 CODE 0 text14 dist/default/production/lab05_ADC.X.production.obj
 ___ftmul@cntr 1A 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __pbssCOMRAM 4B 0 COMRAM 1 bssCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftmul@sign 1B 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
@@ -1104,11 +1111,11 @@ __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production/lab05_ADC.X.produ
 _MensajeLCD_Var 12E0 0 CODE 0 text2 dist/default/production/lab05_ADC.X.production.obj
 _InicializaLCD 11B4 0 CODE 0 text20 dist/default/production/lab05_ADC.X.production.obj
 end_of_initialization 179E 0 CODE 0 cinit dist/default/production/lab05_ADC.X.production.obj
-_EscribeLCD_c 18BA 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
+_EscribeLCD_c 18C2 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production/lab05_ADC.X.production.obj
 __Hintentry 0 0 ABS 0 intentry dist/default/production/lab05_ADC.X.production.obj
 ___lwdiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__end_of_save_temperature_c_EEPROM 192C 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
+__end_of_save_temperature_c_EEPROM 1938 0 CODE 0 text13 dist/default/production/lab05_ADC.X.production.obj
 ?___ftadd 2B 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ?___ftdiv 1C 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ?___ftmul D 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
@@ -1128,10 +1135,10 @@ __ptext2 12E0 0 CODE 0 text2 dist/default/production/lab05_ADC.X.production.obj
 __ptext3 E68 0 CODE 0 text3 dist/default/production/lab05_ADC.X.production.obj
 __ptext4 17AC 0 CODE 0 text4 dist/default/production/lab05_ADC.X.production.obj
 __ptext5 1714 0 CODE 0 text5 dist/default/production/lab05_ADC.X.production.obj
-__ptext6 1908 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
+__ptext6 1902 0 CODE 0 text6 dist/default/production/lab05_ADC.X.production.obj
 __ptext7 145C 0 CODE 0 text7 dist/default/production/lab05_ADC.X.production.obj
 __ptext8 1250 0 CODE 0 text8 dist/default/production/lab05_ADC.X.production.obj
-__ptext9 18BA 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
+__ptext9 18C2 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
 ___lbdiv@quotient 8 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lstruct 0 0 COMRAM 1 struct dist/default/production/lab05_ADC.X.production.obj
 __Ltext10 0 0 ABS 0 text10 dist/default/production/lab05_ADC.X.production.obj
@@ -1161,9 +1168,9 @@ __Ltext33 0 0 ABS 0 text33 dist/default/production/lab05_ADC.X.production.obj
 __Ltext34 0 0 ABS 0 text34 dist/default/production/lab05_ADC.X.production.obj
 __Ltext35 0 0 ABS 0 text35 dist/default/production/lab05_ADC.X.production.obj
 __Ltext36 0 0 ABS 0 text36 dist/default/production/lab05_ADC.X.production.obj
-__ramtop 800 0 RAM 0 ramtop /tmp/xcXINnLDf/driver_tmp_15.obj
+__ramtop 800 0 RAM 0 ramtop /tmp/xcXOOgngg/driver_tmp_15.obj
 _sprintf C28 0 CODE 0 text27 dist/default/production/lab05_ADC.X.production.obj
-__end_of_ConfiguraLCD 18BA 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
+__end_of_ConfiguraLCD 18C2 0 CODE 0 text25 dist/default/production/lab05_ADC.X.production.obj
 ___lbmod@dividend 2 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lpowerup E 0 CODE 0 powerup dist/default/production/lab05_ADC.X.production.obj
 _DHT11_ReadData 1594 0 CODE 0 text17 dist/default/production/lab05_ADC.X.production.obj
@@ -1174,8 +1181,8 @@ __H__absolute__ 0 0 ABS 0 __absolute__ dist/default/production/lab05_ADC.X.produ
 __psmallconst 800 0 SMALLCONST 0 smallconst dist/default/production/lab05_ADC.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/lab05_ADC.X.production.obj
 ConfiguraLCD@a 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-___heap_hi 0 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
-___heap_lo 0 0 ABS 0 - /tmp/xcXINnLDf/driver_tmp_15.obj
+___heap_hi 0 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
+___heap_lo 0 0 ABS 0 - /tmp/xcXOOgngg/driver_tmp_15.obj
 ___param_bank 0 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production/lab05_ADC.X.production.obj
 ___ftmul@exp 16 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
@@ -1186,22 +1193,23 @@ EscribeLCD_n8@unidad C 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC
 EscribeLCD_n8@a D 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 EscribeLCD_n8@b 9 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production/lab05_ADC.X.production.obj
-__end_of_check_potentiometer_voltaje 18A2 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
+__end_of_check_potentiometer_voltaje 18AA 0 CODE 0 text36 dist/default/production/lab05_ADC.X.production.obj
 ___ftpack@sign 5 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftdiv@cntr 25 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 ___ftdiv@sign 2A 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 DHT11_ReadData@i 2 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
-__end_of_EscribeLCD_c 18D0 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
+__end_of_EscribeLCD_c 18D8 0 CODE 0 text9 dist/default/production/lab05_ADC.X.production.obj
 ___lbmod@rem 4 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 sprintf@c 19 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 sprintf@f E 0 COMRAM 1 cstackCOMRAM dist/default/production/lab05_ADC.X.production.obj
 __end_of_main 152E 0 CODE 0 text0 dist/default/production/lab05_ADC.X.production.obj
 __pintcode 8 0 CODE 0 intcode dist/default/production/lab05_ADC.X.production.obj
-__end_of_HabilitaLCD 1908 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
+__end_of_HabilitaLCD 1920 0 CODE 0 text24 dist/default/production/lab05_ADC.X.production.obj
 _ADRES FC3 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __end_of_dpowers 80B 0 SMALLCONST 0 smallconst dist/default/production/lab05_ADC.X.production.obj
 _EEADR FA9 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
+_EEPGD 7D37 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 __end_of_DHT11_ReadData 15EA 0 CODE 0 text17 dist/default/production/lab05_ADC.X.production.obj
 _LATB0 7C50 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
 _LATC1 7C59 0 ABS 0 - dist/default/production/lab05_ADC.X.production.obj
@@ -1271,7 +1279,7 @@ _show_temperature_c_RGB 145C 0 CODE 0 text7 dist/default/production/lab05_ADC.X.
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text26 0 878 878 10B5 1
+text26 0 878 878 10C1 1
 cstackCOMRAM 1 1 1 4D 1
 cstackBANK0 1 60 60 29 1
 reset_vec 0 0 0 4 1

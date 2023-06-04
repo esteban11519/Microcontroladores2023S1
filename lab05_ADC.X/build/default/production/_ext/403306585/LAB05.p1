@@ -128,6 +128,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _EEADR `Vuc ~T0 @X0 0 e@4009 ]
 "4922
 [v _EEDATA `Vuc ~T0 @X0 0 e@4008 ]
+"9322
+[v _EEPGD `Vb ~T0 @X0 0 e@32055 ]
+"9121
+[v _CFGS `Vb ~T0 @X0 0 e@32054 ]
 "11146
 [v _WREN `Vb ~T0 @X0 0 e@32050 ]
 "4915
@@ -4338,200 +4342,200 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 407 ]
 [; ;LibLCDXC8.h: 243: }
-[; ;LibLCDXC8.h: 245: if((counter+1)%32==0){
+[; ;LibLCDXC8.h: 245: EscribeLCD_c(a[counter]);
 "245
+[e ( _EscribeLCD_c (1 *U + _a * -> _counter `ux -> -> # *U _a `ui `ux ]
+[; ;LibLCDXC8.h: 247: if((counter+1)%32==0){
+"247
 [e $ ! == % + -> _counter `i -> 1 `i -> 32 `i -> 0 `i 408  ]
 {
-[; ;LibLCDXC8.h: 246: BorraLCD();
-"246
-[e ( _BorraLCD ..  ]
-"247
-}
-[; ;LibLCDXC8.h: 247: }
-[e $U 409  ]
+[; ;LibLCDXC8.h: 248: BorraLCD();
 "248
+[e ( _BorraLCD ..  ]
+"249
+}
+[; ;LibLCDXC8.h: 249: }
+[e $U 409  ]
+"250
 [e :U 408 ]
-[; ;LibLCDXC8.h: 248: else if((counter+1)%16==0){
+[; ;LibLCDXC8.h: 250: else if((counter+1)%16==0){
 [e $ ! == % + -> _counter `i -> 1 `i -> 16 `i -> 0 `i 410  ]
 {
-[; ;LibLCDXC8.h: 249: DireccionaLCD(0xC0);
-"249
+[; ;LibLCDXC8.h: 251: DireccionaLCD(0xC0);
+"251
 [e ( _DireccionaLCD (1 -> -> 192 `i `uc ]
-"250
+"252
 }
 [e :U 410 ]
-"252
-[e :U 409 ]
-[; ;LibLCDXC8.h: 250: }
-[; ;LibLCDXC8.h: 252: EscribeLCD_c(a[counter]);
-[e ( _EscribeLCD_c (1 *U + _a * -> _counter `ux -> -> # *U _a `ui `ux ]
-[; ;LibLCDXC8.h: 253: counter++;
-"253
-[e ++ _counter -> -> 1 `i `uc ]
 "254
+[e :U 409 ]
+[; ;LibLCDXC8.h: 252: }
+[; ;LibLCDXC8.h: 254: counter++;
+[e ++ _counter -> -> 1 `i `uc ]
+"256
 }
 [e :U 404 ]
 "238
 [e $ && != -> *U + _a * -> _counter `ux -> -> # *U _a `ui `ux `ui -> 0 `ui <= -> _counter `i -> 255 `i 405  ]
 [e :U 406 ]
-[; ;LibLCDXC8.h: 254: }
-[; ;LibLCDXC8.h: 255: return;
-"255
-[e $UE 403  ]
 [; ;LibLCDXC8.h: 256: }
-"256
+[; ;LibLCDXC8.h: 257: return;
+"257
+[e $UE 403  ]
+[; ;LibLCDXC8.h: 258: }
+"258
 [e :UE 403 ]
 }
-"257
+"259
 [v _DireccionaLCD `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;LibLCDXC8.h: 257: void DireccionaLCD(unsigned char a){
+[; ;LibLCDXC8.h: 259: void DireccionaLCD(unsigned char a){
 [e :U _DireccionaLCD ]
 [v _a `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;LibLCDXC8.h: 260: LATD0=0;
-"260
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;LibLCDXC8.h: 261: EnviaDato(a);
-"261
-[e ( _EnviaDato (1 _a ]
-[; ;LibLCDXC8.h: 262: HabilitaLCD();
+[; ;LibLCDXC8.h: 262: LATD0=0;
 "262
-[e ( _HabilitaLCD ..  ]
-[; ;LibLCDXC8.h: 263: RetardoLCD(4);
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;LibLCDXC8.h: 263: EnviaDato(a);
 "263
-[e ( _RetardoLCD (1 -> -> 4 `i `uc ]
-[; ;LibLCDXC8.h: 264: }
+[e ( _EnviaDato (1 _a ]
+[; ;LibLCDXC8.h: 264: HabilitaLCD();
 "264
+[e ( _HabilitaLCD ..  ]
+[; ;LibLCDXC8.h: 265: RetardoLCD(4);
+"265
+[e ( _RetardoLCD (1 -> -> 4 `i `uc ]
+[; ;LibLCDXC8.h: 266: }
+"266
 [e :UE 411 ]
 }
-"265
+"267
 [v _FijaCursorLCD `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;LibLCDXC8.h: 265: void FijaCursorLCD(unsigned char fila,unsigned char columna){
+[; ;LibLCDXC8.h: 267: void FijaCursorLCD(unsigned char fila,unsigned char columna){
 [e :U _FijaCursorLCD ]
 [v _fila `uc ~T0 @X0 1 r1 ]
 [v _columna `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;LibLCDXC8.h: 273: }
-"273
+[; ;LibLCDXC8.h: 275: }
+"275
 [e :UE 412 ]
 }
-"274
+"276
 [v _DesplazaPantallaD `(v ~T0 @X0 1 ef ]
 {
-[; ;LibLCDXC8.h: 274: void DesplazaPantallaD(void){
+[; ;LibLCDXC8.h: 276: void DesplazaPantallaD(void){
 [e :U _DesplazaPantallaD ]
 [f ]
-[; ;LibLCDXC8.h: 276: LATD0=0;
-"276
-[e = _LATD0 -> -> 0 `i `b ]
-[; ;LibLCDXC8.h: 277: EnviaDato(8);
-"277
-[e ( _EnviaDato (1 -> -> 8 `i `uc ]
-[; ;LibLCDXC8.h: 278: HabilitaLCD();
+[; ;LibLCDXC8.h: 278: LATD0=0;
 "278
-[e ( _HabilitaLCD ..  ]
-[; ;LibLCDXC8.h: 279: RetardoLCD(4);
+[e = _LATD0 -> -> 0 `i `b ]
+[; ;LibLCDXC8.h: 279: EnviaDato(8);
 "279
-[e ( _RetardoLCD (1 -> -> 4 `i `uc ]
-[; ;LibLCDXC8.h: 280: }
+[e ( _EnviaDato (1 -> -> 8 `i `uc ]
+[; ;LibLCDXC8.h: 280: HabilitaLCD();
 "280
+[e ( _HabilitaLCD ..  ]
+[; ;LibLCDXC8.h: 281: RetardoLCD(4);
+"281
+[e ( _RetardoLCD (1 -> -> 4 `i `uc ]
+[; ;LibLCDXC8.h: 282: }
+"282
 [e :UE 413 ]
 }
-"281
+"283
 [v _DesplazaPantallaI `(v ~T0 @X0 1 ef ]
 {
-[; ;LibLCDXC8.h: 281: void DesplazaPantallaI(void){
+[; ;LibLCDXC8.h: 283: void DesplazaPantallaI(void){
 [e :U _DesplazaPantallaI ]
 [f ]
-[; ;LibLCDXC8.h: 284: }
-"284
+[; ;LibLCDXC8.h: 286: }
+"286
 [e :UE 414 ]
 }
-"285
+"287
 [v _DesplazaCursorD `(v ~T0 @X0 1 ef ]
 {
-[; ;LibLCDXC8.h: 285: void DesplazaCursorD(void){
+[; ;LibLCDXC8.h: 287: void DesplazaCursorD(void){
 [e :U _DesplazaCursorD ]
 [f ]
-[; ;LibLCDXC8.h: 288: }
-"288
+[; ;LibLCDXC8.h: 290: }
+"290
 [e :UE 415 ]
 }
-"289
+"291
 [v _DesplazaCursorI `(v ~T0 @X0 1 ef ]
 {
-[; ;LibLCDXC8.h: 289: void DesplazaCursorI(void){
+[; ;LibLCDXC8.h: 291: void DesplazaCursorI(void){
 [e :U _DesplazaCursorI ]
 [f ]
-[; ;LibLCDXC8.h: 292: }
-"292
+[; ;LibLCDXC8.h: 294: }
+"294
 [e :UE 416 ]
 }
-"293
+"295
 [v _RetardoLCD `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;LibLCDXC8.h: 293: void RetardoLCD(unsigned char a){
+[; ;LibLCDXC8.h: 295: void RetardoLCD(unsigned char a){
 [e :U _RetardoLCD ]
 [v _a `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;LibLCDXC8.h: 294: switch(a){
-"294
+[; ;LibLCDXC8.h: 296: switch(a){
+"296
 [e $U 419  ]
 {
-[; ;LibLCDXC8.h: 295: case 1: _delay((unsigned long)((15)*(8000000/4000.0)));
-"295
+[; ;LibLCDXC8.h: 297: case 1: _delay((unsigned long)((15)*(8000000/4000.0)));
+"297
 [e :U 420 ]
 [e ( __delay (1 -> * -> -> 15 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LibLCDXC8.h: 297: break;
-"297
+[; ;LibLCDXC8.h: 299: break;
+"299
 [e $U 418  ]
-[; ;LibLCDXC8.h: 298: case 2: _delay((unsigned long)((1)*(8000000/4000.0)));
-"298
+[; ;LibLCDXC8.h: 300: case 2: _delay((unsigned long)((1)*(8000000/4000.0)));
+"300
 [e :U 421 ]
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LibLCDXC8.h: 299: _delay((unsigned long)((640)*(8000000/4000000.0)));
-"299
-[e ( __delay (1 -> * -> -> 640 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;LibLCDXC8.h: 301: break;
+[; ;LibLCDXC8.h: 301: _delay((unsigned long)((640)*(8000000/4000000.0)));
 "301
+[e ( __delay (1 -> * -> -> 640 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;LibLCDXC8.h: 303: break;
+"303
 [e $U 418  ]
-[; ;LibLCDXC8.h: 302: case 3: _delay((unsigned long)((100)*(8000000/4000000.0)));
-"302
+[; ;LibLCDXC8.h: 304: case 3: _delay((unsigned long)((100)*(8000000/4000000.0)));
+"304
 [e :U 422 ]
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;LibLCDXC8.h: 304: break;
-"304
+[; ;LibLCDXC8.h: 306: break;
+"306
 [e $U 418  ]
-[; ;LibLCDXC8.h: 305: case 4: _delay((unsigned long)((40)*(8000000/4000000.0)));
-"305
+[; ;LibLCDXC8.h: 307: case 4: _delay((unsigned long)((40)*(8000000/4000000.0)));
+"307
 [e :U 423 ]
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;LibLCDXC8.h: 307: break;
-"307
-[e $U 418  ]
-[; ;LibLCDXC8.h: 308: default:
-"308
-[e :U 424 ]
 [; ;LibLCDXC8.h: 309: break;
 "309
 [e $U 418  ]
+[; ;LibLCDXC8.h: 310: default:
 "310
-}
-[; ;LibLCDXC8.h: 310: }
+[e :U 424 ]
+[; ;LibLCDXC8.h: 311: break;
+"311
 [e $U 418  ]
-"294
+"312
+}
+[; ;LibLCDXC8.h: 312: }
+[e $U 418  ]
+"296
 [e :U 419 ]
 [e [\ _a , $ -> -> 1 `i `uc 420
  , $ -> -> 2 `i `uc 421
  , $ -> -> 3 `i `uc 422
  , $ -> -> 4 `i `uc 423
  424 ]
-"310
+"312
 [e :U 418 ]
-[; ;LibLCDXC8.h: 311: }
-"311
+[; ;LibLCDXC8.h: 313: }
+"313
 [e :UE 417 ]
 }
 "11 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
@@ -4795,13 +4799,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LAB05.c: 216: BorraLCD();
 "216
 [e ( _BorraLCD ..  ]
-[; ;LAB05.c: 217: MensajeLCD_Var("Last Tempetature");
+[; ;LAB05.c: 217: MensajeLCD_Var("Last Temperature");
 "217
 [e ( _MensajeLCD_Var (1 -> :s 4C `*uc ]
 [; ;LAB05.c: 218: MensajeLCD_Var("\nT: ");
 "218
 [e ( _MensajeLCD_Var (1 -> :s 5C `*uc ]
-[; ;LAB05.c: 219: EscribeLCD_n8(EEPROM_Read(0x0),2);
+[; ;LAB05.c: 219: EscribeLCD_n8(EEPROM_Read(0),2);
 "219
 [e ( _EscribeLCD_n8 (2 , ( _EEPROM_Read (1 -> -> 0 `i `uc -> -> 2 `i `uc ]
 [; ;LAB05.c: 220: MensajeLCD_Var(" C");
@@ -5043,7 +5047,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LAB05.c: 289: void save_temperature_c_EEPROM(void){
 [e :U _save_temperature_c_EEPROM ]
 [f ]
-[; ;LAB05.c: 290: EEPROM_Write(0x0, Temp);
+[; ;LAB05.c: 290: EEPROM_Write(0, Temp);
 "290
 [e ( _EEPROM_Write (2 , -> -> 0 `i `uc _Temp ]
 [; ;LAB05.c: 291: return;
@@ -5555,59 +5559,77 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LAB05.c: 462: EEDATA=data;
 "462
 [e = _EEDATA _data ]
-[; ;LAB05.c: 464: WREN=1;
+[; ;LAB05.c: 464: EEPGD=0;
 "464
-[e = _WREN -> -> 1 `i `b ]
-[; ;LAB05.c: 466: EECON2=0x55;
+[e = _EEPGD -> -> 0 `i `b ]
+[; ;LAB05.c: 465: CFGS=0;
+"465
+[e = _CFGS -> -> 0 `i `b ]
+[; ;LAB05.c: 466: WREN=1;
 "466
-[e = _EECON2 -> -> 85 `i `uc ]
-[; ;LAB05.c: 467: EECON2=0xAA;
-"467
-[e = _EECON2 -> -> 170 `i `uc ]
-[; ;LAB05.c: 469: WR=1;
-"469
-[e = _WR -> -> 1 `i `b ]
-[; ;LAB05.c: 470: while(WR==1);
+[e = _WREN -> -> 1 `i `b ]
+[; ;LAB05.c: 468: GIE=0;
+"468
+[e = _GIE -> -> 0 `i `b ]
+[; ;LAB05.c: 470: EECON2=0x55;
 "470
+[e = _EECON2 -> -> 85 `i `uc ]
+[; ;LAB05.c: 471: EECON2=0xAA;
+"471
+[e = _EECON2 -> -> 170 `i `uc ]
+[; ;LAB05.c: 473: WR=1;
+"473
+[e = _WR -> -> 1 `i `b ]
+[; ;LAB05.c: 474: while(WR==1);
+"474
 [e $U 513  ]
 [e :U 514 ]
 [e :U 513 ]
 [e $ == -> _WR `i -> 1 `i 514  ]
 [e :U 515 ]
-[; ;LAB05.c: 472: WREN=0;
-"472
+[; ;LAB05.c: 476: GIE=1;
+"476
+[e = _GIE -> -> 1 `i `b ]
+[; ;LAB05.c: 477: WREN=0;
+"477
 [e = _WREN -> -> 0 `i `b ]
-[; ;LAB05.c: 473: return;
-"473
+[; ;LAB05.c: 478: return;
+"478
 [e $UE 512  ]
-[; ;LAB05.c: 475: }
-"475
+[; ;LAB05.c: 480: }
+"480
 [e :UE 512 ]
 }
-"477
+"482
 [v _EEPROM_Read `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;LAB05.c: 477: unsigned char EEPROM_Read (unsigned char address){
+[; ;LAB05.c: 482: unsigned char EEPROM_Read (unsigned char address){
 [e :U _EEPROM_Read ]
 [v _address `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;LAB05.c: 478: EEADR=address;
-"478
+[; ;LAB05.c: 483: EEADR=address;
+"483
 [e = _EEADR _address ]
-[; ;LAB05.c: 479: RD=1;
-"479
+[; ;LAB05.c: 484: WREN=0;
+"484
+[e = _WREN -> -> 0 `i `b ]
+[; ;LAB05.c: 485: EEPGD=0;
+"485
+[e = _EEPGD -> -> 0 `i `b ]
+[; ;LAB05.c: 486: RD=1;
+"486
 [e = _RD -> -> 1 `i `b ]
-[; ;LAB05.c: 480: return EEDATA;
-"480
+[; ;LAB05.c: 488: return EEDATA;
+"488
 [e ) _EEDATA ]
 [e $UE 516  ]
-[; ;LAB05.c: 481: }
-"481
+[; ;LAB05.c: 489: }
+"489
 [e :UE 516 ]
 }
 [p f _sprintf 8913024 ]
 [a 2C 83 101 110 115 111 114 115 0 ]
-[a 4C 76 97 115 116 32 84 101 109 112 101 116 97 116 117 114 101 0 ]
+[a 4C 76 97 115 116 32 84 101 109 112 101 114 97 116 117 114 101 0 ]
 [a 3C 10 71 111 100 32 105 115 32 103 111 111 100 0 ]
 [a 8C 72 58 32 37 105 32 37 99 0 ]
 [a 10C 72 58 32 37 105 32 37 99 0 ]

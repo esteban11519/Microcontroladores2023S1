@@ -1,0 +1,7 @@
+#+title: Manejo de sensores con el microcontrolador
+#+author: Vargas Hector and Ladino Esteban
+
+Estas son las cosas que hacen falta:
+
+-[] Chequear la correcta adquisición de datos en el DHT11
+-[] Documentar

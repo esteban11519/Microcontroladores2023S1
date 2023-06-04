@@ -35,7 +35,7 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "460
 [v _EEPROM_Write EEPROM_Write `(v  1 e 1 0 ]
-"477
+"482
 [v _EEPROM_Read EEPROM_Read `(uc  1 e 1 0 ]
 "55 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _ConfiguraLCD ConfiguraLCD `(v  1 e 1 0 ]
@@ -55,9 +55,9 @@
 [v _EscribeLCD_n8 EscribeLCD_n8 `(v  1 e 1 0 ]
 "232
 [v _MensajeLCD_Var MensajeLCD_Var `(v  1 e 1 0 ]
-"257
+"259
 [v _DireccionaLCD DireccionaLCD `(v  1 e 1 0 ]
-"293
+"295
 [v _RetardoLCD RetardoLCD `(v  1 e 1 0 ]
 "505 /opt/microchip/xc8/v2.41/pic/sources/c90/common/doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
@@ -144,6 +144,10 @@
 [v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
 "8986
 [v _ADON ADON `VEb  1 e 0 @32272 ]
+"9121
+[v _CFGS CFGS `VEb  1 e 0 @32054 ]
+"9322
+[v _EEPGD EEPGD `VEb  1 e 0 @32055 ]
 "9745
 [v _GIE GIE `VEb  1 e 0 @32663 ]
 "9757
@@ -223,7 +227,7 @@
 [v MensajeLCD_Var@counter counter `uc  1 a 1 7 ]
 "232
 [v MensajeLCD_Var@a a `*.31uc  1 p 1 5 ]
-"256
+"258
 } 0
 "145
 [v _EscribeLCD_n8 EscribeLCD_n8 `(v  1 e 1 0 ]
@@ -270,13 +274,13 @@
 [v ___lbdiv@dividend dividend `uc  1 a 1 5 ]
 "26
 } 0
-"477 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"482 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _EEPROM_Read EEPROM_Read `(uc  1 e 1 0 ]
 {
 [v EEPROM_Read@address address `uc  1 a 1 wreg ]
 [v EEPROM_Read@address address `uc  1 a 1 wreg ]
 [v EEPROM_Read@address address `uc  1 a 1 0 ]
-"481
+"489
 } 0
 "293
 [v _show_temperature_c_RGB show_temperature_c_RGB `(v  1 e 1 0 ]
@@ -305,14 +309,14 @@
 [v EscribeLCD_c@a a `uc  1 a 1 4 ]
 "144
 } 0
-"257
+"259
 [v _DireccionaLCD DireccionaLCD `(v  1 e 1 0 ]
 {
 [v DireccionaLCD@a a `uc  1 a 1 wreg ]
 [v DireccionaLCD@a a `uc  1 a 1 wreg ]
-"260
+"262
 [v DireccionaLCD@a a `uc  1 a 1 4 ]
-"264
+"266
 } 0
 "391 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _send_temperature_RS232 send_temperature_RS232 `(v  1 e 1 0 ]
@@ -343,7 +347,7 @@
 [v EEPROM_Write@address address `uc  1 a 1 wreg ]
 [v EEPROM_Write@data data `uc  1 p 1 0 ]
 [v EEPROM_Write@address address `uc  1 a 1 1 ]
-"475
+"480
 } 0
 "226
 [v _measure_temperature_c_humidity_per measure_temperature_c_humidity_per `(v  1 e 1 0 ]
@@ -391,13 +395,13 @@
 [v EnviaDato@a a `uc  1 a 1 3 ]
 "70
 } 0
-"293
+"295
 [v _RetardoLCD RetardoLCD `(v  1 e 1 0 ]
 {
 [v RetardoLCD@a a `uc  1 a 1 wreg ]
 [v RetardoLCD@a a `uc  1 a 1 wreg ]
 [v RetardoLCD@a a `uc  1 a 1 1 ]
-"311
+"313
 } 0
 "105
 [v _HabilitaLCD HabilitaLCD `(v  1 e 1 0 ]
