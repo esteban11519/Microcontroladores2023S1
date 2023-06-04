@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- /tmp/xcXCBfCmN/driver_tmp_3.obj
+ /tmp/xcXINnLDf/driver_tmp_3.obj
  -Odist/default/production/lab05_ADC.X.production.hex
  -logfile=dist/default/production/lab05_ADC.X.production.hxl
  -addressing=1
@@ -9,23 +9,23 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
-  8h - 11h		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
-  800h - 876h		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
-  878h - 1930h		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
-  200000h - 200007h		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
-  300000h - 30000Dh		(/tmp/xcXCBfCmN/driver_tmp_3.obj)
+  0h - 3h		(/tmp/xcXINnLDf/driver_tmp_3.obj)
+  8h - 11h		(/tmp/xcXINnLDf/driver_tmp_3.obj)
+  800h - 876h		(/tmp/xcXINnLDf/driver_tmp_3.obj)
+  878h - 192Ch		(/tmp/xcXINnLDf/driver_tmp_3.obj)
+  200000h - 200007h		(/tmp/xcXINnLDf/driver_tmp_3.obj)
+  300000h - 30000Dh		(/tmp/xcXINnLDf/driver_tmp_3.obj)
  Unused ranges:
   4h - 7h
   12h - 7FFh
   877h - 877h
-  1931h - 1FFFFFh
+  192Dh - 1FFFFFh
   200008h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (/tmp/xcXCBfCmN/driver_tmp_3.obj)
+  H1 = Input file             (/tmp/xcXINnLDf/driver_tmp_3.obj)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -306,8 +306,7 @@
 000018F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001900 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001910 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001920 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001930 | H1 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+00001920 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------

@@ -13,19 +13,19 @@
 #pragma config WDTPS = 512 // T = 1/(31kHz/(128*WDTPS)) (2,11 s), [2^0, 2^13] discrete
 
 // DHT11 pines
-#define Data_Dir TRISA4
-#define Data_In RA4
-#define Data_Out LATA4
+#define Data_Dir TRISC1
+#define Data_In RC1
+#define Data_Out LATC1
 
 // RGB pines
 #ifndef RGB_R
-#define RGB_R RE0
+#define RGB_R LATE0
 #endif
 #ifndef RGB_G
-#define RGB_G RE2
+#define RGB_G LATE2
 #endif
 #ifndef RGB_B
-#define RGB_B RE1
+#define RGB_B LATE1
 #endif
 
 // Interrutor pines
@@ -38,13 +38,13 @@
  
 // LED with frequency 1 [Hz]
 #ifndef LEDT
-#define LEDT RC2 	
+#define LEDT LATC2 	
 #endif
 
 
 // LED potentiometer
 #ifndef LEDPOT
-#define LEDPOT RB0 	
+#define LEDPOT LATB0 	
 #endif
 
 // Global variables
@@ -151,8 +151,6 @@ void init_configuration(void){
   LATE=1;
   
   // Interruptors Pines
-  TRISA2=1;
-  TRISA3=1;
   
   // LED with frequency 1 [Hz]
   TRISC2=0;
@@ -164,7 +162,7 @@ void init_configuration(void){
 
   // Potentiometer
   //ADCON0 — — CHS3 CHS2 CHS1 CHS0 GO/DONE ADON
-  ADCON0=0b00000101;
+  ADCON0=0b00000100;
   // ADCON2: ADFM — ACQT2 ACQT1 ACQT0 ADCS2 ADCS1 ADCS0 
   ADCON2=0b11001001;
   
