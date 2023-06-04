@@ -4,4 +4,9 @@
 Estas son las cosas que hacen falta:
 
 -[] Chequear la correcta adquisición de datos en el DHT11
+
 -[] Documentar
+
+#+CAPTION: Componentes y conexiones
+#+NAME:   fig:schematic
+[[./figs/schematic.png]]
