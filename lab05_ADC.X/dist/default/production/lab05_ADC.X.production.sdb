@@ -3,32 +3,40 @@
 [d edition pro ]
 [d chip 18F4550 ]
 [d frameptr 4065 ]
-"79 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"86 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _main main `(v  1 e 1 0 ]
-"124
+"132
 [v _init_configuration init_configuration `(v  1 e 1 0 ]
-"195
+"202
 [v _welcome_operations welcome_operations `(v  1 e 1 0 ]
-"215
+"228
+[v _measure_temperature_c_humidity_per measure_temperature_c_humidity_per `(v  1 e 1 0 ]
+"243
+[v _DHT11_ReadData DHT11_ReadData `(uc  1 e 1 0 ]
+"259
+[v _DHT11_Start DHT11_Start `(v  1 e 1 0 ]
+"271
+[v _DHT11_CheckResponse DHT11_CheckResponse `(v  1 e 1 0 ]
+"279
 [v _check_potentiometer_voltaje check_potentiometer_voltaje `(v  1 e 1 0 ]
-"226
+"291
 [v _save_temperature_c_EEPROM save_temperature_c_EEPROM `(v  1 e 1 0 ]
-"229
+"295
 [v _show_temperature_c_RGB show_temperature_c_RGB `(v  1 e 1 0 ]
-"284
+"350
 [v _choose_scale_temperature_and_fill_buffers choose_scale_temperature_and_fill_buffers `(v  1 e 1 0 ]
-"317
+"393
 [v _send_temperature_RS232 send_temperature_RS232 `(v  1 e 1 0 ]
-"330
+"406
 [v _show_temperature_LCD show_temperature_LCD `(v  1 e 1 0 ]
-"388
-[v _LeerByte LeerByte `(uc  1 e 1 0 ]
-"396
-[v _LeerBit LeerBit `(uc  1 e 1 0 ]
-"416
+"446
 [v _Transmitir Transmitir `(v  1 e 1 0 ]
-"422
+"452
 [v _ISR ISR `II(v  1 e 1 0 ]
+"462
+[v _EEPROM_Write EEPROM_Write `(v  1 e 1 0 ]
+"479
+[v _EEPROM_Read EEPROM_Read `(uc  1 e 1 0 ]
 "55 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _ConfiguraLCD ConfiguraLCD `(v  1 e 1 0 ]
 "59
@@ -43,6 +51,8 @@
 [v _CursorAInicio CursorAInicio `(v  1 e 1 0 ]
 "136
 [v _EscribeLCD_c EscribeLCD_c `(v  1 e 1 0 ]
+"145
+[v _EscribeLCD_n8 EscribeLCD_n8 `(v  1 e 1 0 ]
 "232
 [v _MensajeLCD_Var MensajeLCD_Var `(v  1 e 1 0 ]
 "257
@@ -90,6 +100,8 @@
 [v _Hum Hum `uc  1 e 1 0 ]
 "53
 [v _Enable_sample Enable_sample `uc  1 e 1 0 ]
+"54
+[v _Scale_Temperature Scale_Temperature `uc  1 e 1 0 ]
 "35 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _interfaz interfaz `uc  1 e 1 0 ]
 "3263 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
@@ -100,6 +112,12 @@
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
 "4223
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"4915
+[v _EECON2 EECON2 `VEuc  1 e 1 @4007 ]
+"4922
+[v _EEDATA EEDATA `VEuc  1 e 1 @4008 ]
+"4929
+[v _EEADR EEADR `VEuc  1 e 1 @4009 ]
 "4936
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "5146
@@ -130,10 +148,10 @@
 [v _GIE GIE `VEb  1 e 0 @32663 ]
 "9757
 [v _GO GO `VEb  1 e 0 @32273 ]
+"9943
+[v _LATA4 LATA4 `VEb  1 e 0 @31820 ]
 "9952
 [v _LATB0 LATB0 `VEb  1 e 0 @31824 ]
-"9976
-[v _LATC0 LATC0 `VEb  1 e 0 @31832 ]
 "9982
 [v _LATC2 LATC2 `VEb  1 e 0 @31834 ]
 "9991
@@ -144,12 +162,14 @@
 [v _RA2 RA2 `VEb  1 e 0 @31746 ]
 "10351
 [v _RA3 RA3 `VEb  1 e 0 @31747 ]
+"10354
+[v _RA4 RA4 `VEb  1 e 0 @31748 ]
 "10363
 [v _RB0 RB0 `VEb  1 e 0 @31752 ]
-"10399
-[v _RC0 RC0 `VEb  1 e 0 @31760 ]
 "10414
 [v _RC2 RC2 `VEb  1 e 0 @31762 ]
+"10456
+[v _RD RD `VEb  1 e 0 @32048 ]
 "10495
 [v _RE0 RE0 `VEb  1 e 0 @31776 ]
 "10498
@@ -170,31 +190,39 @@
 [v _TRISA2 TRISA2 `VEb  1 e 0 @31890 ]
 "10894
 [v _TRISA3 TRISA3 `VEb  1 e 0 @31891 ]
+"10897
+[v _TRISA4 TRISA4 `VEb  1 e 0 @31892 ]
 "10906
 [v _TRISB0 TRISB0 `VEb  1 e 0 @31896 ]
 "10936
 [v _TRISC2 TRISC2 `VEb  1 e 0 @31906 ]
 "10978
 [v _TRMT TRMT `VEb  1 e 0 @32097 ]
+"11140
+[v _WR WR `VEb  1 e 0 @32049 ]
+"11146
+[v _WREN WREN `VEb  1 e 0 @32050 ]
 "358 /opt/microchip/xc8/v2.41/pic/sources/c90/common/doprnt.c
 [v _dpowers dpowers `C[5]ui  1 s 10 dpowers ]
-"79 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"86 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _main main `(v  1 e 1 0 ]
 {
-"89
+"96
 [v main@buffer_LCD_row_2 buffer_LCD_row_2 `[17]uc  1 a 17 17 ]
-"88
+"95
 [v main@buffer_LCD_row_1 buffer_LCD_row_1 `[17]uc  1 a 17 0 ]
-"93
+"101
+[v main@Scale_Temperature_n1 Scale_Temperature_n1 `uc  1 a 1 36 ]
+"100
 [v main@Hum_n1 Hum_n1 `uc  1 a 1 35 ]
-"92
+"99
 [v main@Temp_n1 Temp_n1 `uc  1 a 1 34 ]
-"120
+"128
 } 0
-"195
+"202
 [v _welcome_operations welcome_operations `(v  1 e 1 0 ]
 {
-"212
+"226
 } 0
 "232 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _MensajeLCD_Var MensajeLCD_Var `(v  1 e 1 0 ]
@@ -205,22 +233,76 @@
 [v MensajeLCD_Var@a a `*.31uc  1 p 1 5 ]
 "256
 } 0
-"229 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"145
+[v _EscribeLCD_n8 EscribeLCD_n8 `(v  1 e 1 0 ]
+{
+[v EscribeLCD_n8@a a `uc  1 a 1 wreg ]
+"150
+[v EscribeLCD_n8@unidad unidad `uc  1 a 1 11 ]
+[v EscribeLCD_n8@decena decena `uc  1 a 1 10 ]
+[v EscribeLCD_n8@centena centena `uc  1 a 1 9 ]
+"145
+[v EscribeLCD_n8@a a `uc  1 a 1 wreg ]
+[v EscribeLCD_n8@b b `uc  1 p 1 8 ]
+"151
+[v EscribeLCD_n8@a a `uc  1 a 1 12 ]
+"182
+} 0
+"4 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lbmod.c
+[v ___lbmod __lbmod `(uc  1 e 1 0 ]
+{
+[v ___lbmod@dividend dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbmod@rem rem `uc  1 a 1 3 ]
+"7
+[v ___lbmod@counter counter `uc  1 a 1 2 ]
+"4
+[v ___lbmod@dividend dividend `uc  1 a 1 wreg ]
+[v ___lbmod@divisor divisor `uc  1 p 1 0 ]
+"9
+[v ___lbmod@dividend dividend `uc  1 a 1 1 ]
+"18
+} 0
+"4 /opt/microchip/xc8/v2.41/pic/sources/c90/common/lbdiv.c
+[v ___lbdiv __lbdiv `(uc  1 e 1 0 ]
+{
+[v ___lbdiv@dividend dividend `uc  1 a 1 wreg ]
+"6
+[v ___lbdiv@quotient quotient `uc  1 a 1 7 ]
+"7
+[v ___lbdiv@counter counter `uc  1 a 1 6 ]
+"4
+[v ___lbdiv@dividend dividend `uc  1 a 1 wreg ]
+[v ___lbdiv@divisor divisor `uc  1 p 1 4 ]
+"9
+[v ___lbdiv@dividend dividend `uc  1 a 1 5 ]
+"26
+} 0
+"479 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+[v _EEPROM_Read EEPROM_Read `(uc  1 e 1 0 ]
+{
+[v EEPROM_Read@address address `uc  1 a 1 wreg ]
+[v EEPROM_Read@address address `uc  1 a 1 wreg ]
+[v EEPROM_Read@address address `uc  1 a 1 0 ]
+"483
+} 0
+"295
 [v _show_temperature_c_RGB show_temperature_c_RGB `(v  1 e 1 0 ]
 {
-"281
+"347
 } 0
-"330
+"406
 [v _show_temperature_LCD show_temperature_LCD `(v  1 e 1 0 ]
 {
-"331
-[v show_temperature_LCD@counter counter `uc  1 a 1 9 ]
-"330
+"407
+[v show_temperature_LCD@counter counter `uc  1 a 1 10 ]
+"406
 [v show_temperature_LCD@buffer_LCD_row_1 buffer_LCD_row_1 `*.30uc  1 p 1 5 ]
 [v show_temperature_LCD@buffer_LCD_row_2 buffer_LCD_row_2 `*.30uc  1 p 1 6 ]
 [v show_temperature_LCD@Temp_n1 Temp_n1 `uc  1 p 1 7 ]
 [v show_temperature_LCD@Hum_n1 Hum_n1 `uc  1 p 1 8 ]
-"366
+[v show_temperature_LCD@Scale_Temperature_n1 Scale_Temperature_n1 `uc  1 p 1 9 ]
+"442
 } 0
 "136 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _EscribeLCD_c EscribeLCD_c `(v  1 e 1 0 ]
@@ -240,32 +322,64 @@
 [v DireccionaLCD@a a `uc  1 a 1 4 ]
 "264
 } 0
-"317 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"393 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _send_temperature_RS232 send_temperature_RS232 `(v  1 e 1 0 ]
 {
-"319
+"395
 [v send_temperature_RS232@buffer_RS232 buffer_RS232 `[12]uc  1 a 12 27 ]
-"318
+"394
 [v send_temperature_RS232@counter counter `uc  1 a 1 39 ]
-"328
+"404
 } 0
-"416
+"446
 [v _Transmitir Transmitir `(v  1 e 1 0 ]
 {
 [v Transmitir@BufferT BufferT `uc  1 a 1 wreg ]
 [v Transmitir@BufferT BufferT `uc  1 a 1 wreg ]
 [v Transmitir@BufferT BufferT `uc  1 a 1 0 ]
-"420
+"450
 } 0
-"226
+"291
 [v _save_temperature_c_EEPROM save_temperature_c_EEPROM `(v  1 e 1 0 ]
 {
-"228
+"294
 } 0
-"124
+"462
+[v _EEPROM_Write EEPROM_Write `(v  1 e 1 0 ]
+{
+[v EEPROM_Write@address address `uc  1 a 1 wreg ]
+[v EEPROM_Write@address address `uc  1 a 1 wreg ]
+[v EEPROM_Write@data data `uc  1 p 1 0 ]
+[v EEPROM_Write@address address `uc  1 a 1 1 ]
+"477
+} 0
+"228
+[v _measure_temperature_c_humidity_per measure_temperature_c_humidity_per `(v  1 e 1 0 ]
+{
+"240
+} 0
+"259
+[v _DHT11_Start DHT11_Start `(v  1 e 1 0 ]
+{
+"269
+} 0
+"243
+[v _DHT11_ReadData DHT11_ReadData `(uc  1 e 1 0 ]
+{
+"245
+[v DHT11_ReadData@data data `uc  1 a 1 2 ]
+[v DHT11_ReadData@i i `uc  1 a 1 1 ]
+"257
+} 0
+"271
+[v _DHT11_CheckResponse DHT11_CheckResponse `(v  1 e 1 0 ]
+{
+"277
+} 0
+"132
 [v _init_configuration init_configuration `(v  1 e 1 0 ]
 {
-"193
+"200
 } 0
 "71 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _InicializaLCD InicializaLCD `(v  1 e 1 0 ]
@@ -306,15 +420,15 @@
 [v ConfiguraLCD@a a `uc  1 a 1 0 ]
 "58
 } 0
-"284 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"350 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _choose_scale_temperature_and_fill_buffers choose_scale_temperature_and_fill_buffers `(v  1 e 1 0 ]
 {
-"285
-[v choose_scale_temperature_and_fill_buffers@temp_converted temp_converted `i  1 a 2 71 ]
-"284
+"351
+[v choose_scale_temperature_and_fill_buffers@temp_converted temp_converted `i  1 a 2 72 ]
+"350
 [v choose_scale_temperature_and_fill_buffers@buffer_LCD_row_1 buffer_LCD_row_1 `*.30uc  1 p 1 69 ]
 [v choose_scale_temperature_and_fill_buffers@buffer_LCD_row_2 buffer_LCD_row_2 `*.30uc  1 p 1 70 ]
-"315
+"391
 } 0
 "505 /opt/microchip/xc8/v2.41/pic/sources/c90/common/doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
@@ -425,13 +539,13 @@
 [v ___ftpack@sign sign `uc  1 p 1 4 ]
 "86
 } 0
-"215 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"279 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _check_potentiometer_voltaje check_potentiometer_voltaje `(v  1 e 1 0 ]
 {
-"225
+"289
 } 0
-"422
+"452
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"430
+"460
 } 0
