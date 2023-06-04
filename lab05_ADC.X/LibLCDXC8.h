@@ -237,15 +237,22 @@ void MensajeLCD_Var(char* a){
   unsigned char counter=0;
   while(a[counter]!='\0' && counter<=255){
 
-    if(counter%32==0){
-      BorraLCD();
-    }
-    else if(counter%16==0){
+    if(a[counter]=='\n'){
       DireccionaLCD(0xC0);
+      counter++;
     }
     
     EscribeLCD_c(a[counter]);
+
+    if((counter+1)%32==0){
+      BorraLCD();
+    }
+    else if((counter+1)%16==0){
+      DireccionaLCD(0xC0);
+    }
+    
     counter++;
+    
   }
   return;
 }
