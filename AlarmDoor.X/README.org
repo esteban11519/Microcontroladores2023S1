@@ -1,0 +1,35 @@
+#+title: AlarmDoor
+#+author: Vargas Hector and Ladino Esteban
+
+Cosas que se propusieron:
+- Temporizadores
+
+- Interrupciones
+
+- LCD caracteres
+
+- Teclado matricial
+
+- ADC
+
+- PWM
+
+- Comunicación RS232
+
+- Comunicación IIC o SPI
+
+- Captura yo comparación
+
+
+
+Requerimientos generales
+
+-[x] LCD: LCD
+
+-[x] Teclado: Interrupciones y Teclado
+
+-[x] Ultrasonido: TMR1 y Captura
+
+-[x] PWM
+
+-[] RS232 
