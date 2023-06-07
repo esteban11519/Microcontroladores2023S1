@@ -28,24 +28,35 @@ unsigned char Check_alarm=1;
 
 
 /* Principal functions */
-void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char);
-void verify_alarm_status(unsigned char, unsigned char);
-void select_options(unsigned char *, unsigned char);
-void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
 
+void load_password(unsigned char *);
+
+void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char);
+
+void verify_alarm_status(unsigned char, unsigned char);
+
+void select_options(unsigned char *, unsigned char);
+
+void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
+
+void show_LCD(unsigned char, unsigned char, unsigned char *);
+
+void show_rgb(unsigned char, unsigned char *);
 
 /* Main sub functions */
 void init_configuration(void);
 void welcome_operations(void); 
-
 unsigned char ult_son_get_dis(void); // Please WDT
 void send_RS232(unsigned char *); // [x]
-
 void signals_status_alarm(unsigned char,unsigned char *);
+unsigned char is_sym_val_opt(unsigned char);
+unsigned char is_sym_val_dig(unsigned char);
+unsigned char size_array(unsigned char *);
+void clear_variables(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
+void EEPROM_Write (unsigned char , unsigned char);
+unsigned char EEPROM_Read (unsigned char);
 
-unsigned char is_sym_val_opt(unsigned char *, unsigned char);
-
-
+  
 /* Interrupt functions */
 unsigned char read_key(void);
 unsigned char key2symbol(unsigned char);
@@ -61,28 +72,32 @@ void main(void) {
   // Local variables
   unsigned char key=0; // Save the Key 
   unsigned char is_secure_ultrasonic_distance=0;
-  unsigned char ultrasonic_distance_permitted=7; // [cm]
-  unsigned char dx_ultrasonic_distance_permitted=1; // [cm]
+  unsigned char ultrasonic_distance_permitted=12; // [cm]
+  unsigned char dx_ultrasonic_distance_permitted=3; // [cm]
   unsigned char status_alarm = 0; // 1 on, 0 off
-  unsigned char option_selected = 0;
+  unsigned char option_selected = 'B';
   unsigned char option_selected_previous = 0;
   unsigned char buffer_password_inserted [9]; // Buffer to password inserted
-  unsigned char current_password[9]="01234567";
+  unsigned char current_password [9];
+  unsigned char counter_password =0;
   unsigned char operation_password_success=0;
-  /* Buffer to LCD*/
-  unsigned char buffer_LCD_row_1[17];
-  unsigned char buffer_LCD_row_2[17];
-
+  
   // Activate watchdog
   SWDTEN = 1;
+
+  // Load password
+  load_password(current_password);
   while(1){
 
     if(Check_alarm){
       
-      // Update key
+      // Update variables
       key=Key;
       Key=0;
 
+      option_selected_previous=option_selected;
+
+      // Functions
       check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm, ultrasonic_distance_permitted, dx_ultrasonic_distance_permitted);
       CLRWDT();
       
@@ -90,12 +105,14 @@ void main(void) {
       
       select_options(&option_selected, key);
 
-      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success,&status_alarm);
+      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success, &counter_password, &status_alarm, &key);
 
-      // update others variables
-      if(option_selected_previous!=option_selected)
-	option_selected_previous=option_selected;
+      show_LCD(status_alarm, option_selected, buffer_password_inserted);
+
+      show_rgb(status_alarm, buffer_password_inserted);
       
+      // Wait to other by Check will be 1
+      Check_alarm=0;
     }
     
     // Test ultrasonic
@@ -177,9 +194,9 @@ void init_configuration(void){
   // bit 3 - PSA: 0, Assigned prescaler
   // bit 2:0 - T0PS2:T0PS0: 001,1:4 Prescale value
   // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
-  // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
-  T0CON=0b00000100;
-  TMR0=3036; 			//preload
+  // bit 2:0 - T0PS2:T0PS0: 101,1:64 Prescale value
+  T0CON=0b00000101;  
+  TMR0=3036; 			//preload and T0PS2:T0PS0 to T=2 seconds (Equation: PRE = np.power(2, 16) - T_sobreflujo*F_tim_0/PS) F_timer0 = Fosc/4 in this case
   // INTCON
   // TMR0IF: 0, TMR0 register did not overflow
   // TMR0IE: 1, Enables the TMR0 overflow interrupt
@@ -232,6 +249,35 @@ void welcome_operations(void){
 
 }
 
+void load_password(unsigned char *current_password){
+
+  unsigned char counter=0;
+  // First value will be 7 or other only to know that exist information
+  if(EEPROM_Read(0)!=7){
+    EEPROM_Write(0,7);
+    while(counter<8){
+      current_password[counter]=counter+48;
+      EEPROM_Write(counter+1,counter+48);
+      counter++;
+    }
+    current_password[counter]='\0';
+    BorraLCD();
+    MensajeLCD_Var("Default pass");
+    __delay_ms(1000);
+  }
+  else{
+    while(counter<8){
+      current_password[counter]=EEPROM_Read(counter+1);
+      counter++;
+    }
+    current_password[counter]='\0';
+    BorraLCD();
+    MensajeLCD_Var("User pass");
+    __delay_ms(1000);
+  }
+  
+  return;
+}
 
 void check_ultrasonic(unsigned char *is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char ultrasonic_distance_permitted, unsigned char dx_ultrasonic_distance_permitted){
 
@@ -384,13 +430,34 @@ unsigned char read_key(void){
   return key;
 }
 
-unsigned char is_sym_val_opt(unsigned char *arr, unsigned char sym){
+unsigned char is_sym_val_opt(unsigned char sym){
   unsigned char counter=0;
+  unsigned char arr[]="ABCD*#";
   while(arr[counter]!='\0'){
     if(arr[counter]==sym) return 1;
     counter++;
   }
   return 0;
+}
+
+unsigned char is_sym_val_dig(unsigned char sym){
+  unsigned char counter=0;
+  unsigned char arr[]="0123456789";
+  while(arr[counter]!='\0'){
+    if(arr[counter]==sym) return 1;
+    counter++;
+  }
+  return 0;
+}
+
+unsigned char size_array(unsigned char *arr){
+  unsigned char counter=0;
+
+  while(arr[counter]!='\0'){
+    counter++;
+  }
+
+  return counter;
 }
 
 void select_options(unsigned char *option_selected, unsigned char key){
@@ -402,68 +469,295 @@ void select_options(unsigned char *option_selected, unsigned char key){
     *: Cancel
     #: Activate
    */
-  unsigned char valid_sym_opt[]={'A','B','C','D','*','#','\0'};
-  if(is_sym_val_opt(valid_sym_opt,key))
+  if(is_sym_val_opt(key))
     *option_selected=key;
-  else
-    *option_selected='B';
       
   return;
 }
 
-void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *status_alarm){
+void clear_variables(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *counter_password, unsigned char *operation_password_success ){
+
+  *option_selected='B';
+  *option_selected_previous='B';
+  buffer_password_inserted[0]='\0';
+  *counter_password=0;
+  *operation_password_success=0;
+  
+  return;
+}
+
+void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *counter_password , unsigned char *status_alarm, unsigned char *key){
 
   unsigned char counter=0;
   
   if(*option_selected_previous=='B' && *option_selected=='A'){
     // Insert password and enter
-    while(current_password[counter]!='\0'){
-      if(current_password[counter]!=buffer_password_inserted[counter]){
-	*operation_password_success=0;
-	buffer_password_inserted[0]='\0';
-	*option_selected='\0';
-	break;
+
+    if(size_array(buffer_password_inserted)==8){
+
+      while(current_password[counter]!='\0'){
+	if(current_password[counter]!=buffer_password_inserted[counter]){
+	  *operation_password_success=0;
+	  break;
+	}
+	counter++;
+	*operation_password_success=1;
+      }
+    }
+    else{
+      *operation_password_success=0;
+    }
+
+    if(*operation_password_success){
+      *status_alarm=0;
+      
+      clear_variables(option_selected,option_selected_previous,
+		      buffer_password_inserted, counter_password,
+		      operation_password_success);
+ 
+    }
+    else{
+      *status_alarm=1;
+      clear_variables(option_selected,option_selected_previous,
+		      buffer_password_inserted, counter_password,
+		      operation_password_success);
+ 
+    }
+      
+  }
+
+  
+  else if(*option_selected_previous=='C' && *option_selected=='A'){
+    // Change password and enter
+    
+    if(size_array(buffer_password_inserted)==8 && *status_alarm==0){
+      EEPROM_Write(0,7);
+      while(current_password[counter]!='\0'){
+	current_password[counter]=buffer_password_inserted[counter];
+	EEPROM_Write(counter+1,buffer_password_inserted[counter]);
+	counter++;
       }
       *operation_password_success=1;
-      
+
     }
-    buffer_password_inserted[0]='\0';
-    *option_selected='\0';
-  }
-  else if(*option_selected_previous=='C' && *option_selected=='A'){
-   // Change password and enter
-    while(current_password[counter]!='\0'){
-      current_password[counter]=buffer_password_inserted[counter];
-      counter++;
+    else {
+      *operation_password_success=0; 
+    }
+
+    DireccionaLCD(0x80);
+    if(*operation_password_success){
+      MensajeLCD_Var("Password changed");
+    }
+    else{
+      MensajeLCD_Var("Not changed     ");
     }
     
-    *operation_password_success=1;
-    buffer_password_inserted[0]='\0';
-    *option_selected='\0';
+    clear_variables(option_selected,option_selected_previous,
+		      buffer_password_inserted, counter_password,
+		      operation_password_success);
+
+    
+    __delay_ms(700);
+    
   }
-  else if(*option_selected=='C'){
-    // Change password
-  }
-  else if(*option_selected=='B'){
+
+  
+  else if(*option_selected=='B' || *option_selected=='C'){
     // Insert password
+    if(*counter_password<8 && is_sym_val_dig(*key)){
+      buffer_password_inserted[*counter_password]=*key;
+      buffer_password_inserted[*counter_password+1]='\0';
+    }
+    else if(*counter_password==8 && is_sym_val_dig(*key)){
+      buffer_password_inserted[*counter_password]='\0';
+    }
+
+    if(is_sym_val_dig(*key) && *counter_password<255)
+      *counter_password+=1;
   }
+
+  
   else if(*option_selected=='D'){
-    // Delete all
+    // Delete password numbers
     buffer_password_inserted[0]='\0';
+    *counter_password=0;
+    *option_selected=*option_selected_previous;
+  }
+
+  
+  else if(*option_selected=='*'){
+    //cancel (delete all)
+    clear_variables(option_selected,option_selected_previous,
+		    buffer_password_inserted, counter_password,
+		    operation_password_success);
     
   }
-  else if(*option_selected=='*'){
-    //cancel delete all
-    buffer_password_inserted[0]='\0';
-    *option_selected='\0';
-    *option_selected_previous='\0';
-    *operation_password_success='\0';
-  }
+
+
   else if(*option_selected=='#'){
+    // Activate alarm
     *status_alarm=1;
+    clear_variables(option_selected,option_selected_previous,
+		    buffer_password_inserted, counter_password,
+		    operation_password_success);
+    
   }
+
  
   return;
+}
+
+void show_LCD(unsigned char status_alarm, unsigned char option_selected, unsigned char *buffer_password_inserted){
+
+  unsigned char counter=0;
+  DireccionaLCD(0x80);
+  /* Write first row */
+  
+  if(size_array(buffer_password_inserted)>=1){
+    while(buffer_password_inserted[counter]!='\0'){
+      EscribeLCD_c(buffer_password_inserted[counter]);
+      counter++;
+    }
+    // clear remaining first row
+    while (counter<16) {
+      EscribeLCD_c(' ');
+      counter++;
+    }
+  }  
+  else{
+    if(status_alarm)
+      MensajeLCD_Var("Alarm On        ");
+    else
+      MensajeLCD_Var("Alarm Off       ");
+  }
+
+  counter=0;
+  DireccionaLCD(0xC0);
+  // Write second row
+
+  if(option_selected=='A'){
+    MensajeLCD_Var("Enter  ");
+  }
+  else if(option_selected=='B'){
+    MensajeLCD_Var("Insert ");
+  }
+  else if(option_selected=='C') {
+    MensajeLCD_Var("Change ");
+  }
+  else if(option_selected=='D'){
+    MensajeLCD_Var("Delete ");
+  }
+  else if(option_selected=='*'){
+    MensajeLCD_Var("Cancel ");
+  }
+
+  if(status_alarm)
+    MensajeLCD_Var("ST:On  ");
+  else
+    MensajeLCD_Var("ST:Off ");
+
+  EscribeLCD_n8(ult_son_get_dis(),2);
+    
+  return; 
+}
+
+
+void show_rgb(unsigned char status_alarm, unsigned char *buffer_password_inserted){
+
+  switch(size_array(buffer_password_inserted)){
+  case 2:{
+    // Black
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=1;
+    break;
+  }
+  case 3: {
+    /* Magenta */ 
+    RGB_R=0;
+    RGB_G=1;
+    RGB_B=0;
+    break;
+  }
+  case 4: {
+    /* blue */ 
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=0;
+    break;
+  }
+  case 5: {
+    // cyan
+    RGB_R=1;
+    RGB_G=0;
+    RGB_B=0;
+    break;
+  }
+  case 6: {
+    // Yellow
+    RGB_R=0;
+    RGB_G=0;
+    RGB_B=1;
+    break;
+  }
+  case 7: {
+    // white
+    RGB_R=0;
+    RGB_G=0;
+    RGB_B=0;
+    break;
+  }
+  default:{
+    if(!status_alarm){
+      //green
+      RGB_R=1;
+      RGB_G=0;
+      RGB_B=1;
+    }
+    else {
+      // Red
+      RGB_R=0;
+      RGB_G=1;
+      RGB_B=1;
+    }
+
+    break;
+      
+  }
+  }
+
+  return;
+}
+
+void EEPROM_Write (unsigned char address, unsigned char data){
+  EEADR=address;
+  EEDATA=data;
+ 
+  EEPGD=0;
+  CFGS=0;
+  WREN=1;
+
+  GIE=0;
+  
+  EECON2=0x55;
+  EECON2=0xAA;
+
+  WR=1;
+  while(WR==1);
+
+  GIE=1;
+  WREN=0;
+  return;
+
+}
+
+unsigned char EEPROM_Read (unsigned char address){
+  EEADR=address;
+  WREN=0;
+  EEPGD=0;
+  RD=1;
+  
+  return EEDATA;
 }
 
 
@@ -484,10 +778,15 @@ void __interrupt(low_priority) ISR_low(void){
 }
 
 void __interrupt(high_priority) ISR_high(void){
-    if(TMR0IF==1){
+  if(TMR0IF==1){
     TMR0=3036;
     TMR0IF=0;
     Check_alarm=1;
+
+    //Black RGB
+    RGB_R=1;
+    RGB_G=1;
+    RGB_B=1;
   }
 
   return;

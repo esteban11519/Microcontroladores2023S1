@@ -33,3 +33,5 @@ Requerimientos generales
 -[x] PWM
 
 -[] RS232 
+
+No olvidar activar la alarma por defecto.
