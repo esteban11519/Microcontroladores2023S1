@@ -8,7 +8,8 @@
 
 // Global variables
 unsigned char Key=0;
-unsigned char Status_alarm=1; // 1 activate
+unsigned char Check_alarm=1;
+
 
 // Ultrasonic sensor
 #define TRIGGER LATC0
@@ -26,15 +27,24 @@ unsigned char Status_alarm=1; // 1 activate
 #endif
 
 
+/* Principal functions */
+void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char);
+void verify_alarm_status(unsigned char, unsigned char);
+void select_options(unsigned char *, unsigned char);
+void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
 
-/* Main functions */
+
+/* Main sub functions */
 void init_configuration(void);
 void welcome_operations(void); 
 
 unsigned char ult_son_get_dis(void); // Please WDT
 void send_RS232(unsigned char *); // [x]
 
-void signals_status_alarm(void);
+void signals_status_alarm(unsigned char,unsigned char *);
+
+unsigned char is_sym_val_opt(unsigned char *, unsigned char);
+
 
 /* Interrupt functions */
 unsigned char read_key(void);
@@ -47,14 +57,51 @@ void __interrupt(high_priority) ISR_high(void);
 void main(void) {
   init_configuration();
   welcome_operations();
+
+  // Local variables
+  unsigned char key=0; // Save the Key 
+  unsigned char is_secure_ultrasonic_distance=0;
+  unsigned char ultrasonic_distance_permitted=7; // [cm]
+  unsigned char dx_ultrasonic_distance_permitted=1; // [cm]
+  unsigned char status_alarm = 0; // 1 on, 0 off
+  unsigned char option_selected = 0;
+  unsigned char option_selected_previous = 0;
+  unsigned char buffer_password_inserted [9]; // Buffer to password inserted
+  unsigned char current_password[9]="01234567";
+  unsigned char operation_password_success=0;
+  /* Buffer to LCD*/
+  unsigned char buffer_LCD_row_1[17];
+  unsigned char buffer_LCD_row_2[17];
+
   // Activate watchdog
   SWDTEN = 1;
-
   while(1){
+
+    if(Check_alarm){
+      
+      // Update key
+      key=Key;
+      Key=0;
+
+      check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm, ultrasonic_distance_permitted, dx_ultrasonic_distance_permitted);
+      CLRWDT();
+      
+      verify_alarm_status(is_secure_ultrasonic_distance,status_alarm);
+      
+      select_options(&option_selected, key);
+
+      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success,&status_alarm);
+
+      // update others variables
+      if(option_selected_previous!=option_selected)
+	option_selected_previous=option_selected;
+      
+    }
+    
     // Test ultrasonic
     // BorraLCD();
     // EscribeLCD_n8(ult_son_get_dis(),3);
-    CLRWDT(); // Clear Watchdog Timer
+    //CLRWDT(); // Clear Watchdog Timer
     
     // Test keyboard
     /* BorraLCD(); */
@@ -62,7 +109,6 @@ void main(void) {
     /*   EscribeLCD_c(Key); */
     /* Key=0; */
     
-    __delay_ms(1000);
   }
   
   
@@ -102,9 +148,9 @@ void init_configuration(void){
   // <7-3> - xxxx, off, 1x=16
   T2CON=0b00000010; // f=1Khz from fosc=8MHz equation: PR2 = T_PWM*F_bus/PS - 1
   PR2=124; // Period register
-  CCPR1L=25; // Ton=(PR2+1)*D (D: Duty cycle)
+  CCPR1L=1; // Ton=(PR2+1)*D (D: Duty cycle)
   CCP1CON=0b00001100; //<7:4>--00, <3:0> 11xx PWM
-  TMR2ON=1;
+  TMR2ON=0;
   
   // RS232
   // TXSTA : TRANSMIT STATUS AND CONTROL REGISTER
@@ -122,6 +168,25 @@ void init_configuration(void){
   // Baud Rate Generator, Is choose according to Velocity and Fosc. (Tables are uselfull)
   SPBRG=12;
 
+  // TM0 configuration
+  // T0CON register
+  // bit 7 - TMR0ON: 0-1, stop Timer()-enables Timer()
+  // bit 6 - T08BIT: 0, 16 bits
+  // bit 5 - T0CS: 0, Fbus
+  // bit 4 - T0SE: 0, Increment on low-to-high transition on T0CKI pin ?
+  // bit 3 - PSA: 0, Assigned prescaler
+  // bit 2:0 - T0PS2:T0PS0: 001,1:4 Prescale value
+  // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
+  // bit 2:0 - T0PS2:T0PS0: 011,1:16 Prescale value
+  T0CON=0b00000100;
+  TMR0=3036; 			//preload
+  // INTCON
+  // TMR0IF: 0, TMR0 register did not overflow
+  // TMR0IE: 1, Enables the TMR0 overflow interrupt
+  TMR0IF=0;
+  TMR0IP=1; // High priority 
+
+
   //LCD
   TRISD=0;			/*PortD as output */
   LATD=0;			/* PortD init in 0 logic */  
@@ -134,6 +199,12 @@ void init_configuration(void){
   RBIF=0; 			// RB Port Change Interrupt Flag bit, 0:  None of the RB7:RB4 pins have changed state
   RBIP=0;			// Low priority
   RBIE=1;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
+
+  /* TMR0 */
+  TMR0IE=1; 
+  // Enable timer
+  TMR0ON=1; 
+
   
   IPEN=1;			// Enable priority levels on interrupts
   PEIE=1;			// Enable interruption bit
@@ -160,6 +231,37 @@ void welcome_operations(void){
   return;
 
 }
+
+
+void check_ultrasonic(unsigned char *is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char ultrasonic_distance_permitted, unsigned char dx_ultrasonic_distance_permitted){
+
+  int relative_distance=ultrasonic_distance_permitted-ult_son_get_dis();
+
+  if(relative_distance > dx_ultrasonic_distance_permitted || relative_distance < (int)(-dx_ultrasonic_distance_permitted))
+    *is_secure_ultrasonic_distance=0;
+  else
+    *is_secure_ultrasonic_distance=1;
+  
+  return;
+}
+
+void verify_alarm_status(unsigned char is_secure_ultrasonic_distance, unsigned char status_alarm){
+  if(is_secure_ultrasonic_distance==0 && status_alarm==1){
+    // Activate buzzer
+    TMR2ON=1;
+    CCPR1L=62;
+    
+  }
+  else{
+    // deactivate buzzer
+    TMR2ON=0;
+    CCPR1L=1;
+  }
+  return;
+}
+
+
+
 unsigned char ult_son_get_dis(void){
   //<7-6> - -, <5-4> Don't use, <3-0> Capture mode: every falling edge  
   CCP2CON = 0b00000100;
@@ -189,16 +291,16 @@ unsigned char ult_son_get_dis(void){
   
 }
 
-void signals_status_alarm(void){
+void signals_status_alarm(unsigned char status_alarm, unsigned char *buffer_password_inserted){
 
   // Also can give information when put numbers.
-  if(Status_alarm==1){
+  if(status_alarm==1){
     // Green
     RGB_R=1;
     RGB_G=0;
     RGB_B=1;
   }
-  else if(Status_alarm==0){
+  else if(status_alarm==0){
     // RED
     RGB_R=0;
     RGB_G=1;
@@ -282,6 +384,89 @@ unsigned char read_key(void){
   return key;
 }
 
+unsigned char is_sym_val_opt(unsigned char *arr, unsigned char sym){
+  unsigned char counter=0;
+  while(arr[counter]!='\0'){
+    if(arr[counter]==sym) return 1;
+    counter++;
+  }
+  return 0;
+}
+
+void select_options(unsigned char *option_selected, unsigned char key){
+  /*
+    A: Enter
+    B: Insert password
+    C: Change password
+    D: Delete numbers
+    *: Cancel
+    #: Activate
+   */
+  unsigned char valid_sym_opt[]={'A','B','C','D','*','#','\0'};
+  if(is_sym_val_opt(valid_sym_opt,key))
+    *option_selected=key;
+  else
+    *option_selected='B';
+      
+  return;
+}
+
+void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *status_alarm){
+
+  unsigned char counter=0;
+  
+  if(*option_selected_previous=='B' && *option_selected=='A'){
+    // Insert password and enter
+    while(current_password[counter]!='\0'){
+      if(current_password[counter]!=buffer_password_inserted[counter]){
+	*operation_password_success=0;
+	buffer_password_inserted[0]='\0';
+	*option_selected='\0';
+	break;
+      }
+      *operation_password_success=1;
+      
+    }
+    buffer_password_inserted[0]='\0';
+    *option_selected='\0';
+  }
+  else if(*option_selected_previous=='C' && *option_selected=='A'){
+   // Change password and enter
+    while(current_password[counter]!='\0'){
+      current_password[counter]=buffer_password_inserted[counter];
+      counter++;
+    }
+    
+    *operation_password_success=1;
+    buffer_password_inserted[0]='\0';
+    *option_selected='\0';
+  }
+  else if(*option_selected=='C'){
+    // Change password
+  }
+  else if(*option_selected=='B'){
+    // Insert password
+  }
+  else if(*option_selected=='D'){
+    // Delete all
+    buffer_password_inserted[0]='\0';
+    
+  }
+  else if(*option_selected=='*'){
+    //cancel delete all
+    buffer_password_inserted[0]='\0';
+    *option_selected='\0';
+    *option_selected_previous='\0';
+    *operation_password_success='\0';
+  }
+  else if(*option_selected=='#'){
+    *status_alarm=1;
+  }
+ 
+  return;
+}
+
+
 void __interrupt(low_priority) ISR_low(void){
   /*Polling */
   /* Keyboard interrupt */
@@ -299,5 +484,11 @@ void __interrupt(low_priority) ISR_low(void){
 }
 
 void __interrupt(high_priority) ISR_high(void){
+    if(TMR0IF==1){
+    TMR0=3036;
+    TMR0IF=0;
+    Check_alarm=1;
+  }
+
   return;
 }
