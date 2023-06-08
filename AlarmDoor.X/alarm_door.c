@@ -3,7 +3,7 @@
 #include "LibLCDXC8.h"
 #pragma config FOSC=INTOSC_EC
 #pragma config WDT = OFF
-#pragma config WDTPS = 1024 // T = 1/(31kHz/(128*WDTPS)) (4,22 s), [2^0, 2^13] discrete
+#pragma config WDTPS = 2048 // T = 1/(31kHz/(128*WDTPS)) (8,44 s), [2^0, 2^13] discrete
 
 
 // Global variables
@@ -20,10 +20,10 @@ unsigned char Check_alarm=1;
 #define RGB_R LATE0
 #endif
 #ifndef RGB_G
-#define RGB_G LATE1
+#define RGB_G LATE2
 #endif
 #ifndef RGB_B
-#define RGB_B LATE2
+#define RGB_B LATE1
 #endif
 
 
@@ -72,7 +72,7 @@ void main(void) {
   // Local variables
   unsigned char key=0; // Save the Key 
   unsigned char is_secure_ultrasonic_distance=0;
-  unsigned char ultrasonic_distance_permitted=12; // [cm]
+  unsigned char ultrasonic_distance_permitted=28; // [cm]
   unsigned char dx_ultrasonic_distance_permitted=3; // [cm]
   unsigned char status_alarm = 1; // 1 on, 0 off
   unsigned char option_selected = 'B';
@@ -113,6 +113,7 @@ void main(void) {
       
       // Wait to other by Check will be 1
       Check_alarm=0;
+      CREN=1; // activate again to receive by RS232
     }
     
     // Test ultrasonic
@@ -177,7 +178,7 @@ void init_configuration(void){
   // RCSTA: RECEIVE STATUS AND CONTROL REGISTER
   // SPEN  RX9 SREN CREN ADDEN FERR OERR RX9D
   // <7> On, <6> 8 bits, <5> x, <4-3> not neccesary, <2-0> read register.
-  RCSTA=0b10000000;
+  RCSTA=0b10010000;
   // BAUDCON: BAUD RATE CONTROL REGISTER
   //ABDOVF RCIDL RXDTP TXCKP BRG16 — WUE ABDEN
   // <7> Not overflow, <6> Receptor in wait, <5> Received  Not inverted, <4> TX not inverted  <3> 8 bit to velocity, <2> -, <1> 0 disable low power, <0> Disable autotection velocity.  
@@ -215,13 +216,15 @@ void init_configuration(void){
   /*Keyboard */
   RBIF=0; 			// RB Port Change Interrupt Flag bit, 0:  None of the RB7:RB4 pins have changed state
   RBIP=0;			// Low priority
-  RBIE=1;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
+  RBIE=0;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
 
   /* TMR0 */
-  TMR0IE=1; 
-  // Enable timer
-  TMR0ON=1; 
+  TMR0IE=1; // Enable timer
+  TMR0ON=1; // On timer
+  RCIE=1; // Enable reice USART interruption
 
+  /* RS232 */
+  RCIP=0; // 1->High, 0->Low priority
   
   IPEN=1;			// Enable priority levels on interrupts
   PEIE=1;			// Enable interruption bit
@@ -764,21 +767,30 @@ unsigned char EEPROM_Read (unsigned char address){
 void __interrupt(low_priority) ISR_low(void){
   /*Polling */
   /* Keyboard interrupt */
-  if(RBIF==1){
+   
+   if(RCIF==1){     
+     Key=RCREG;
+     CREN=0; // Is necessary stop to only receive first byte 
+    }
+   else if(RBIF==1){
     Key=0;
     unsigned char aux_PORTB=PORTB;
     // Falling edge discrimination
+    
     if((aux_PORTB & 0b11110000)!=0b11110000){
       Key=key2symbol(read_key());
+      
     }
     __delay_ms(100);
     RBIF=0;
   }
+  
   return;
 }
 
 void __interrupt(high_priority) ISR_high(void){
-  if(TMR0IF==1){
+    //send_RS232("H\n");
+    if(TMR0IF==1){
     TMR0=3036;
     TMR0IF=0;
     Check_alarm=1;

@@ -122,7 +122,7 @@ void main(void) {
       Temp_n1=Temp;
       Hum_n1=Hum;
       Scale_Temperature_n1=Scale_Temperature;
-      CREN=1; // activate again to receive by rs232
+      CREN=1; // activate again to receive by RS232
 
     }
     
