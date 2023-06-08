@@ -20,10 +20,10 @@ unsigned char Check_alarm=1;
 #define RGB_R LATE0
 #endif
 #ifndef RGB_G
-#define RGB_G LATE2
+#define RGB_G LATE1
 #endif
 #ifndef RGB_B
-#define RGB_B LATE1
+#define RGB_B LATE2
 #endif
 
 
@@ -74,7 +74,7 @@ void main(void) {
   unsigned char is_secure_ultrasonic_distance=0;
   unsigned char ultrasonic_distance_permitted=12; // [cm]
   unsigned char dx_ultrasonic_distance_permitted=3; // [cm]
-  unsigned char status_alarm = 0; // 1 on, 0 off
+  unsigned char status_alarm = 1; // 1 on, 0 off
   unsigned char option_selected = 'B';
   unsigned char option_selected_previous = 0;
   unsigned char buffer_password_inserted [9]; // Buffer to password inserted
