@@ -18,27 +18,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 "50 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LibLCDXC8.h
 [v _DireccionaLCD `(v ~T0 @X0 0 ef1`uc ]
 [p mainexit ]
-"70 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"71 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _init_configuration `(v ~T0 @X0 0 ef ]
-"71
+"72
 [v _welcome_operations `(v ~T0 @X0 0 ef ]
 "10711 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
 [v _SWDTEN `Vb ~T0 @X0 0 e@32392 ]
-"72 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"73 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _measure_temperature_c_humidity_per `(v ~T0 @X0 0 ef ]
-"73
-[v _send_temperature_RS232 `(v ~T0 @X0 0 ef ]
 "74
-[v _save_temperature_c_EEPROM `(v ~T0 @X0 0 ef ]
+[v _send_temperature_RS232 `(v ~T0 @X0 0 ef ]
 "75
-[v _choose_scale_temperature_and_fill_buffers `(v ~T0 @X0 0 ef2`*uc`*uc ]
+[v _save_temperature_c_EEPROM `(v ~T0 @X0 0 ef ]
 "76
-[v _show_temperature_c_RGB `(v ~T0 @X0 0 ef ]
+[v _choose_scale_temperature_and_fill_buffers `(v ~T0 @X0 0 ef2`*uc`*uc ]
 "77
-[v _show_temperature_LCD `(v ~T0 @X0 0 ef5`*uc`*uc`uc`uc`uc ]
+[v _show_temperature_c_RGB `(v ~T0 @X0 0 ef ]
 "78
+[v _show_temperature_LCD `(v ~T0 @X0 0 ef5`*uc`*uc`uc`uc`uc ]
+"79
 [v _check_potentiometer_voltaje `(v ~T0 @X0 0 ef ]
-"7986 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
+"9205 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
+[v _CREN `Vb ~T0 @X0 0 e@32092 ]
+"7986
 [v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
 "5146
 [v _TXSTA `Vuc ~T0 @X0 0 e@4012 ]
@@ -74,21 +76,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
 "10816
 [v _TMR0IE `Vb ~T0 @X0 0 e@32661 ]
-"9745
-[v _GIE `Vb ~T0 @X0 0 e@32663 ]
-"10825
-[v _TMR0ON `Vb ~T0 @X0 0 e@32431 ]
 "4001
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
+"10273
+[v _PEIE `Vb ~T0 @X0 0 e@32662 ]
+"9745
+[v _GIE `Vb ~T0 @X0 0 e@32663 ]
+"10444
+[v _RCIE `Vb ~T0 @X0 0 e@31981 ]
+"10825
+[v _TMR0ON `Vb ~T0 @X0 0 e@32431 ]
 "10870
 [v _TO `Vb ~T0 @X0 0 e@32387 ]
-"67 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"68 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _EEPROM_Read `(uc ~T0 @X0 0 ef1`uc ]
-"58
-[v _DHT11_Start `(v ~T0 @X0 0 ef ]
 "59
-[v _DHT11_CheckResponse `(v ~T0 @X0 0 ef ]
+[v _DHT11_Start `(v ~T0 @X0 0 ef ]
 "60
+[v _DHT11_CheckResponse `(v ~T0 @X0 0 ef ]
+"61
 [v _DHT11_ReadData `(uc ~T0 @X0 0 ef ]
 [t ~ __deprecated__ ]
 [t T21 __deprecated__ ]
@@ -104,7 +110,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _GO `Vb ~T0 @X0 0 e@32273 ]
 "6785
 [v _ADRES `Vus ~T0 @X0 0 e@4035 ]
-"66 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"67 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _EEPROM_Write `(v ~T0 @X0 0 ef2`uc`uc ]
 "10015 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
 [v _LATE0 `Vb ~T0 @X0 0 e@31848 ]
@@ -118,12 +124,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RA3 `Vb ~T21 @X0 0 e@31747 ]
 "194 /opt/microchip/xc8/v2.41/pic/include/c90/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"63 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
+"64 /home/esteban/Esteban/UN/semester12/Microcontroladores/MPLAB_X_IDE/lab05_ADC.X/LAB05.c
 [v _Transmitir `(v ~T0 @X0 0 ef1`uc ]
 "10978 /opt/microchip/xc8/v2.41/pic/include/proc/pic18f4550.h
 [v _TRMT `Vb ~T0 @X0 0 e@32097 ]
 "5402
 [v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
+"10447
+[v _RCIF `Vb ~T0 @X0 0 e@31989 ]
+"5414
+[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 "4929
 [v _EEADR `Vuc ~T0 @X0 0 e@4009 ]
 "4922
@@ -4561,184 +4571,187 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 [; ;LAB05.c: 54: unsigned char Scale_Temperature = 0;
-[; ;LAB05.c: 58: void DHT11_Start(void);
-[; ;LAB05.c: 59: void DHT11_CheckResponse(void);
-[; ;LAB05.c: 60: char DHT11_ReadData(void);
-[; ;LAB05.c: 63: void Transmitir (unsigned char);
-[; ;LAB05.c: 66: void EEPROM_Write (unsigned char, unsigned char);
-[; ;LAB05.c: 67: unsigned char EEPROM_Read (unsigned char);
-[; ;LAB05.c: 70: void init_configuration(void);
-[; ;LAB05.c: 71: void welcome_operations(void);
-[; ;LAB05.c: 72: void measure_temperature_c_humidity_per(void);
-[; ;LAB05.c: 73: void send_temperature_RS232(void);
-[; ;LAB05.c: 74: void save_temperature_c_EEPROM(void);
-[; ;LAB05.c: 75: void choose_scale_temperature_and_fill_buffers(unsigned char *, unsigned char *);
-[; ;LAB05.c: 76: void show_temperature_c_RGB(void);
-[; ;LAB05.c: 77: void show_temperature_LCD(unsigned char *, unsigned char *, unsigned char, unsigned char, unsigned char);
-[; ;LAB05.c: 78: void check_potentiometer_voltaje(void);
-[; ;LAB05.c: 83: void interrupt ISR(void);
+"55
+[v _Scale_Temperature_RS232 `uc ~T0 @X0 1 e ]
+[i _Scale_Temperature_RS232
+-> -> 0 `i `uc
+]
+[; ;LAB05.c: 55: unsigned char Scale_Temperature_RS232 = 0;
+[; ;LAB05.c: 59: void DHT11_Start(void);
+[; ;LAB05.c: 60: void DHT11_CheckResponse(void);
+[; ;LAB05.c: 61: char DHT11_ReadData(void);
+[; ;LAB05.c: 64: void Transmitir (unsigned char);
+[; ;LAB05.c: 67: void EEPROM_Write (unsigned char, unsigned char);
+[; ;LAB05.c: 68: unsigned char EEPROM_Read (unsigned char);
+[; ;LAB05.c: 71: void init_configuration(void);
+[; ;LAB05.c: 72: void welcome_operations(void);
+[; ;LAB05.c: 73: void measure_temperature_c_humidity_per(void);
+[; ;LAB05.c: 74: void send_temperature_RS232(void);
+[; ;LAB05.c: 75: void save_temperature_c_EEPROM(void);
+[; ;LAB05.c: 76: void choose_scale_temperature_and_fill_buffers(unsigned char *, unsigned char *);
+[; ;LAB05.c: 77: void show_temperature_c_RGB(void);
+[; ;LAB05.c: 78: void show_temperature_LCD(unsigned char *, unsigned char *, unsigned char, unsigned char, unsigned char);
+[; ;LAB05.c: 79: void check_potentiometer_voltaje(void);
+[; ;LAB05.c: 84: void interrupt ISR(void);
 [v $root$_main `(v ~T0 @X0 0 e ]
-"86
+"87
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 86: void main(void) {
+[; ;LAB05.c: 87: void main(void) {
 [e :U _main ]
 [f ]
-[; ;LAB05.c: 87: init_configuration();
-"87
-[e ( _init_configuration ..  ]
-[; ;LAB05.c: 88: welcome_operations();
+[; ;LAB05.c: 88: init_configuration();
 "88
+[e ( _init_configuration ..  ]
+[; ;LAB05.c: 89: welcome_operations();
+"89
 [e ( _welcome_operations ..  ]
-[; ;LAB05.c: 91: SWDTEN = 1;
-"91
+[; ;LAB05.c: 92: SWDTEN = 1;
+"92
 [e = _SWDTEN -> -> 1 `i `b ]
-"95
-[v _buffer_LCD_row_1 `uc ~T0 @X0 -> 17 `i a ]
 "96
+[v _buffer_LCD_row_1 `uc ~T0 @X0 -> 17 `i a ]
+"97
 [v _buffer_LCD_row_2 `uc ~T0 @X0 -> 17 `i a ]
-"99
-[v _Temp_n1 `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 95: unsigned char buffer_LCD_row_1[17];
-[; ;LAB05.c: 96: unsigned char buffer_LCD_row_2[17];
-[; ;LAB05.c: 99: unsigned char Temp_n1=255;
-[e = _Temp_n1 -> -> 255 `i `uc ]
 "100
-[v _Hum_n1 `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 100: unsigned char Hum_n1=255;
-[e = _Hum_n1 -> -> 255 `i `uc ]
+[v _Temp_n1 `uc ~T0 @X0 1 a ]
+[; ;LAB05.c: 96: unsigned char buffer_LCD_row_1[17];
+[; ;LAB05.c: 97: unsigned char buffer_LCD_row_2[17];
+[; ;LAB05.c: 100: unsigned char Temp_n1=255;
+[e = _Temp_n1 -> -> 255 `i `uc ]
 "101
+[v _Hum_n1 `uc ~T0 @X0 1 a ]
+[; ;LAB05.c: 101: unsigned char Hum_n1=255;
+[e = _Hum_n1 -> -> 255 `i `uc ]
+"102
 [v _Scale_Temperature_n1 `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 101: unsigned char Scale_Temperature_n1=255;
+[; ;LAB05.c: 102: unsigned char Scale_Temperature_n1=255;
 [e = _Scale_Temperature_n1 -> -> 255 `i `uc ]
-[; ;LAB05.c: 103: while(1){
-"103
+[; ;LAB05.c: 104: while(1){
+"104
 [e :U 427 ]
 {
-[; ;LAB05.c: 105: if(Enable_sample){
-"105
+[; ;LAB05.c: 106: if(Enable_sample){
+"106
 [e $ ! != -> _Enable_sample `i -> -> -> 0 `i `uc `i 429  ]
 {
-[; ;LAB05.c: 110: measure_temperature_c_humidity_per();
-"110
-[e ( _measure_temperature_c_humidity_per ..  ]
-[; ;LAB05.c: 111: asm(" clrwdt");
+[; ;LAB05.c: 111: measure_temperature_c_humidity_per();
 "111
-[; <"  clrwdt ;# ">
-[; ;LAB05.c: 112: send_temperature_RS232();
+[e ( _measure_temperature_c_humidity_per ..  ]
+[; ;LAB05.c: 112: asm(" clrwdt");
 "112
-[e ( _send_temperature_RS232 ..  ]
-[; ;LAB05.c: 113: save_temperature_c_EEPROM();
+[; <"  clrwdt ;# ">
+[; ;LAB05.c: 113: send_temperature_RS232();
 "113
-[e ( _save_temperature_c_EEPROM ..  ]
-[; ;LAB05.c: 114: choose_scale_temperature_and_fill_buffers(buffer_LCD_row_1,buffer_LCD_row_2);
+[e ( _send_temperature_RS232 ..  ]
+[; ;LAB05.c: 114: save_temperature_c_EEPROM();
 "114
-[e ( _choose_scale_temperature_and_fill_buffers (2 , &U _buffer_LCD_row_1 &U _buffer_LCD_row_2 ]
-[; ;LAB05.c: 115: show_temperature_c_RGB();
+[e ( _save_temperature_c_EEPROM ..  ]
+[; ;LAB05.c: 115: choose_scale_temperature_and_fill_buffers(buffer_LCD_row_1,buffer_LCD_row_2);
 "115
-[e ( _show_temperature_c_RGB ..  ]
-[; ;LAB05.c: 116: show_temperature_LCD(buffer_LCD_row_1, buffer_LCD_row_2, Temp_n1, Hum_n1, Scale_Temperature_n1);
+[e ( _choose_scale_temperature_and_fill_buffers (2 , &U _buffer_LCD_row_1 &U _buffer_LCD_row_2 ]
+[; ;LAB05.c: 116: show_temperature_c_RGB();
 "116
-[e ( _show_temperature_LCD (4 , , , , &U _buffer_LCD_row_1 &U _buffer_LCD_row_2 _Temp_n1 _Hum_n1 _Scale_Temperature_n1 ]
-[; ;LAB05.c: 117: check_potentiometer_voltaje();
+[e ( _show_temperature_c_RGB ..  ]
+[; ;LAB05.c: 117: show_temperature_LCD(buffer_LCD_row_1, buffer_LCD_row_2, Temp_n1, Hum_n1, Scale_Temperature_n1);
 "117
-[e ( _check_potentiometer_voltaje ..  ]
-[; ;LAB05.c: 118: Enable_sample = 0;
+[e ( _show_temperature_LCD (4 , , , , &U _buffer_LCD_row_1 &U _buffer_LCD_row_2 _Temp_n1 _Hum_n1 _Scale_Temperature_n1 ]
+[; ;LAB05.c: 118: check_potentiometer_voltaje();
 "118
+[e ( _check_potentiometer_voltaje ..  ]
+[; ;LAB05.c: 119: Enable_sample = 0;
+"119
 [e = _Enable_sample -> -> 0 `i `uc ]
-[; ;LAB05.c: 121: Temp_n1=Temp;
-"121
-[e = _Temp_n1 _Temp ]
-[; ;LAB05.c: 122: Hum_n1=Hum;
+[; ;LAB05.c: 122: Temp_n1=Temp;
 "122
-[e = _Hum_n1 _Hum ]
-[; ;LAB05.c: 123: Scale_Temperature_n1=Scale_Temperature;
+[e = _Temp_n1 _Temp ]
+[; ;LAB05.c: 123: Hum_n1=Hum;
 "123
+[e = _Hum_n1 _Hum ]
+[; ;LAB05.c: 124: Scale_Temperature_n1=Scale_Temperature;
+"124
 [e = _Scale_Temperature_n1 _Scale_Temperature ]
+[; ;LAB05.c: 125: CREN=1;
 "125
-}
-[e :U 429 ]
+[e = _CREN -> -> 1 `i `b ]
 "127
 }
+[e :U 429 ]
+"129
+}
 [e :U 426 ]
-"103
+"104
 [e $U 427  ]
 [e :U 428 ]
-[; ;LAB05.c: 125: }
 [; ;LAB05.c: 127: }
-[; ;LAB05.c: 128: }
-"128
+[; ;LAB05.c: 129: }
+[; ;LAB05.c: 130: }
+"130
 [e :UE 425 ]
 }
-"132
+"134
 [v _init_configuration `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 132: void init_configuration(void){
+[; ;LAB05.c: 134: void init_configuration(void){
 [e :U _init_configuration ]
 [f ]
-[; ;LAB05.c: 135: OSCCON=0b01110000;
-"135
+[; ;LAB05.c: 137: OSCCON=0b01110000;
+"137
 [e = _OSCCON -> -> 112 `i `uc ]
-[; ;LAB05.c: 136: _delay((unsigned long)((1)*(8000000/4000.0)));
-"136
+[; ;LAB05.c: 138: _delay((unsigned long)((1)*(8000000/4000.0)));
+"138
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 141: TXSTA=0b00100000;
-"141
-[e = _TXSTA -> -> 32 `i `uc ]
-[; ;LAB05.c: 142: RCSTA=0b10000000;
-"142
-[e = _RCSTA -> -> 128 `i `uc ]
-[; ;LAB05.c: 143: BAUDCON=0b00000000;
+[; ;LAB05.c: 143: TXSTA=0b00100000;
 "143
-[e = _BAUDCON -> -> 0 `i `uc ]
-[; ;LAB05.c: 144: SPBRG=12;
+[e = _TXSTA -> -> 32 `i `uc ]
+[; ;LAB05.c: 144: RCSTA=0b10010000;
 "144
+[e = _RCSTA -> -> 144 `i `uc ]
+[; ;LAB05.c: 145: BAUDCON=0b00000000;
+"145
+[e = _BAUDCON -> -> 0 `i `uc ]
+[; ;LAB05.c: 146: SPBRG=12;
+"146
 [e = _SPBRG -> -> 12 `i `uc ]
-[; ;LAB05.c: 147: ADCON1=13;
-"147
+[; ;LAB05.c: 149: ADCON1=13;
+"149
 [e = _ADCON1 -> -> 13 `i `uc ]
-[; ;LAB05.c: 150: TRISE=0b11111000;
-"150
+[; ;LAB05.c: 152: TRISE=0b11111000;
+"152
 [e = _TRISE -> -> 248 `i `uc ]
-[; ;LAB05.c: 151: LATE=1;
-"151
+[; ;LAB05.c: 153: LATE=1;
+"153
 [e = _LATE -> -> 1 `i `uc ]
-[; ;LAB05.c: 156: TRISC2=0;
-"156
+[; ;LAB05.c: 158: TRISC2=0;
+"158
 [e = _TRISC2 -> -> 0 `i `b ]
-[; ;LAB05.c: 157: LATC2=0;
-"157
+[; ;LAB05.c: 159: LATC2=0;
+"159
 [e = _LATC2 -> -> 0 `i `b ]
-[; ;LAB05.c: 160: TRISB0=0;
-"160
+[; ;LAB05.c: 162: TRISB0=0;
+"162
 [e = _TRISB0 -> -> 0 `i `b ]
-[; ;LAB05.c: 161: LATB0=0;
-"161
+[; ;LAB05.c: 163: LATB0=0;
+"163
 [e = _LATB0 -> -> 0 `i `b ]
-[; ;LAB05.c: 165: ADCON0=0b00000100;
-"165
-[e = _ADCON0 -> -> 4 `i `uc ]
-[; ;LAB05.c: 167: ADCON2=0b11001001;
+[; ;LAB05.c: 167: ADCON0=0b00000100;
 "167
+[e = _ADCON0 -> -> 4 `i `uc ]
+[; ;LAB05.c: 169: ADCON2=0b11001001;
+"169
 [e = _ADCON2 -> -> 201 `i `uc ]
-[; ;LAB05.c: 179: T0CON=0b00000100;
-"179
+[; ;LAB05.c: 181: T0CON=0b00000100;
+"181
 [e = _T0CON -> -> 4 `i `uc ]
-[; ;LAB05.c: 180: TMR0=3036;
-"180
+[; ;LAB05.c: 182: TMR0=3036;
+"182
 [e = _TMR0 -> -> 3036 `i `us ]
-[; ;LAB05.c: 184: TMR0IF=0;
-"184
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;LAB05.c: 185: TMR0IE=1;
-"185
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;LAB05.c: 186: GIE=1;
+[; ;LAB05.c: 186: TMR0IF=0;
 "186
-[e = _GIE -> -> 1 `i `b ]
-[; ;LAB05.c: 188: TMR0ON=1;
-"188
-[e = _TMR0ON -> -> 1 `i `b ]
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;LAB05.c: 187: TMR0IE=1;
+"187
+[e = _TMR0IE -> -> 1 `i `b ]
 [; ;LAB05.c: 191: TRISD=0;
 "191
 [e = _TRISD -> -> 0 `i `uc ]
@@ -4754,454 +4767,466 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LAB05.c: 195: _delay((unsigned long)((1000)*(8000000/4000.0)));
 "195
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 197: return;
-"197
-[e $UE 430  ]
-[; ;LAB05.c: 198: }
+[; ;LAB05.c: 198: PEIE=1;
 "198
+[e = _PEIE -> -> 1 `i `b ]
+[; ;LAB05.c: 199: GIE=1;
+"199
+[e = _GIE -> -> 1 `i `b ]
+[; ;LAB05.c: 202: RCIE=1;
+"202
+[e = _RCIE -> -> 1 `i `b ]
+[; ;LAB05.c: 203: TMR0ON=1;
+"203
+[e = _TMR0ON -> -> 1 `i `b ]
+[; ;LAB05.c: 205: return;
+"205
+[e $UE 430  ]
+[; ;LAB05.c: 206: }
+"206
 [e :UE 430 ]
 }
-"200
+"208
 [v _welcome_operations `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 200: void welcome_operations(void){
+[; ;LAB05.c: 208: void welcome_operations(void){
 [e :U _welcome_operations ]
 [f ]
-[; ;LAB05.c: 204: if(TO==0){
-"204
+[; ;LAB05.c: 212: if(TO==0){
+"212
 [e $ ! == -> _TO `i -> 0 `i 432  ]
 {
-[; ;LAB05.c: 205: TO=1;
-"205
+[; ;LAB05.c: 213: TO=1;
+"213
 [e = _TO -> -> 1 `i `b ]
-[; ;LAB05.c: 206: MensajeLCD_Var("Failed DHT11");
-"206
+[; ;LAB05.c: 214: MensajeLCD_Var("Failed DHT11");
+"214
 [e ( _MensajeLCD_Var (1 -> :s 1C `*uc ]
-[; ;LAB05.c: 207: asm(" sleep");
-"207
+[; ;LAB05.c: 215: asm(" sleep");
+"215
 [; <"  sleep ;# ">
-"208
+"216
 }
 [e :U 432 ]
-[; ;LAB05.c: 208: }
-[; ;LAB05.c: 210: BorraLCD();
-"210
-[e ( _BorraLCD ..  ]
-[; ;LAB05.c: 211: MensajeLCD_Var("Sensors");
-"211
-[e ( _MensajeLCD_Var (1 -> :s 2C `*uc ]
-[; ;LAB05.c: 212: MensajeLCD_Var("\nGod is good");
-"212
-[e ( _MensajeLCD_Var (1 -> :s 3C `*uc ]
-[; ;LAB05.c: 213: _delay((unsigned long)((1000)*(8000000/4000.0)));
-"213
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 216: BorraLCD();
-"216
-[e ( _BorraLCD ..  ]
-[; ;LAB05.c: 217: MensajeLCD_Var("Last Temperature");
-"217
-[e ( _MensajeLCD_Var (1 -> :s 4C `*uc ]
-[; ;LAB05.c: 218: MensajeLCD_Var("\nT: ");
+[; ;LAB05.c: 216: }
+[; ;LAB05.c: 218: BorraLCD();
 "218
-[e ( _MensajeLCD_Var (1 -> :s 5C `*uc ]
-[; ;LAB05.c: 219: EscribeLCD_n8(EEPROM_Read(0),2);
+[e ( _BorraLCD ..  ]
+[; ;LAB05.c: 219: MensajeLCD_Var("Sensors");
 "219
-[e ( _EscribeLCD_n8 (2 , ( _EEPROM_Read (1 -> -> 0 `i `uc -> -> 2 `i `uc ]
-[; ;LAB05.c: 220: MensajeLCD_Var(" C");
+[e ( _MensajeLCD_Var (1 -> :s 2C `*uc ]
+[; ;LAB05.c: 220: MensajeLCD_Var("\nGod is good");
 "220
-[e ( _MensajeLCD_Var (1 -> :s 6C `*uc ]
+[e ( _MensajeLCD_Var (1 -> :s 3C `*uc ]
 [; ;LAB05.c: 221: _delay((unsigned long)((1000)*(8000000/4000.0)));
 "221
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 223: return;
-"223
-[e $UE 431  ]
-[; ;LAB05.c: 224: }
+[; ;LAB05.c: 224: BorraLCD();
 "224
+[e ( _BorraLCD ..  ]
+[; ;LAB05.c: 225: MensajeLCD_Var("Last Temperature");
+"225
+[e ( _MensajeLCD_Var (1 -> :s 4C `*uc ]
+[; ;LAB05.c: 226: MensajeLCD_Var("\nT: ");
+"226
+[e ( _MensajeLCD_Var (1 -> :s 5C `*uc ]
+[; ;LAB05.c: 227: EscribeLCD_n8(EEPROM_Read(0),2);
+"227
+[e ( _EscribeLCD_n8 (2 , ( _EEPROM_Read (1 -> -> 0 `i `uc -> -> 2 `i `uc ]
+[; ;LAB05.c: 228: MensajeLCD_Var(" C");
+"228
+[e ( _MensajeLCD_Var (1 -> :s 6C `*uc ]
+[; ;LAB05.c: 229: _delay((unsigned long)((1000)*(8000000/4000.0)));
+"229
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LAB05.c: 231: return;
+"231
+[e $UE 431  ]
+[; ;LAB05.c: 232: }
+"232
 [e :UE 431 ]
 }
-"226
+"234
 [v _measure_temperature_c_humidity_per `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 226: void measure_temperature_c_humidity_per(void){
+[; ;LAB05.c: 234: void measure_temperature_c_humidity_per(void){
 [e :U _measure_temperature_c_humidity_per ]
 [f ]
-[; ;LAB05.c: 227: DHT11_Start();
-"227
-[e ( _DHT11_Start ..  ]
-[; ;LAB05.c: 228: DHT11_CheckResponse();
-"228
-[e ( _DHT11_CheckResponse ..  ]
-[; ;LAB05.c: 231: Hum = DHT11_ReadData();
-"231
-[e = _Hum ( _DHT11_ReadData ..  ]
-[; ;LAB05.c: 232: DHT11_ReadData();
-"232
-[e ( _DHT11_ReadData ..  ]
-[; ;LAB05.c: 233: Temp = DHT11_ReadData();
-"233
-[e = _Temp ( _DHT11_ReadData ..  ]
-[; ;LAB05.c: 234: DHT11_ReadData();
-"234
-[e ( _DHT11_ReadData ..  ]
-[; ;LAB05.c: 235: DHT11_ReadData();
+[; ;LAB05.c: 235: DHT11_Start();
 "235
+[e ( _DHT11_Start ..  ]
+[; ;LAB05.c: 236: DHT11_CheckResponse();
+"236
+[e ( _DHT11_CheckResponse ..  ]
+[; ;LAB05.c: 239: Hum = DHT11_ReadData();
+"239
+[e = _Hum ( _DHT11_ReadData ..  ]
+[; ;LAB05.c: 240: DHT11_ReadData();
+"240
 [e ( _DHT11_ReadData ..  ]
-[; ;LAB05.c: 237: return;
-"237
+[; ;LAB05.c: 241: Temp = DHT11_ReadData();
+"241
+[e = _Temp ( _DHT11_ReadData ..  ]
+[; ;LAB05.c: 242: DHT11_ReadData();
+"242
+[e ( _DHT11_ReadData ..  ]
+[; ;LAB05.c: 243: DHT11_ReadData();
+"243
+[e ( _DHT11_ReadData ..  ]
+[; ;LAB05.c: 245: return;
+"245
 [e $UE 433  ]
-[; ;LAB05.c: 238: }
-"238
+[; ;LAB05.c: 246: }
+"246
 [e :UE 433 ]
 }
-"241
+"249
 [v _DHT11_ReadData `(uc ~T0 @X0 1 ef ]
-"242
+"250
 {
-[; ;LAB05.c: 241: unsigned char DHT11_ReadData()
-[; ;LAB05.c: 242: {
+[; ;LAB05.c: 249: unsigned char DHT11_ReadData()
+[; ;LAB05.c: 250: {
 [e :U _DHT11_ReadData ]
 [f ]
-"243
+"251
 [v _i `uc ~T0 @X0 1 a ]
 [v _data `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 243: unsigned char i,data = 0;
+[; ;LAB05.c: 251: unsigned char i,data = 0;
 [e = _data -> -> 0 `i `uc ]
-[; ;LAB05.c: 244: for(i=0;i<8;i++)
-"244
+[; ;LAB05.c: 252: for(i=0;i<8;i++)
+"252
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 8 `i 435  ]
 [e $U 436  ]
-"245
+"253
 [e :U 435 ]
-[; ;LAB05.c: 245: {
+[; ;LAB05.c: 253: {
 {
-[; ;LAB05.c: 246: while(!(RC1 & 1));
-"246
+[; ;LAB05.c: 254: while(!(RC1 & 1));
+"254
 [e $U 438  ]
 [e :U 439 ]
 [e :U 438 ]
 [e $ ! != & -> _RC1 `i -> 1 `i -> 0 `i 439  ]
 [e :U 440 ]
-[; ;LAB05.c: 247: _delay((unsigned long)((30)*(8000000/4000000.0)));
-"247
+[; ;LAB05.c: 255: _delay((unsigned long)((30)*(8000000/4000000.0)));
+"255
 [e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;LAB05.c: 248: if(RC1 & 1)
-"248
+[; ;LAB05.c: 256: if(RC1 & 1)
+"256
 [e $ ! != & -> _RC1 `i -> 1 `i -> 0 `i 441  ]
-[; ;LAB05.c: 249: data = ((data<<1) | 1);
-"249
+[; ;LAB05.c: 257: data = ((data<<1) | 1);
+"257
 [e = _data -> | << -> _data `i -> 1 `i -> 1 `i `uc ]
 [e $U 442  ]
-"250
+"258
 [e :U 441 ]
-[; ;LAB05.c: 250: else
-[; ;LAB05.c: 251: data = (data<<1);
-"251
+[; ;LAB05.c: 258: else
+[; ;LAB05.c: 259: data = (data<<1);
+"259
 [e = _data -> << -> _data `i -> 1 `i `uc ]
 [e :U 442 ]
-[; ;LAB05.c: 252: while(RC1 & 1);
-"252
+[; ;LAB05.c: 260: while(RC1 & 1);
+"260
 [e $U 443  ]
 [e :U 444 ]
 [e :U 443 ]
 [e $ != & -> _RC1 `i -> 1 `i -> 0 `i 444  ]
 [e :U 445 ]
-"253
+"261
 }
-"244
+"252
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 8 `i 435  ]
 [e :U 436 ]
-"253
+"261
 }
-[; ;LAB05.c: 253: }
-[; ;LAB05.c: 254: return data;
-"254
+[; ;LAB05.c: 261: }
+[; ;LAB05.c: 262: return data;
+"262
 [e ) _data ]
 [e $UE 434  ]
-[; ;LAB05.c: 255: }
-"255
+[; ;LAB05.c: 263: }
+"263
 [e :UE 434 ]
 }
-"257
+"265
 [v _DHT11_Start `(v ~T0 @X0 1 ef ]
-"258
+"266
 {
-[; ;LAB05.c: 257: void DHT11_Start()
-[; ;LAB05.c: 258: {
+[; ;LAB05.c: 265: void DHT11_Start()
+[; ;LAB05.c: 266: {
 [e :U _DHT11_Start ]
 [f ]
-[; ;LAB05.c: 259: TRISC1 = 0;
-"259
-[e = _TRISC1 -> -> 0 `i `b ]
-[; ;LAB05.c: 260: LATC1 = 0;
-"260
-[e = _LATC1 -> -> 0 `i `b ]
-[; ;LAB05.c: 261: _delay((unsigned long)((18)*(8000000/4000.0)));
-"261
-[e ( __delay (1 -> * -> -> 18 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 262: LATC1 = 1;
-"262
-[e = _LATC1 -> -> 1 `i `b ]
-[; ;LAB05.c: 263: _delay((unsigned long)((20)*(8000000/4000000.0)));
-"263
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-[; ;LAB05.c: 264: TRISC1 = 1;
-"264
-[e = _TRISC1 -> -> 1 `i `b ]
-[; ;LAB05.c: 265: LATC1 = 0;
-"265
-[e = _LATC1 -> -> 0 `i `b ]
-[; ;LAB05.c: 266: return;
-"266
-[e $UE 446  ]
-[; ;LAB05.c: 267: }
+[; ;LAB05.c: 267: TRISC1 = 0;
 "267
+[e = _TRISC1 -> -> 0 `i `b ]
+[; ;LAB05.c: 268: LATC1 = 0;
+"268
+[e = _LATC1 -> -> 0 `i `b ]
+[; ;LAB05.c: 269: _delay((unsigned long)((18)*(8000000/4000.0)));
+"269
+[e ( __delay (1 -> * -> -> 18 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LAB05.c: 270: LATC1 = 1;
+"270
+[e = _LATC1 -> -> 1 `i `b ]
+[; ;LAB05.c: 271: _delay((unsigned long)((20)*(8000000/4000000.0)));
+"271
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;LAB05.c: 272: TRISC1 = 1;
+"272
+[e = _TRISC1 -> -> 1 `i `b ]
+[; ;LAB05.c: 273: LATC1 = 0;
+"273
+[e = _LATC1 -> -> 0 `i `b ]
+[; ;LAB05.c: 274: return;
+"274
+[e $UE 446  ]
+[; ;LAB05.c: 275: }
+"275
 [e :UE 446 ]
 }
-"269
+"277
 [v _DHT11_CheckResponse `(v ~T0 @X0 1 ef ]
-"270
+"278
 {
-[; ;LAB05.c: 269: void DHT11_CheckResponse()
-[; ;LAB05.c: 270: {
+[; ;LAB05.c: 277: void DHT11_CheckResponse()
+[; ;LAB05.c: 278: {
 [e :U _DHT11_CheckResponse ]
 [f ]
-[; ;LAB05.c: 271: while(RC1 & 1);
-"271
+[; ;LAB05.c: 279: while(RC1 & 1);
+"279
 [e $U 448  ]
 [e :U 449 ]
 [e :U 448 ]
 [e $ != & -> _RC1 `i -> 1 `i -> 0 `i 449  ]
 [e :U 450 ]
-[; ;LAB05.c: 272: while(!(RC1 & 1));
-"272
+[; ;LAB05.c: 280: while(!(RC1 & 1));
+"280
 [e $U 451  ]
 [e :U 452 ]
 [e :U 451 ]
 [e $ ! != & -> _RC1 `i -> 1 `i -> 0 `i 452  ]
 [e :U 453 ]
-[; ;LAB05.c: 273: while(RC1 & 1);
-"273
+[; ;LAB05.c: 281: while(RC1 & 1);
+"281
 [e $U 454  ]
 [e :U 455 ]
 [e :U 454 ]
 [e $ != & -> _RC1 `i -> 1 `i -> 0 `i 455  ]
 [e :U 456 ]
-[; ;LAB05.c: 274: return;
-"274
+[; ;LAB05.c: 282: return;
+"282
 [e $UE 447  ]
-[; ;LAB05.c: 275: }
-"275
+[; ;LAB05.c: 283: }
+"283
 [e :UE 447 ]
 }
-"277
+"285
 [v _check_potentiometer_voltaje `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 277: void check_potentiometer_voltaje(void){
+[; ;LAB05.c: 285: void check_potentiometer_voltaje(void){
 [e :U _check_potentiometer_voltaje ]
 [f ]
-[; ;LAB05.c: 278: ADON=1;
-"278
+[; ;LAB05.c: 286: ADON=1;
+"286
 [e = _ADON -> -> 1 `i `b ]
-[; ;LAB05.c: 279: GO=1;
-"279
+[; ;LAB05.c: 287: GO=1;
+"287
 [e = _GO -> -> 1 `i `b ]
-[; ;LAB05.c: 280: while(GO==1);
-"280
+[; ;LAB05.c: 288: while(GO==1);
+"288
 [e $U 458  ]
 [e :U 459 ]
 [e :U 458 ]
 [e $ == -> _GO `i -> 1 `i 459  ]
 [e :U 460 ]
-[; ;LAB05.c: 281: if(ADRES > 511)
-"281
+[; ;LAB05.c: 289: if(ADRES > 511)
+"289
 [e $ ! > -> _ADRES `ui -> -> 511 `i `ui 461  ]
-[; ;LAB05.c: 282: LATB0 = 1;
-"282
+[; ;LAB05.c: 290: LATB0 = 1;
+"290
 [e = _LATB0 -> -> 1 `i `b ]
 [e $U 462  ]
-"283
+"291
 [e :U 461 ]
-[; ;LAB05.c: 283: else
-[; ;LAB05.c: 284: LATB0 = 0;
-"284
+[; ;LAB05.c: 291: else
+[; ;LAB05.c: 292: LATB0 = 0;
+"292
 [e = _LATB0 -> -> 0 `i `b ]
 [e :U 462 ]
-[; ;LAB05.c: 285: ADON=0;
-"285
+[; ;LAB05.c: 293: ADON=0;
+"293
 [e = _ADON -> -> 0 `i `b ]
-[; ;LAB05.c: 286: return;
-"286
+[; ;LAB05.c: 294: return;
+"294
 [e $UE 457  ]
-[; ;LAB05.c: 287: }
-"287
+[; ;LAB05.c: 295: }
+"295
 [e :UE 457 ]
 }
-"289
+"297
 [v _save_temperature_c_EEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 289: void save_temperature_c_EEPROM(void){
+[; ;LAB05.c: 297: void save_temperature_c_EEPROM(void){
 [e :U _save_temperature_c_EEPROM ]
 [f ]
-[; ;LAB05.c: 290: EEPROM_Write(0, Temp);
-"290
+[; ;LAB05.c: 298: EEPROM_Write(0, Temp);
+"298
 [e ( _EEPROM_Write (2 , -> -> 0 `i `uc _Temp ]
-[; ;LAB05.c: 291: return;
-"291
+[; ;LAB05.c: 299: return;
+"299
 [e $UE 463  ]
-[; ;LAB05.c: 292: }
-"292
+[; ;LAB05.c: 300: }
+"300
 [e :UE 463 ]
 }
-"293
+"301
 [v _show_temperature_c_RGB `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 293: void show_temperature_c_RGB(void){
+[; ;LAB05.c: 301: void show_temperature_c_RGB(void){
 [e :U _show_temperature_c_RGB ]
 [f ]
-[; ;LAB05.c: 294: if(Temp<22){
-"294
+[; ;LAB05.c: 302: if(Temp<22){
+"302
 [e $ ! < -> _Temp `i -> 22 `i 465  ]
 {
-[; ;LAB05.c: 296: LATE0=1;
-"296
+[; ;LAB05.c: 304: LATE0=1;
+"304
 [e = _LATE0 -> -> 1 `i `b ]
-[; ;LAB05.c: 297: LATE2=1;
-"297
+[; ;LAB05.c: 305: LATE2=1;
+"305
 [e = _LATE2 -> -> 1 `i `b ]
-[; ;LAB05.c: 298: LATE1=1;
-"298
+[; ;LAB05.c: 306: LATE1=1;
+"306
 [e = _LATE1 -> -> 1 `i `b ]
-"299
+"307
 }
-[; ;LAB05.c: 299: }
+[; ;LAB05.c: 307: }
 [e $U 466  ]
-"300
+"308
 [e :U 465 ]
-[; ;LAB05.c: 300: else if(Temp<25) {
+[; ;LAB05.c: 308: else if(Temp<25) {
 [e $ ! < -> _Temp `i -> 25 `i 467  ]
 {
-[; ;LAB05.c: 302: LATE0=0;
-"302
+[; ;LAB05.c: 310: LATE0=0;
+"310
 [e = _LATE0 -> -> 0 `i `b ]
-[; ;LAB05.c: 303: LATE2=1;
-"303
+[; ;LAB05.c: 311: LATE2=1;
+"311
 [e = _LATE2 -> -> 1 `i `b ]
-[; ;LAB05.c: 304: LATE1=0;
-"304
+[; ;LAB05.c: 312: LATE1=0;
+"312
 [e = _LATE1 -> -> 0 `i `b ]
-"305
+"313
 }
-[; ;LAB05.c: 305: }
+[; ;LAB05.c: 313: }
 [e $U 468  ]
-"306
+"314
 [e :U 467 ]
-[; ;LAB05.c: 306: else if(Temp<28){
+[; ;LAB05.c: 314: else if(Temp<28){
 [e $ ! < -> _Temp `i -> 28 `i 469  ]
 {
-[; ;LAB05.c: 308: LATE0=1;
-"308
+[; ;LAB05.c: 316: LATE0=1;
+"316
 [e = _LATE0 -> -> 1 `i `b ]
-[; ;LAB05.c: 309: LATE2=1;
-"309
+[; ;LAB05.c: 317: LATE2=1;
+"317
 [e = _LATE2 -> -> 1 `i `b ]
-[; ;LAB05.c: 310: LATE1=0;
-"310
+[; ;LAB05.c: 318: LATE1=0;
+"318
 [e = _LATE1 -> -> 0 `i `b ]
-"312
+"320
 }
-[; ;LAB05.c: 312: }
+[; ;LAB05.c: 320: }
 [e $U 470  ]
-"313
+"321
 [e :U 469 ]
-[; ;LAB05.c: 313: else if(Temp<31){
+[; ;LAB05.c: 321: else if(Temp<31){
 [e $ ! < -> _Temp `i -> 31 `i 471  ]
 {
-[; ;LAB05.c: 315: LATE0=1;
-"315
+[; ;LAB05.c: 323: LATE0=1;
+"323
 [e = _LATE0 -> -> 1 `i `b ]
-[; ;LAB05.c: 316: LATE2=0;
-"316
+[; ;LAB05.c: 324: LATE2=0;
+"324
 [e = _LATE2 -> -> 0 `i `b ]
-[; ;LAB05.c: 317: LATE1=0;
-"317
+[; ;LAB05.c: 325: LATE1=0;
+"325
 [e = _LATE1 -> -> 0 `i `b ]
-"318
+"326
 }
-[; ;LAB05.c: 318: }
+[; ;LAB05.c: 326: }
 [e $U 472  ]
-"319
+"327
 [e :U 471 ]
-[; ;LAB05.c: 319: else if(Temp<34){
+[; ;LAB05.c: 327: else if(Temp<34){
 [e $ ! < -> _Temp `i -> 34 `i 473  ]
 {
-[; ;LAB05.c: 321: LATE0=1;
-"321
+[; ;LAB05.c: 329: LATE0=1;
+"329
 [e = _LATE0 -> -> 1 `i `b ]
-[; ;LAB05.c: 322: LATE2=0;
-"322
+[; ;LAB05.c: 330: LATE2=0;
+"330
 [e = _LATE2 -> -> 0 `i `b ]
-[; ;LAB05.c: 323: LATE1=1;
-"323
+[; ;LAB05.c: 331: LATE1=1;
+"331
 [e = _LATE1 -> -> 1 `i `b ]
-"324
+"332
 }
-[; ;LAB05.c: 324: }
+[; ;LAB05.c: 332: }
 [e $U 474  ]
-"325
+"333
 [e :U 473 ]
-[; ;LAB05.c: 325: else if(Temp<37){
+[; ;LAB05.c: 333: else if(Temp<37){
 [e $ ! < -> _Temp `i -> 37 `i 475  ]
 {
-[; ;LAB05.c: 327: LATE0=0;
-"327
+[; ;LAB05.c: 335: LATE0=0;
+"335
 [e = _LATE0 -> -> 0 `i `b ]
-[; ;LAB05.c: 328: LATE2=0;
-"328
+[; ;LAB05.c: 336: LATE2=0;
+"336
 [e = _LATE2 -> -> 0 `i `b ]
-[; ;LAB05.c: 329: LATE1=1;
-"329
+[; ;LAB05.c: 337: LATE1=1;
+"337
 [e = _LATE1 -> -> 1 `i `b ]
-"330
+"338
 }
-[; ;LAB05.c: 330: }
+[; ;LAB05.c: 338: }
 [e $U 476  ]
-"331
+"339
 [e :U 475 ]
-[; ;LAB05.c: 331: else if(Temp<40){
+[; ;LAB05.c: 339: else if(Temp<40){
 [e $ ! < -> _Temp `i -> 40 `i 477  ]
 {
-[; ;LAB05.c: 333: LATE0=0;
-"333
-[e = _LATE0 -> -> 0 `i `b ]
-[; ;LAB05.c: 334: LATE2=1;
-"334
-[e = _LATE2 -> -> 1 `i `b ]
-[; ;LAB05.c: 335: LATE1=1;
-"335
-[e = _LATE1 -> -> 1 `i `b ]
-"336
-}
-[; ;LAB05.c: 336: }
-[e $U 478  ]
-"337
-[e :U 477 ]
-[; ;LAB05.c: 337: else{
-{
-[; ;LAB05.c: 339: LATE0=0;
-"339
-[e = _LATE0 -> -> 0 `i `b ]
-[; ;LAB05.c: 340: LATE2=0;
-"340
-[e = _LATE2 -> -> 0 `i `b ]
-[; ;LAB05.c: 341: LATE1=0;
+[; ;LAB05.c: 341: LATE0=0;
 "341
-[e = _LATE1 -> -> 0 `i `b ]
+[e = _LATE0 -> -> 0 `i `b ]
+[; ;LAB05.c: 342: LATE2=1;
 "342
+[e = _LATE2 -> -> 1 `i `b ]
+[; ;LAB05.c: 343: LATE1=1;
+"343
+[e = _LATE1 -> -> 1 `i `b ]
+"344
+}
+[; ;LAB05.c: 344: }
+[e $U 478  ]
+"345
+[e :U 477 ]
+[; ;LAB05.c: 345: else{
+{
+[; ;LAB05.c: 347: LATE0=0;
+"347
+[e = _LATE0 -> -> 0 `i `b ]
+[; ;LAB05.c: 348: LATE2=0;
+"348
+[e = _LATE2 -> -> 0 `i `b ]
+[; ;LAB05.c: 349: LATE1=0;
+"349
+[e = _LATE1 -> -> 0 `i `b ]
+"350
 }
 [e :U 478 ]
 [e :U 476 ]
@@ -5210,167 +5235,167 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 470 ]
 [e :U 468 ]
 [e :U 466 ]
-[; ;LAB05.c: 342: }
-[; ;LAB05.c: 344: return;
-"344
+[; ;LAB05.c: 350: }
+[; ;LAB05.c: 352: return;
+"352
 [e $UE 464  ]
-[; ;LAB05.c: 345: }
-"345
+[; ;LAB05.c: 353: }
+"353
 [e :UE 464 ]
 }
-"348
+"356
 [v _choose_scale_temperature_and_fill_buffers `(v ~T0 @X0 1 ef2`*uc`*uc ]
 {
-[; ;LAB05.c: 348: void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2){
+[; ;LAB05.c: 356: void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2){
 [e :U _choose_scale_temperature_and_fill_buffers ]
 [v _buffer_LCD_row_1 `*uc ~T0 @X0 1 r1 ]
 [v _buffer_LCD_row_2 `*uc ~T0 @X0 1 r2 ]
 [f ]
-"349
-[v _temp_converted `i ~T0 @X0 1 a ]
-[; ;LAB05.c: 349: int temp_converted = 0;
-[e = _temp_converted -> 0 `i ]
-[; ;LAB05.c: 351: _delay((unsigned long)((10)*(8000000/4000.0)));
-"351
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 352: if(RA2==0 && RA3==0){
-"352
-[e $ ! && == -> _RA2 `i -> 0 `i == -> _RA3 `i -> 0 `i 480  ]
-{
-[; ;LAB05.c: 354: sprintf(buffer_LCD_row_1, "T: %i C",Temp);
-"354
-[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 7C -> _Temp `i ]
-[; ;LAB05.c: 355: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
-"355
-[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 8C -> _Hum `i -> 37 `i ]
-[; ;LAB05.c: 357: Scale_Temperature=0;
 "357
-[e = _Scale_Temperature -> -> 0 `i `uc ]
-"358
-}
-[; ;LAB05.c: 358: }
-[e $U 481  ]
+[v _temp_converted `i ~T0 @X0 1 a ]
+[; ;LAB05.c: 357: int temp_converted = 0;
+[e = _temp_converted -> 0 `i ]
+[; ;LAB05.c: 359: _delay((unsigned long)((10)*(8000000/4000.0)));
 "359
-[e :U 480 ]
-[; ;LAB05.c: 359: else if(RA2==0 && RA3==1){
-[e $ ! && == -> _RA2 `i -> 0 `i == -> _RA3 `i -> 1 `i 482  ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;LAB05.c: 360: if((RA2==0 && RA3==0) || Scale_Temperature_RS232 == 'C'){
+"360
+[e $ ! || && == -> _RA2 `i -> 0 `i == -> _RA3 `i -> 0 `i == -> _Scale_Temperature_RS232 `ui -> 67 `ui 480  ]
 {
-[; ;LAB05.c: 361: temp_converted = Temp + 273.15;
-"361
-[e = _temp_converted -> + -> _Temp `d .273.15 `i ]
-[; ;LAB05.c: 363: sprintf(buffer_LCD_row_1, "T: %i K",temp_converted);
+[; ;LAB05.c: 362: sprintf(buffer_LCD_row_1, "T: %i C",Temp);
+"362
+[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 7C -> _Temp `i ]
+[; ;LAB05.c: 363: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 "363
-[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 9C _temp_converted ]
-[; ;LAB05.c: 364: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
-"364
-[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 10C -> _Hum `i -> 37 `i ]
-[; ;LAB05.c: 366: Scale_Temperature=1;
+[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 8C -> _Hum `i -> 37 `i ]
+[; ;LAB05.c: 365: Scale_Temperature=0;
+"365
+[e = _Scale_Temperature -> -> 0 `i `uc ]
 "366
-[e = _Scale_Temperature -> -> 1 `i `uc ]
+}
+[; ;LAB05.c: 366: }
+[e $U 481  ]
 "367
-}
-[; ;LAB05.c: 367: }
-[e $U 483  ]
-"368
-[e :U 482 ]
-[; ;LAB05.c: 368: else if(RA2==1 && RA3==0){
-[e $ ! && == -> _RA2 `i -> 1 `i == -> _RA3 `i -> 0 `i 484  ]
+[e :U 480 ]
+[; ;LAB05.c: 367: else if((RA2==0 && RA3==1) || Scale_Temperature_RS232 == 'K'){
+[e $ ! || && == -> _RA2 `i -> 0 `i == -> _RA3 `i -> 1 `i == -> _Scale_Temperature_RS232 `ui -> 75 `ui 482  ]
 {
-[; ;LAB05.c: 370: temp_converted = Temp*1.8 + 491.67;
-"370
-[e = _temp_converted -> + * -> _Temp `d .1.8 .491.67 `i ]
-[; ;LAB05.c: 372: sprintf(buffer_LCD_row_1, "T: %i Ra",temp_converted);
+[; ;LAB05.c: 369: temp_converted = Temp + 273.15;
+"369
+[e = _temp_converted -> + -> _Temp `d .273.15 `i ]
+[; ;LAB05.c: 371: sprintf(buffer_LCD_row_1, "T: %i K",temp_converted);
+"371
+[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 9C _temp_converted ]
+[; ;LAB05.c: 372: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 "372
-[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 11C _temp_converted ]
-[; ;LAB05.c: 373: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
-"373
-[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 12C -> _Hum `i -> 37 `i ]
-[; ;LAB05.c: 375: Scale_Temperature=2;
+[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 10C -> _Hum `i -> 37 `i ]
+[; ;LAB05.c: 374: Scale_Temperature=1;
+"374
+[e = _Scale_Temperature -> -> 1 `i `uc ]
 "375
-[e = _Scale_Temperature -> -> 2 `i `uc ]
-"377
 }
-[; ;LAB05.c: 377: }
-[e $U 485  ]
-"378
-[e :U 484 ]
-[; ;LAB05.c: 378: else if(RA2==1 && RA3==1){
-[e $ ! && == -> _RA2 `i -> 1 `i == -> _RA3 `i -> 1 `i 486  ]
+[; ;LAB05.c: 375: }
+[e $U 483  ]
+"376
+[e :U 482 ]
+[; ;LAB05.c: 376: else if((RA2==1 && RA3==0) || Scale_Temperature_RS232 == 'R'){
+[e $ ! || && == -> _RA2 `i -> 1 `i == -> _RA3 `i -> 0 `i == -> _Scale_Temperature_RS232 `ui -> 82 `ui 484  ]
 {
-[; ;LAB05.c: 380: temp_converted = Temp*9.0/5.0 + 32.0;
+[; ;LAB05.c: 378: temp_converted = Temp*1.8 + 491.67;
+"378
+[e = _temp_converted -> + * -> _Temp `d .1.8 .491.67 `i ]
+[; ;LAB05.c: 380: sprintf(buffer_LCD_row_1, "T: %i Ra",temp_converted);
 "380
-[e = _temp_converted -> + / * -> _Temp `d .9.0 .5.0 .32.0 `i ]
-[; ;LAB05.c: 382: sprintf(buffer_LCD_row_1, "T: %i F",temp_converted);
-"382
-[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 13C _temp_converted ]
-[; ;LAB05.c: 383: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
+[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 11C _temp_converted ]
+[; ;LAB05.c: 381: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
+"381
+[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 12C -> _Hum `i -> 37 `i ]
+[; ;LAB05.c: 383: Scale_Temperature=2;
 "383
-[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 14C -> _Hum `i -> 37 `i ]
-[; ;LAB05.c: 385: Scale_Temperature=3;
+[e = _Scale_Temperature -> -> 2 `i `uc ]
 "385
-[e = _Scale_Temperature -> -> 3 `i `uc ]
+}
+[; ;LAB05.c: 385: }
+[e $U 485  ]
 "386
+[e :U 484 ]
+[; ;LAB05.c: 386: else if((RA2==1 && RA3==1) || Scale_Temperature_RS232 == 'F'){
+[e $ ! || && == -> _RA2 `i -> 1 `i == -> _RA3 `i -> 1 `i == -> _Scale_Temperature_RS232 `ui -> 70 `ui 486  ]
+{
+[; ;LAB05.c: 388: temp_converted = Temp*9.0/5.0 + 32.0;
+"388
+[e = _temp_converted -> + / * -> _Temp `d .9.0 .5.0 .32.0 `i ]
+[; ;LAB05.c: 390: sprintf(buffer_LCD_row_1, "T: %i F",temp_converted);
+"390
+[e ( _sprintf (1 , (. , _buffer_LCD_row_1 :s 13C _temp_converted ]
+[; ;LAB05.c: 391: sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
+"391
+[e ( _sprintf (1 , , (. , _buffer_LCD_row_2 :s 14C -> _Hum `i -> 37 `i ]
+[; ;LAB05.c: 393: Scale_Temperature=3;
+"393
+[e = _Scale_Temperature -> -> 3 `i `uc ]
+"394
 }
 [e :U 486 ]
-"388
+"396
 [e :U 485 ]
 [e :U 483 ]
 [e :U 481 ]
-[; ;LAB05.c: 386: }
-[; ;LAB05.c: 388: return;
+[; ;LAB05.c: 394: }
+[; ;LAB05.c: 396: return;
 [e $UE 479  ]
-[; ;LAB05.c: 389: }
-"389
+[; ;LAB05.c: 397: }
+"397
 [e :UE 479 ]
 }
-"391
+"399
 [v _send_temperature_RS232 `(v ~T0 @X0 1 ef ]
 {
-[; ;LAB05.c: 391: void send_temperature_RS232(void){
+[; ;LAB05.c: 399: void send_temperature_RS232(void){
 [e :U _send_temperature_RS232 ]
 [f ]
-"392
+"400
 [v _counter `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 392: unsigned char counter=0;
+[; ;LAB05.c: 400: unsigned char counter=0;
 [e = _counter -> -> 0 `i `uc ]
-"393
+"401
 [v _buffer_RS232 `uc ~T0 @X0 -> 12 `i a ]
-[; ;LAB05.c: 393: unsigned char buffer_RS232[12];
-[; ;LAB05.c: 394: sprintf(buffer_RS232, "T: %i C\n",Temp);
-"394
+[; ;LAB05.c: 401: unsigned char buffer_RS232[12];
+[; ;LAB05.c: 402: sprintf(buffer_RS232, "T: %i C\n",Temp);
+"402
 [e ( _sprintf (1 , (. , &U _buffer_RS232 :s 15C -> _Temp `i ]
-[; ;LAB05.c: 396: while(buffer_RS232[counter]!='\0'){
-"396
+[; ;LAB05.c: 404: while(buffer_RS232[counter]!='\0'){
+"404
 [e $U 488  ]
 [e :U 489 ]
 {
-[; ;LAB05.c: 397: Transmitir(buffer_RS232[counter]);
-"397
+[; ;LAB05.c: 405: Transmitir(buffer_RS232[counter]);
+"405
 [e ( _Transmitir (1 *U + &U _buffer_RS232 * -> _counter `ux -> -> # *U &U _buffer_RS232 `ui `ux ]
-[; ;LAB05.c: 398: counter++;
-"398
+[; ;LAB05.c: 406: counter++;
+"406
 [e ++ _counter -> -> 1 `i `uc ]
-"399
+"407
 }
 [e :U 488 ]
-"396
+"404
 [e $ != -> *U + &U _buffer_RS232 * -> _counter `ux -> -> # *U &U _buffer_RS232 `ui `ux `ui -> 0 `ui 489  ]
 [e :U 490 ]
-[; ;LAB05.c: 399: }
-[; ;LAB05.c: 400: _delay((unsigned long)((200)*(8000000/4000.0)));
-"400
+[; ;LAB05.c: 407: }
+[; ;LAB05.c: 408: _delay((unsigned long)((200)*(8000000/4000.0)));
+"408
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;LAB05.c: 401: return;
-"401
+[; ;LAB05.c: 409: return;
+"409
 [e $UE 487  ]
-[; ;LAB05.c: 402: }
-"402
+[; ;LAB05.c: 410: }
+"410
 [e :UE 487 ]
 }
-"404
+"412
 [v _show_temperature_LCD `(v ~T0 @X0 1 ef5`*uc`*uc`uc`uc`uc ]
 {
-[; ;LAB05.c: 404: void show_temperature_LCD(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2, unsigned char Temp_n1, unsigned char Hum_n1, unsigned char Scale_Temperature_n1){
+[; ;LAB05.c: 412: void show_temperature_LCD(unsigned char *buffer_LCD_row_1, unsigned char *buffer_LCD_row_2, unsigned char Temp_n1, unsigned char Hum_n1, unsigned char Scale_Temperature_n1){
 [e :U _show_temperature_LCD ]
 [v _buffer_LCD_row_1 `*uc ~T0 @X0 1 r1 ]
 [v _buffer_LCD_row_2 `*uc ~T0 @X0 1 r2 ]
@@ -5378,254 +5403,270 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Hum_n1 `uc ~T0 @X0 1 r4 ]
 [v _Scale_Temperature_n1 `uc ~T0 @X0 1 r5 ]
 [f ]
-"405
+"413
 [v _counter `uc ~T0 @X0 1 a ]
-[; ;LAB05.c: 405: unsigned char counter=0;
+[; ;LAB05.c: 413: unsigned char counter=0;
 [e = _counter -> -> 0 `i `uc ]
-[; ;LAB05.c: 407: if(Temp_n1!=Temp || Scale_Temperature!=Scale_Temperature_n1){
-"407
+[; ;LAB05.c: 415: if(Temp_n1!=Temp || Scale_Temperature!=Scale_Temperature_n1){
+"415
 [e $ ! || != -> _Temp_n1 `i -> _Temp `i != -> _Scale_Temperature `i -> _Scale_Temperature_n1 `i 492  ]
 {
-[; ;LAB05.c: 408: DireccionaLCD(0x80);
-"408
+[; ;LAB05.c: 416: DireccionaLCD(0x80);
+"416
 [e ( _DireccionaLCD (1 -> -> 128 `i `uc ]
-[; ;LAB05.c: 410: while (buffer_LCD_row_1[counter]!='\0') {
-"410
+[; ;LAB05.c: 418: while (buffer_LCD_row_1[counter]!='\0') {
+"418
 [e $U 493  ]
 [e :U 494 ]
 {
-[; ;LAB05.c: 411: EscribeLCD_c(buffer_LCD_row_1[counter]);
-"411
+[; ;LAB05.c: 419: EscribeLCD_c(buffer_LCD_row_1[counter]);
+"419
 [e ( _EscribeLCD_c (1 *U + _buffer_LCD_row_1 * -> _counter `ux -> -> # *U _buffer_LCD_row_1 `ui `ux ]
-[; ;LAB05.c: 412: counter++;
-"412
+[; ;LAB05.c: 420: counter++;
+"420
 [e ++ _counter -> -> 1 `i `uc ]
-"413
+"421
 }
 [e :U 493 ]
-"410
+"418
 [e $ != -> *U + _buffer_LCD_row_1 * -> _counter `ux -> -> # *U _buffer_LCD_row_1 `ui `ux `ui -> 0 `ui 494  ]
 [e :U 495 ]
-[; ;LAB05.c: 413: }
-[; ;LAB05.c: 415: while (counter<16) {
-"415
+[; ;LAB05.c: 421: }
+[; ;LAB05.c: 423: while (counter<16) {
+"423
 [e $U 496  ]
 [e :U 497 ]
 {
-[; ;LAB05.c: 416: EscribeLCD_c(' ');
-"416
+[; ;LAB05.c: 424: EscribeLCD_c(' ');
+"424
 [e ( _EscribeLCD_c (1 -> -> 32 `ui `uc ]
-[; ;LAB05.c: 417: counter++;
-"417
+[; ;LAB05.c: 425: counter++;
+"425
 [e ++ _counter -> -> 1 `i `uc ]
-"418
+"426
 }
 [e :U 496 ]
-"415
+"423
 [e $ < -> _counter `i -> 16 `i 497  ]
 [e :U 498 ]
-"419
+"427
 }
 [e :U 492 ]
-[; ;LAB05.c: 418: }
-[; ;LAB05.c: 419: }
-[; ;LAB05.c: 421: counter=0;
-"421
+[; ;LAB05.c: 426: }
+[; ;LAB05.c: 427: }
+[; ;LAB05.c: 429: counter=0;
+"429
 [e = _counter -> -> 0 `i `uc ]
-[; ;LAB05.c: 423: if(Hum_n1!=Hum){
-"423
+[; ;LAB05.c: 431: if(Hum_n1!=Hum){
+"431
 [e $ ! != -> _Hum_n1 `i -> _Hum `i 499  ]
 {
-[; ;LAB05.c: 424: DireccionaLCD(0xC0);
-"424
+[; ;LAB05.c: 432: DireccionaLCD(0xC0);
+"432
 [e ( _DireccionaLCD (1 -> -> 192 `i `uc ]
-[; ;LAB05.c: 427: while (buffer_LCD_row_2[counter]!='\0') {
-"427
+[; ;LAB05.c: 435: while (buffer_LCD_row_2[counter]!='\0') {
+"435
 [e $U 500  ]
 [e :U 501 ]
 {
-[; ;LAB05.c: 428: EscribeLCD_c(buffer_LCD_row_2[counter]);
-"428
+[; ;LAB05.c: 436: EscribeLCD_c(buffer_LCD_row_2[counter]);
+"436
 [e ( _EscribeLCD_c (1 *U + _buffer_LCD_row_2 * -> _counter `ux -> -> # *U _buffer_LCD_row_2 `ui `ux ]
-[; ;LAB05.c: 429: counter++;
-"429
+[; ;LAB05.c: 437: counter++;
+"437
 [e ++ _counter -> -> 1 `i `uc ]
-"430
+"438
 }
 [e :U 500 ]
-"427
+"435
 [e $ != -> *U + _buffer_LCD_row_2 * -> _counter `ux -> -> # *U _buffer_LCD_row_2 `ui `ux `ui -> 0 `ui 501  ]
 [e :U 502 ]
-[; ;LAB05.c: 430: }
-[; ;LAB05.c: 433: while (counter<16) {
-"433
+[; ;LAB05.c: 438: }
+[; ;LAB05.c: 441: while (counter<16) {
+"441
 [e $U 503  ]
 [e :U 504 ]
 {
-[; ;LAB05.c: 434: EscribeLCD_c(' ');
-"434
+[; ;LAB05.c: 442: EscribeLCD_c(' ');
+"442
 [e ( _EscribeLCD_c (1 -> -> 32 `ui `uc ]
-[; ;LAB05.c: 435: counter++;
-"435
+[; ;LAB05.c: 443: counter++;
+"443
 [e ++ _counter -> -> 1 `i `uc ]
-"436
+"444
 }
 [e :U 503 ]
-"433
+"441
 [e $ < -> _counter `i -> 16 `i 504  ]
 [e :U 505 ]
-"437
+"445
 }
 [e :U 499 ]
-[; ;LAB05.c: 436: }
-[; ;LAB05.c: 437: }
-[; ;LAB05.c: 439: return;
-"439
+[; ;LAB05.c: 444: }
+[; ;LAB05.c: 445: }
+[; ;LAB05.c: 447: return;
+"447
 [e $UE 491  ]
-[; ;LAB05.c: 440: }
-"440
+[; ;LAB05.c: 448: }
+"448
 [e :UE 491 ]
 }
-"444
+"452
 [v _Transmitir `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;LAB05.c: 444: void Transmitir(unsigned char BufferT){
+[; ;LAB05.c: 452: void Transmitir(unsigned char BufferT){
 [e :U _Transmitir ]
 [v _BufferT `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;LAB05.c: 445: while(TRMT==0);
-"445
+[; ;LAB05.c: 453: while(TRMT==0);
+"453
 [e $U 507  ]
 [e :U 508 ]
 [e :U 507 ]
 [e $ == -> _TRMT `i -> 0 `i 508  ]
 [e :U 509 ]
-[; ;LAB05.c: 446: TXREG=BufferT;
-"446
+[; ;LAB05.c: 454: TXREG=BufferT;
+"454
 [e = _TXREG _BufferT ]
-[; ;LAB05.c: 447: return;
-"447
+[; ;LAB05.c: 455: return;
+"455
 [e $UE 506  ]
-[; ;LAB05.c: 448: }
-"448
+[; ;LAB05.c: 456: }
+"456
 [e :UE 506 ]
 }
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-[v F3233 `(v ~T0 @X0 1 tf ]
-"450
-[v _ISR `IF3233 ~T0 @X0 1 e ]
+[v F3234 `(v ~T0 @X0 1 tf ]
+"458
+[v _ISR `IF3234 ~T0 @X0 1 e ]
 {
-[; ;LAB05.c: 450: void interrupt ISR(void){
+[; ;LAB05.c: 458: void interrupt ISR(void){
 [e :U _ISR ]
 [f ]
-[; ;LAB05.c: 451: if(TMR0IF==1){
-"451
+[; ;LAB05.c: 459: if(TMR0IF==1){
+"459
 [e $ ! == -> _TMR0IF `i -> 1 `i 511  ]
 {
-[; ;LAB05.c: 452: TMR0=3036;
-"452
+[; ;LAB05.c: 460: TMR0=3036;
+"460
 [e = _TMR0 -> -> 3036 `i `us ]
-[; ;LAB05.c: 453: TMR0IF=0;
-"453
+[; ;LAB05.c: 461: TMR0IF=0;
+"461
 [e = _TMR0IF -> -> 0 `i `b ]
-[; ;LAB05.c: 454: LATC2=~LATC2;
-"454
+[; ;LAB05.c: 462: LATC2=~LATC2;
+"462
 [e = _LATC2 -> ~ -> _LATC2 `i `b ]
-[; ;LAB05.c: 455: Enable_sample=1;
-"455
+[; ;LAB05.c: 463: Enable_sample=1;
+"463
 [e = _Enable_sample -> -> 1 `i `uc ]
-"456
+"464
 }
+[; ;LAB05.c: 464: }
+[e $U 512  ]
+"465
 [e :U 511 ]
-[; ;LAB05.c: 456: }
-[; ;LAB05.c: 457: return;
-"457
+[; ;LAB05.c: 465: else if(RCIF==1){
+[e $ ! == -> _RCIF `i -> 1 `i 513  ]
+{
+[; ;LAB05.c: 466: Scale_Temperature_RS232=RCREG;
+"466
+[e = _Scale_Temperature_RS232 _RCREG ]
+[; ;LAB05.c: 467: CREN=0;
+"467
+[e = _CREN -> -> 0 `i `b ]
+"468
+}
+[e :U 513 ]
+"470
+[e :U 512 ]
+[; ;LAB05.c: 468: }
+[; ;LAB05.c: 470: return;
 [e $UE 510  ]
-[; ;LAB05.c: 458: }
-"458
+[; ;LAB05.c: 471: }
+"471
 [e :UE 510 ]
 }
-"460
+"473
 [v _EEPROM_Write `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;LAB05.c: 460: void EEPROM_Write (unsigned char address, unsigned char data){
+[; ;LAB05.c: 473: void EEPROM_Write (unsigned char address, unsigned char data){
 [e :U _EEPROM_Write ]
 [v _address `uc ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;LAB05.c: 461: EEADR=address;
-"461
-[e = _EEADR _address ]
-[; ;LAB05.c: 462: EEDATA=data;
-"462
-[e = _EEDATA _data ]
-[; ;LAB05.c: 464: EEPGD=0;
-"464
-[e = _EEPGD -> -> 0 `i `b ]
-[; ;LAB05.c: 465: CFGS=0;
-"465
-[e = _CFGS -> -> 0 `i `b ]
-[; ;LAB05.c: 466: WREN=1;
-"466
-[e = _WREN -> -> 1 `i `b ]
-[; ;LAB05.c: 468: GIE=0;
-"468
-[e = _GIE -> -> 0 `i `b ]
-[; ;LAB05.c: 470: EECON2=0x55;
-"470
-[e = _EECON2 -> -> 85 `i `uc ]
-[; ;LAB05.c: 471: EECON2=0xAA;
-"471
-[e = _EECON2 -> -> 170 `i `uc ]
-[; ;LAB05.c: 473: WR=1;
-"473
-[e = _WR -> -> 1 `i `b ]
-[; ;LAB05.c: 474: while(WR==1);
+[; ;LAB05.c: 474: EEADR=address;
 "474
-[e $U 513  ]
-[e :U 514 ]
-[e :U 513 ]
-[e $ == -> _WR `i -> 1 `i 514  ]
-[e :U 515 ]
-[; ;LAB05.c: 476: GIE=1;
-"476
-[e = _GIE -> -> 1 `i `b ]
-[; ;LAB05.c: 477: WREN=0;
+[e = _EEADR _address ]
+[; ;LAB05.c: 475: EEDATA=data;
+"475
+[e = _EEDATA _data ]
+[; ;LAB05.c: 477: EEPGD=0;
 "477
-[e = _WREN -> -> 0 `i `b ]
-[; ;LAB05.c: 478: return;
+[e = _EEPGD -> -> 0 `i `b ]
+[; ;LAB05.c: 478: CFGS=0;
 "478
-[e $UE 512  ]
-[; ;LAB05.c: 480: }
-"480
-[e :UE 512 ]
+[e = _CFGS -> -> 0 `i `b ]
+[; ;LAB05.c: 479: WREN=1;
+"479
+[e = _WREN -> -> 1 `i `b ]
+[; ;LAB05.c: 481: GIE=0;
+"481
+[e = _GIE -> -> 0 `i `b ]
+[; ;LAB05.c: 483: EECON2=0x55;
+"483
+[e = _EECON2 -> -> 85 `i `uc ]
+[; ;LAB05.c: 484: EECON2=0xAA;
+"484
+[e = _EECON2 -> -> 170 `i `uc ]
+[; ;LAB05.c: 486: WR=1;
+"486
+[e = _WR -> -> 1 `i `b ]
+[; ;LAB05.c: 487: while(WR==1);
+"487
+[e $U 515  ]
+[e :U 516 ]
+[e :U 515 ]
+[e $ == -> _WR `i -> 1 `i 516  ]
+[e :U 517 ]
+[; ;LAB05.c: 489: GIE=1;
+"489
+[e = _GIE -> -> 1 `i `b ]
+[; ;LAB05.c: 490: WREN=0;
+"490
+[e = _WREN -> -> 0 `i `b ]
+[; ;LAB05.c: 491: return;
+"491
+[e $UE 514  ]
+[; ;LAB05.c: 493: }
+"493
+[e :UE 514 ]
 }
-"482
+"495
 [v _EEPROM_Read `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;LAB05.c: 482: unsigned char EEPROM_Read (unsigned char address){
+[; ;LAB05.c: 495: unsigned char EEPROM_Read (unsigned char address){
 [e :U _EEPROM_Read ]
 [v _address `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;LAB05.c: 483: EEADR=address;
-"483
+[; ;LAB05.c: 496: EEADR=address;
+"496
 [e = _EEADR _address ]
-[; ;LAB05.c: 484: WREN=0;
-"484
+[; ;LAB05.c: 497: WREN=0;
+"497
 [e = _WREN -> -> 0 `i `b ]
-[; ;LAB05.c: 485: EEPGD=0;
-"485
+[; ;LAB05.c: 498: EEPGD=0;
+"498
 [e = _EEPGD -> -> 0 `i `b ]
-[; ;LAB05.c: 486: RD=1;
-"486
+[; ;LAB05.c: 499: RD=1;
+"499
 [e = _RD -> -> 1 `i `b ]
-[; ;LAB05.c: 488: return EEDATA;
-"488
+[; ;LAB05.c: 501: return EEDATA;
+"501
 [e ) _EEDATA ]
-[e $UE 516  ]
-[; ;LAB05.c: 489: }
-"489
-[e :UE 516 ]
+[e $UE 518  ]
+[; ;LAB05.c: 502: }
+"502
+[e :UE 518 ]
 }
 [p f _sprintf 8913024 ]
 [a 2C 83 101 110 115 111 114 115 0 ]

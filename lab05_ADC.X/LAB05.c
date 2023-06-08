@@ -52,6 +52,7 @@
 unsigned char Temp,Hum,Che;
 unsigned char Enable_sample = 0;
 unsigned char Scale_Temperature = 0;
+unsigned char Scale_Temperature_RS232 = 0;
 
 // Functions
 // To DHT11
@@ -121,6 +122,7 @@ void main(void) {
       Temp_n1=Temp;
       Hum_n1=Hum;
       Scale_Temperature_n1=Scale_Temperature;
+      CREN=1; // activate again to receive by rs232
 
     }
     
@@ -139,7 +141,7 @@ void init_configuration(void){
   
   // RS232 
   TXSTA=0b00100000;
-  RCSTA=0b10000000;
+  RCSTA=0b10010000;
   BAUDCON=0b00000000;
   SPBRG=12;
 
@@ -183,9 +185,7 @@ void init_configuration(void){
   // TMR0IE: 1, Enables the TMR0 overflow interrupt
   TMR0IF=0;			
   TMR0IE=1; 
-  GIE=1;  			// Global Interrupt Enable bit, 1: = Enables all unmasked interrupts
-  // Enable timer
-  TMR0ON=1; 
+  
 
   //LCD
   TRISD=0;			/*PortD as output */
@@ -194,6 +194,14 @@ void init_configuration(void){
   InicializaLCD();
   __delay_ms(1000);		/* LCD stabilize time (1000 ms)*/
 
+  // Enable interruptions
+  PEIE=1; // Periferical interruption enable
+  GIE=1;  			// Global Interrupt Enable bit, 1: = Enables all unmasked interrupts
+  
+  
+  RCIE=1; // Enable reice USART interruption
+  TMR0ON=1; // // Enable timer0
+  
   return;
 }
 
@@ -349,14 +357,14 @@ void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, 
   int temp_converted = 0;
   //Prevent switch bounce
   __delay_ms(10);
-  if(INT_1==0 && INT_2==0){
+  if((INT_1==0 && INT_2==0) || Scale_Temperature_RS232 == 'C'){
     // Celsius to celsius
     sprintf(buffer_LCD_row_1, "T: %i C",Temp);
     sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 
     Scale_Temperature=0;
   }
-  else if(INT_1==0 && INT_2==1){
+  else if((INT_1==0 && INT_2==1) || Scale_Temperature_RS232 == 'K'){
     // Celsius to Kelvin
     temp_converted = Temp + 273.15;
 
@@ -365,7 +373,7 @@ void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, 
 
     Scale_Temperature=1;
   }
-  else if(INT_1==1 && INT_2==0){
+  else if((INT_1==1 && INT_2==0) || Scale_Temperature_RS232 == 'R'){
     // Celsius to Rankine
     temp_converted = Temp*1.8 + 491.67;
 
@@ -375,7 +383,7 @@ void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, 
     Scale_Temperature=2;
     
   }
-  else if(INT_1==1 && INT_2==1){
+  else if((INT_1==1 && INT_2==1) || Scale_Temperature_RS232 == 'F'){
     // Celsius to Fahrenheit
     temp_converted = Temp*9.0/5.0 + 32.0;
 
@@ -454,6 +462,11 @@ void interrupt ISR(void){
     LEDT=~LEDT;
     Enable_sample=1;
   }
+  else if(RCIF==1){     
+     Scale_Temperature_RS232=RCREG;
+     CREN=0; // Is necessary stop to only receive first byte 
+   }
+
   return;
 }
 

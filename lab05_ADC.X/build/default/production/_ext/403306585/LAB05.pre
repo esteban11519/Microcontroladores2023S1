@@ -6008,6 +6008,7 @@ break;
 unsigned char Temp,Hum,Che;
 unsigned char Enable_sample = 0;
 unsigned char Scale_Temperature = 0;
+unsigned char Scale_Temperature_RS232 = 0;
 
 
 
@@ -6077,6 +6078,7 @@ Enable_sample = 0;
 Temp_n1=Temp;
 Hum_n1=Hum;
 Scale_Temperature_n1=Scale_Temperature;
+CREN=1;
 
 }
 
@@ -6095,7 +6097,7 @@ _delay((unsigned long)((1)*(8000000/4000.0)));
 
 
 TXSTA=0b00100000;
-RCSTA=0b10000000;
+RCSTA=0b10010000;
 BAUDCON=0b00000000;
 SPBRG=12;
 
@@ -6122,7 +6124,7 @@ ADCON0=0b00000100;
 
 ADCON2=0b11001001;
 
-# 179
+# 181
 T0CON=0b00000100;
 TMR0=3036;
 
@@ -6130,9 +6132,7 @@ TMR0=3036;
 
 TMR0IF=0;
 TMR0IE=1;
-GIE=1;
 
-TMR0ON=1;
 
 
 TRISD=0;
@@ -6140,6 +6140,14 @@ LATD=0;
 ConfiguraLCD(4);
 InicializaLCD();
 _delay((unsigned long)((1000)*(8000000/4000.0)));
+
+
+PEIE=1;
+GIE=1;
+
+
+RCIE=1;
+TMR0ON=1;
 
 return;
 }
@@ -6296,14 +6304,14 @@ void choose_scale_temperature_and_fill_buffers(unsigned char *buffer_LCD_row_1, 
 int temp_converted = 0;
 
 _delay((unsigned long)((10)*(8000000/4000.0)));
-if(RA2==0 && RA3==0){
+if((RA2==0 && RA3==0) || Scale_Temperature_RS232 == 'C'){
 
 sprintf(buffer_LCD_row_1, "T: %i C",Temp);
 sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 
 Scale_Temperature=0;
 }
-else if(RA2==0 && RA3==1){
+else if((RA2==0 && RA3==1) || Scale_Temperature_RS232 == 'K'){
 
 temp_converted = Temp + 273.15;
 
@@ -6312,7 +6320,7 @@ sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 
 Scale_Temperature=1;
 }
-else if(RA2==1 && RA3==0){
+else if((RA2==1 && RA3==0) || Scale_Temperature_RS232 == 'R'){
 
 temp_converted = Temp*1.8 + 491.67;
 
@@ -6322,7 +6330,7 @@ sprintf(buffer_LCD_row_2, "H: %i %c",Hum,37);
 Scale_Temperature=2;
 
 }
-else if(RA2==1 && RA3==1){
+else if((RA2==1 && RA3==1) || Scale_Temperature_RS232 == 'F'){
 
 temp_converted = Temp*9.0/5.0 + 32.0;
 
@@ -6401,6 +6409,11 @@ TMR0IF=0;
 LATC2=~LATC2;
 Enable_sample=1;
 }
+else if(RCIF==1){
+Scale_Temperature_RS232=RCREG;
+CREN=0;
+}
+
 return;
 }
 
