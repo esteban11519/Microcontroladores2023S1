@@ -1,10 +1,14 @@
 #include <xc.h>
 #define _XTAL_FREQ 8000000 // Fosc = 8MHz; define before of LibLCDXC8.h
 #include "LibLCDXC8.h"
-#pragma config FOSC=INTOSC_EC
+#pragma config FOSC=INTOSC_EC // Internal clock
+
+// WatchDog 
 #pragma config WDT = OFF
 #pragma config WDTPS = 2048 // T = 1/(31kHz/(128*WDTPS)) (8,44 s), [2^0, 2^13] discrete
 
+// keyboard
+#pragma config LVP=OFF		/* RB5 as digital i/o */
 
 // Global variables
 unsigned char Key=0;
@@ -31,13 +35,13 @@ unsigned char Check_alarm=1;
 
 void load_password(unsigned char *);
 
-void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char);
+void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char, unsigned char *);
 
-void verify_alarm_status(unsigned char, unsigned char);
+void verify_alarm_status(unsigned char, unsigned char, unsigned char *);
 
 void select_options(unsigned char *, unsigned char);
 
-void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
+void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
 
 void show_LCD(unsigned char, unsigned char, unsigned char *);
 
@@ -75,6 +79,7 @@ void main(void) {
   unsigned char ultrasonic_distance_permitted=28; // [cm]
   unsigned char dx_ultrasonic_distance_permitted=3; // [cm]
   unsigned char status_alarm = 1; // 1 on, 0 off
+  unsigned char alarm_was_activated = 0; // 0 when alarm was activated
   unsigned char option_selected = 'B';
   unsigned char option_selected_previous = 0;
   unsigned char buffer_password_inserted [9]; // Buffer to password inserted
@@ -98,14 +103,14 @@ void main(void) {
       option_selected_previous=option_selected;
 
       // Functions
-      check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm, ultrasonic_distance_permitted, dx_ultrasonic_distance_permitted);
+      check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm, ultrasonic_distance_permitted, dx_ultrasonic_distance_permitted, &alarm_was_activated);
       CLRWDT();
       
-      verify_alarm_status(is_secure_ultrasonic_distance,status_alarm);
+      verify_alarm_status(is_secure_ultrasonic_distance,status_alarm, &alarm_was_activated);
       
       select_options(&option_selected, key);
 
-      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success, &counter_password, &status_alarm, &key);
+      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success, &counter_password, &status_alarm, &key, &alarm_was_activated);
 
       show_LCD(status_alarm, option_selected, buffer_password_inserted);
 
@@ -216,7 +221,7 @@ void init_configuration(void){
   /*Keyboard */
   RBIF=0; 			// RB Port Change Interrupt Flag bit, 0:  None of the RB7:RB4 pins have changed state
   RBIP=0;			// Low priority
-  RBIE=0;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
+  RBIE=1;			// RB Port Change Interrupt Enable bit, 1: Enables the RB port change interrupt
 
   /* TMR0 */
   TMR0IE=1; // Enable timer
@@ -282,24 +287,27 @@ void load_password(unsigned char *current_password){
   return;
 }
 
-void check_ultrasonic(unsigned char *is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char ultrasonic_distance_permitted, unsigned char dx_ultrasonic_distance_permitted){
+void check_ultrasonic(unsigned char *is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char ultrasonic_distance_permitted, unsigned char dx_ultrasonic_distance_permitted, unsigned char *alarm_was_activated){
 
   int relative_distance=ultrasonic_distance_permitted-ult_son_get_dis();
 
-  if(relative_distance > dx_ultrasonic_distance_permitted || relative_distance < (int)(-dx_ultrasonic_distance_permitted))
+  if(relative_distance > dx_ultrasonic_distance_permitted || relative_distance < (int)(-dx_ultrasonic_distance_permitted)){
+    *alarm_was_activated=1;
     *is_secure_ultrasonic_distance=0;
-  else
+  }
+  else{
     *is_secure_ultrasonic_distance=1;
+  }
+    
   
   return;
 }
 
-void verify_alarm_status(unsigned char is_secure_ultrasonic_distance, unsigned char status_alarm){
-  if(is_secure_ultrasonic_distance==0 && status_alarm==1){
+void verify_alarm_status(unsigned char is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char *alarm_was_activated){
+  if((is_secure_ultrasonic_distance==0 && status_alarm==1) || (*alarm_was_activated==1 && status_alarm==1)){
     // Activate buzzer
     TMR2ON=1;
     CCPR1L=62;
-    
   }
   else{
     // deactivate buzzer
@@ -489,7 +497,7 @@ void clear_variables(unsigned char *option_selected, unsigned char *option_selec
   return;
 }
 
-void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *counter_password , unsigned char *status_alarm, unsigned char *key){
+void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *counter_password , unsigned char *status_alarm, unsigned char *key, unsigned char *alarm_was_activated){
 
   unsigned char counter=0;
   
@@ -513,6 +521,7 @@ void do_select_options(unsigned char *option_selected, unsigned char *option_sel
 
     if(*operation_password_success){
       *status_alarm=0;
+      *alarm_was_activated=0;
       
       clear_variables(option_selected,option_selected_previous,
 		      buffer_password_inserted, counter_password,
@@ -600,6 +609,7 @@ void do_select_options(unsigned char *option_selected, unsigned char *option_sel
   else if(*option_selected=='#'){
     // Activate alarm
     *status_alarm=1;
+    *alarm_was_activated=0;    
     clear_variables(option_selected,option_selected_previous,
 		    buffer_password_inserted, counter_password,
 		    operation_password_success);

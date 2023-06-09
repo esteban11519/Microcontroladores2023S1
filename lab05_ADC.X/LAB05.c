@@ -286,6 +286,7 @@ void check_potentiometer_voltaje(void){
   ADON=1;
   GO=1;
   while(GO==1);
+  
   if(ADRES > 511)
     LEDPOT = 1;
   else
