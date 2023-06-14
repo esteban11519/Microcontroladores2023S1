@@ -35,13 +35,16 @@ unsigned char Check_alarm=1;
 
 void load_password(unsigned char *);
 
-void check_ultrasonic(unsigned char *, unsigned char, unsigned char , unsigned char, unsigned char *);
+void check_ultrasonic(unsigned char *, unsigned char, unsigned char ,unsigned char
+		      ,unsigned char *);
 
 void verify_alarm_status(unsigned char, unsigned char, unsigned char *);
 
 void select_options(unsigned char *, unsigned char);
 
-void do_select_options(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
+void do_select_options(unsigned char *, unsigned char *, unsigned char *,
+		       unsigned char *, unsigned char *, unsigned char *,
+		       unsigned char *, unsigned char *, unsigned char *);
 
 void show_LCD(unsigned char, unsigned char, unsigned char *);
 
@@ -56,7 +59,8 @@ void signals_status_alarm(unsigned char,unsigned char *);
 unsigned char is_sym_val_opt(unsigned char);
 unsigned char is_sym_val_dig(unsigned char);
 unsigned char size_array(unsigned char *);
-void clear_variables(unsigned char *, unsigned char *, unsigned char *, unsigned char *, unsigned char *);
+void clear_variables(unsigned char *, unsigned char *, unsigned char *,
+		     unsigned char *, unsigned char *);
 void EEPROM_Write (unsigned char , unsigned char);
 unsigned char EEPROM_Read (unsigned char);
 
@@ -103,14 +107,21 @@ void main(void) {
       option_selected_previous=option_selected;
 
       // Functions
-      check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm, ultrasonic_distance_permitted, dx_ultrasonic_distance_permitted, &alarm_was_activated);
-      CLRWDT();
+      check_ultrasonic(&is_secure_ultrasonic_distance, status_alarm,
+		       ultrasonic_distance_permitted,
+		       dx_ultrasonic_distance_permitted, &alarm_was_activated);
+
+      CLRWDT(); // Clear Watchdog
       
-      verify_alarm_status(is_secure_ultrasonic_distance,status_alarm, &alarm_was_activated);
+      verify_alarm_status(is_secure_ultrasonic_distance,status_alarm,
+			  &alarm_was_activated);
       
       select_options(&option_selected, key);
 
-      do_select_options(&option_selected, &option_selected_previous, buffer_password_inserted,current_password, &operation_password_success, &counter_password, &status_alarm, &key, &alarm_was_activated);
+      do_select_options(&option_selected, &option_selected_previous,
+			buffer_password_inserted,current_password,
+			&operation_password_success, &counter_password,
+			&status_alarm, &key, &alarm_was_activated);
 
       show_LCD(status_alarm, option_selected, buffer_password_inserted);
 
@@ -304,15 +315,30 @@ void check_ultrasonic(unsigned char *is_secure_ultrasonic_distance, unsigned cha
 }
 
 void verify_alarm_status(unsigned char is_secure_ultrasonic_distance, unsigned char status_alarm, unsigned char *alarm_was_activated){
+  unsigned char increment_pwm=40;
+  unsigned char aux_CCPR1L = 0;
+  
   if((is_secure_ultrasonic_distance==0 && status_alarm==1) || (*alarm_was_activated==1 && status_alarm==1)){
     // Activate buzzer
     TMR2ON=1;
-    CCPR1L=62;
+
+    // Change dc voltage buzzer
+    aux_CCPR1L = (CCPR1L+increment_pwm)%PR2; 
+
+    if(aux_CCPR1L==0){
+      aux_CCPR1L+=1;
+    }
+    
+    CCPR1L= aux_CCPR1L;
+    
   }
   else{
     // deactivate buzzer
-    TMR2ON=0;
     CCPR1L=1;
+    __delay_ms(1);
+    CCPR1L=1;
+    TMR2ON=0;
+    
   }
   return;
 }
@@ -486,7 +512,9 @@ void select_options(unsigned char *option_selected, unsigned char key){
   return;
 }
 
-void clear_variables(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *counter_password, unsigned char *operation_password_success ){
+void clear_variables(unsigned char *option_selected, unsigned char *option_selected_previous,
+		     unsigned char *buffer_password_inserted, unsigned char *counter_password,
+		     unsigned char *operation_password_success ){
 
   *option_selected='B';
   *option_selected_previous='B';
@@ -497,7 +525,10 @@ void clear_variables(unsigned char *option_selected, unsigned char *option_selec
   return;
 }
 
-void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous, unsigned char *buffer_password_inserted, unsigned char *current_password, unsigned char *operation_password_success, unsigned char *counter_password , unsigned char *status_alarm, unsigned char *key, unsigned char *alarm_was_activated){
+void do_select_options(unsigned char *option_selected, unsigned char *option_selected_previous,
+		       unsigned char *buffer_password_inserted, unsigned char *current_password,
+		       unsigned char *operation_password_success, unsigned char *counter_password ,
+		       unsigned char *status_alarm, unsigned char *key, unsigned char *alarm_was_activated){
 
   unsigned char counter=0;
   
